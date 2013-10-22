@@ -72,8 +72,7 @@ namespace OpenglTester
 			if (Keyboard.GetState().IsKeyDown(Keys.Escape) )
 			{
 				Console.Out.WriteLine("quiting");
-				Console.Out.WriteLine("quiting");
-				Console.Out.WriteLine("quiting");Console.Out.WriteLine("quiting");
+
 
 
 				Exit ();
