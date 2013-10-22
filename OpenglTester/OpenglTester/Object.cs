@@ -86,11 +86,14 @@ namespace OpenglTester
 			v2_Size = newSize;
 		}
 
+
+		// update function
+		// 
 		virtual public void Update(float Elapsed)
 		{
 			 
 
-
+			// if the sprite is animated 
 			if (b_IsAnimated) 
 			{
 
@@ -106,22 +109,28 @@ namespace OpenglTester
 				}
 				
 			} 
+			// otherwise
 			else 
 			{
-
+				//pretty much do nothing
 			}
 		}
 
 		virtual public void Draw (SpriteBatch spriteBatch)
 		{
 			if (b_IsAnimated) {
+				// only using horizontal animation right now 
+				/// if someone really needs vertical i can change it
 				int FrameWidth = tex_Image.Width / i_NumOfFrames;
 				Rectangle sourcerect = new Rectangle(FrameWidth * i_CurrentFrame, 0,
 				                                     FrameWidth, tex_Image.Height);
+
 				spriteBatch.Draw(tex_Image, v2_Position, sourcerect, Color.White,
 				           f_Rotation, new Vector2(0,0), 1, SpriteEffects.None, 0f);
 
-			} else {
+			} 
+			else 
+			{
 				spriteBatch.Draw (tex_Image, v2_Position, null, Color.White, f_Rotation, new Vector2 (0, 0), 1f, SpriteEffects.None, 0f);
 			}
 
