@@ -20,7 +20,8 @@ namespace OpenglTester
 		GraphicsDeviceManager graphics;
 		ContentManager contentManager;
 		SpriteBatch spriteBatch;
-		Object SomeFuckingThing;
+		AI AnAI;
+		Player player;
 
 
 
@@ -30,8 +31,7 @@ namespace OpenglTester
 			contentManager = new ContentManager(Content.ServiceProvider);
 			contentManager.RootDirectory = "Content";	            
 			graphics.IsFullScreen = true;	
-
-			SomeFuckingThing = new Object("Untitled",graphics,contentManager,4,4);
+			AnAI = new AI("Untitled",graphics,contentManager );
 
 		}
 
@@ -71,11 +71,7 @@ namespace OpenglTester
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
 			if (Keyboard.GetState().IsKeyDown(Keys.Escape) )
 			{
-
 				Console.Out.WriteLine("quiting");
-
-
-
 				Exit ();
 			};
 
@@ -83,7 +79,7 @@ namespace OpenglTester
 				Exit ();
 			}
 			// TODO: Add your update logic here		
-			SomeFuckingThing.Update(timeDelta);
+			AnAI.Update(timeDelta);
 			base.Update (gameTime);
 		}
 
@@ -97,10 +93,9 @@ namespace OpenglTester
 			spriteBatch.Begin();
 			//TODO: Add your drawing code here
             //so draw your objects etc
-			SomeFuckingThing.Draw(spriteBatch);
+			AnAI.Draw(spriteBatch);
 			spriteBatch.End();
 			base.Draw (gameTime);
 		}
 	}
 }
-
