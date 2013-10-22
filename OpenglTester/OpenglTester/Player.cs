@@ -6,14 +6,28 @@ using Microsoft.Xna.Framework.Content;
 
 namespace OpenglTester
 {
+	struct AnimationInfo
+	{
+		int Start, End, TimeForCompletion;
+	};
 	public class Player : Object
 	{
-		Texture2D Idle, Walk, Run, Jump, Crouch;
+		enum Action
+		{
+			idle,
+			walk,
+			run,
+			sneak,
+			jump,
+			punch
+		};
+
+
+
 		public Player(string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager):base ( imagePath , gdevman, contentManager)
 		{
 			
 		}
-		//With reference to Jacobs animation, rebuild to have multiple animation strips?
 
 	}
 }
