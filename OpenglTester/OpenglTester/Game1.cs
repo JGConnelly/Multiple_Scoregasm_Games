@@ -20,7 +20,7 @@ namespace OpenglTester
 		GraphicsDeviceManager graphics;
 		ContentManager contentManager;
 		SpriteBatch spriteBatch;
-		AI SomeFuckingThing;
+		Object SomeFuckingThing;
 
 
 
@@ -31,7 +31,7 @@ namespace OpenglTester
 			contentManager.RootDirectory = "Content";	            
 			graphics.IsFullScreen = true;	
 
-			SomeFuckingThing = new AI("Untitled",graphics,contentManager );
+			SomeFuckingThing = new Object("Untitled",graphics,contentManager,4,4);
 
 		}
 
