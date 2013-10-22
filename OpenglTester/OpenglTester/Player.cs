@@ -14,7 +14,7 @@ namespace OpenglTester
 			
 		}
 		//With reference to Jacobs animation, rebuild to have multiple animation strips?
-		//derp
+
 	}
 }
 
