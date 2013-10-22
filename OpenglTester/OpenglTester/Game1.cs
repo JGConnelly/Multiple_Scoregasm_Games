@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
+
 
 #endregion
 
@@ -16,16 +18,19 @@ namespace OpenglTester
 	public class Game1 : Game
 	{
 		GraphicsDeviceManager graphics;
+		ContentManager contentManager;
 		SpriteBatch spriteBatch;
-		KeyboardState currentKeyboardState;
-		Texture2D pic;
+		AI SomeFuckingThing;
+
+
 
 		public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager (this);
-			Content.RootDirectory = "Content";	            
+			contentManager = new ContentManager(Content.ServiceProvider);
+			contentManager.RootDirectory = "Content";	            
 			graphics.IsFullScreen = true;	
-			currentKeyboardState = new KeyboardState();
+			SomeFuckingThing = new AI("Untitled",graphics,contentManager );
 
 		}
 
@@ -61,8 +66,9 @@ namespace OpenglTester
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update (GameTime gameTime)
 		{
+			float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
-			if (currentKeyboardState.IsKeyDown(Keys.Space))
+			if (Keyboard.GetState().IsKeyDown(Keys.Escape) )
 			{
 				Console.Out.WriteLine("quiting");
 				Exit ();
@@ -71,7 +77,8 @@ namespace OpenglTester
 			if (GamePad.GetState (PlayerIndex.One).Buttons.Back == ButtonState.Pressed) {
 				Exit ();
 			}
-			// TODO: Add your update logic here			
+			// TODO: Add your update logic here		
+			SomeFuckingThing.Update(timeDelta);
 			base.Update (gameTime);
 		}
 
@@ -82,9 +89,11 @@ namespace OpenglTester
 		protected override void Draw (GameTime gameTime)
 		{
 			graphics.GraphicsDevice.Clear (Color.AntiqueWhite);
-		
+			spriteBatch.Begin();
 			//TODO: Add your drawing code here
-            
+            //so draw your objects etc
+			SomeFuckingThing.Draw(spriteBatch);
+			spriteBatch.End();
 			base.Draw (gameTime);
 		}
 	}
