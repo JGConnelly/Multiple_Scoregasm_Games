@@ -9,20 +9,20 @@ namespace OpenglTester
 	public class Object
 	{
 	
-		private Texture2D tex_Image;
-		private int i_NumOfFrames;
-		private int i_FramesPerSec;
-		private int i_CurrentFrame;
+		protected Texture2D tex_Image;
+		protected int i_NumOfFrames;
+		protected int i_FramesPerSec;
+		protected int i_CurrentFrame;
 
-		private float f_ElapsedGameTime;
-		private float f_TimePerFrame;
+		protected float f_ElapsedGameTime;
+		protected float f_TimePerFrame;
 
-		private Vector2 v2_Position;
-		private Vector2 v2_Size;
-		private float f_Rotation;
+		protected Vector2 v2_Position;
+		protected Vector2 v2_Size;
+		protected float f_Rotation;
 
-		bool b_IsAnimated;
-		bool b_Paused;
+		protected bool b_IsAnimated;
+		protected bool b_Paused;
 
 		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager)
 		{
