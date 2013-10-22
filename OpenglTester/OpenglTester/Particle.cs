@@ -34,11 +34,13 @@ namespace OpenglTester
 				f_Rotation-= 360;
 			if (f_Rotation < 0)
 				f_Rotation+= 360;
+
+			// if moves with the direction it is rotating / faceing
 			if(b_FollowRotation)
 			{
-				v2_Position.X += v2_LinearVelocity.X * Math.Cos(f_Rotation* 0.0174532925) *Elapsed;
+				v2_Position.X += (float)(v2_LinearVelocity.X * Math.Cos(f_Rotation* 0.0174532925) *Elapsed);
 				if(Math.Sin(f_Rotation * 0.0174532925) !=0)
-					v2_Position.Y -= v2_LinearVelocity.Y * Math.Sin(f_Rotation * 0.0174532925) *Elapsed;
+					v2_Position.Y -= (float)(v2_LinearVelocity.Y * Math.Sin(f_Rotation * 0.0174532925) *Elapsed);
 				else
 					v2_Position.Y -= v2_LinearVelocity.Y  *Elapsed;
 			}
