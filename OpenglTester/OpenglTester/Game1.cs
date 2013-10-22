@@ -71,7 +71,7 @@ namespace OpenglTester
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
 			if (Keyboard.GetState().IsKeyDown(Keys.Escape) )
 			{
-				// nigger
+
 				Console.Out.WriteLine("quiting");
 
 
