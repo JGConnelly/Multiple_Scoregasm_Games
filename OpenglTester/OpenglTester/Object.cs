@@ -11,8 +11,11 @@ namespace OpenglTester
 	
 		protected Texture2D tex_Image;
 		protected int i_NumOfFrames;
-		protected int i_FramesPerSec;
+		protected int i_TimeToCompleteAnim;
 		protected int i_CurrentFrame;
+		protected float f_FrameWidth;
+		protected int i_StartFrame;
+
 
 		protected float f_ElapsedGameTime;
 		protected float f_TimePerFrame;
@@ -24,6 +27,8 @@ namespace OpenglTester
 		protected bool b_IsAnimated;
 		protected bool b_Paused;
 
+
+		// create a non animated object
 		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager)
 		{
 
@@ -32,7 +37,7 @@ namespace OpenglTester
 			v2_Size.X = tex_Image.Width;
 
 			i_NumOfFrames =0;
-			i_FramesPerSec = 0;
+			i_TimeToCompleteAnim = 0;
 			v2_Position.X = 0;
 			v2_Position.Y = 0;
 			b_IsAnimated = false;
@@ -41,8 +46,9 @@ namespace OpenglTester
 			i_CurrentFrame = 0;
 			f_ElapsedGameTime =0;
 			f_TimePerFrame= 0;
+			i_StartFrame = 0;
 		}
-		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , int animFPS)
+		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , int timeToComplete)
 		{
 
 
@@ -51,8 +57,8 @@ namespace OpenglTester
 
 			
 			i_NumOfFrames =numberOfFrames;
-			i_FramesPerSec = animFPS;
-			f_TimePerFrame = i_FramesPerSec / numberOfFrames;
+			i_TimeToCompleteAnim = timeToComplete;
+			f_TimePerFrame = i_TimeToCompleteAnim / numberOfFrames;
 			b_IsAnimated = true;
 
 			tex_Image=  contentManager.Load<Texture2D>(imagePath);
@@ -60,13 +66,43 @@ namespace OpenglTester
 			v2_Size.X = tex_Image.Width;
 			v2_Position.X = 0;
 			v2_Position.Y = 0;
-			
+			f_FrameWidth = tex_Image.Width / i_NumOfFrames; // so what the animator thinks the size of the frames are
 			f_Rotation = 0;
 			i_CurrentFrame = 0;
 			f_ElapsedGameTime=0;
+			i_StartFrame = 0;
+
+
 		}
 
+		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , int timeToComplete,float frameSize)
+		{
+			
+			
+			b_Paused = false;
+			
+			
+			
+			i_NumOfFrames =numberOfFrames;
+			i_TimeToCompleteAnim = timeToComplete;
+			f_TimePerFrame = i_TimeToCompleteAnim / i_NumOfFrames;
+			b_IsAnimated = true;
+			
+			tex_Image=  contentManager.Load<Texture2D>(imagePath);
+			v2_Size.Y = tex_Image.Height;
+			v2_Size.X = tex_Image.Width;
+			v2_Position.X = 0;
+			v2_Position.Y = 0;
 
+			f_FrameWidth = frameSize; // so what the animator thinks the size of the frames are
+
+			f_Rotation = 0;
+			i_CurrentFrame = 0;
+			f_ElapsedGameTime=0;
+			i_StartFrame = 0;
+
+
+		}
 
 		// Accessors and mutators
 		Vector2 GetPosition()
@@ -86,9 +122,18 @@ namespace OpenglTester
 			v2_Size = newSize;
 		}
 
+		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, int timeToComplete)
+		{
+			i_StartFrame = startPoint;
+			i_NumOfFrames = numberOfFrames;
+			i_TimeToCompleteAnim = timeToComplete;
+			f_TimePerFrame = i_TimeToCompleteAnim / i_NumOfFrames;
 
+		}
 		// update function
 		// 
+		// just pass through the (float)gameTime.ElapsedGameTime.TotalSeconds in game class
+
 		virtual public void Update(float Elapsed)
 		{
 			 
@@ -121,11 +166,12 @@ namespace OpenglTester
 			if (b_IsAnimated) {
 				// only using horizontal animation right now 
 				/// if someone really needs vertical i can change it
-				int FrameWidth = tex_Image.Width / i_NumOfFrames;
-				Rectangle sourcerect = new Rectangle(FrameWidth * i_CurrentFrame, 0,
-				                                     FrameWidth, tex_Image.Height);
 
-				spriteBatch.Draw(tex_Image, v2_Position, sourcerect, Color.White,
+				// anyway.. this creates the rectangle that the animation will use
+				Rectangle AnimSourceRect = new Rectangle((int)((f_FrameWidth * i_CurrentFrame)+i_StartFrame*f_FrameWidth), 0,
+				                                 (int)f_FrameWidth, tex_Image.Height);
+
+				spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
 				           f_Rotation, new Vector2(0,0), 1, SpriteEffects.None, 0f);
 
 			} 

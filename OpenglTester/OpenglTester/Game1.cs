@@ -31,7 +31,12 @@ namespace OpenglTester
 			contentManager.RootDirectory = "Content";	            
 			graphics.IsFullScreen = true;	
 
-			SomeFuckingThing = new Object("Untitled",graphics,contentManager,4,4);
+			// in this example of the animated object:
+			// 4th arg: using the untitled image i only want to render through 3 of the four frames 
+			// 5th arg: time to animate the entire image
+			// size vertically of individual frames
+			SomeFuckingThing = new Object("Untitled",graphics,contentManager,4,4,64);
+			SomeFuckingThing.SetAnimationStartPoint(1,2,2);
 
 		}
 
