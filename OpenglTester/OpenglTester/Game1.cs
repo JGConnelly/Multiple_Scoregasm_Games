@@ -30,6 +30,7 @@ namespace OpenglTester
 			contentManager = new ContentManager(Content.ServiceProvider);
 			contentManager.RootDirectory = "Content";	            
 			graphics.IsFullScreen = true;	
+
 			SomeFuckingThing = new AI("Untitled",graphics,contentManager );
 
 		}
@@ -71,6 +72,10 @@ namespace OpenglTester
 			if (Keyboard.GetState().IsKeyDown(Keys.Escape) )
 			{
 				Console.Out.WriteLine("quiting");
+				Console.Out.WriteLine("quiting");
+				Console.Out.WriteLine("quiting");Console.Out.WriteLine("quiting");
+
+
 				Exit ();
 			};
 
