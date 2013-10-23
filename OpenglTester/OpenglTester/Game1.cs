@@ -21,7 +21,7 @@ namespace OpenglTester
 		ContentManager contentManager;
 		SpriteBatch spriteBatch;
 		Object SomeFuckingThing;
-
+		Object OtherThing;
 
 
 		public Game1 ()
@@ -36,8 +36,9 @@ namespace OpenglTester
 			// 5th arg: time to animate the entire image
 			// size vertically of individual frames
 			SomeFuckingThing = new Object("Untitled",graphics,contentManager,4,4,64);
+			OtherThing = new Object("Untitled",graphics,contentManager);
 			SomeFuckingThing.SetAnimationStartPoint(1,2,2);
-
+			OtherThing.SetPosition(new Vector2(200,200));
 		}
 
 		/// <summary>
@@ -87,7 +88,9 @@ namespace OpenglTester
 			if (GamePad.GetState (PlayerIndex.One).Buttons.Back == ButtonState.Pressed) {
 				Exit ();
 			}
-			// TODO: Add your update logic here		
+			// TODO: Add your update logic here	
+			OtherThing.Update(timeDelta);
+			OtherThing.CheckCollision(SomeFuckingThing);
 			SomeFuckingThing.Update(timeDelta);
 			base.Update (gameTime);
 		}
@@ -103,7 +106,11 @@ namespace OpenglTester
 			//TODO: Add your drawing code here
             //so draw your objects etc
 			SomeFuckingThing.Draw(spriteBatch);
+			OtherThing.Draw(spriteBatch);
+
+
 			spriteBatch.End();
+
 			base.Draw (gameTime);
 		}
 	}

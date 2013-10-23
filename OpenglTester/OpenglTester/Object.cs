@@ -13,7 +13,7 @@ namespace OpenglTester
 		protected int i_NumOfFrames;
 		protected int i_TimeToCompleteAnim;
 		protected int i_CurrentFrame;
-		protected float f_FrameWidth;
+		protected Vector2 f_FrameSize;
 		protected int i_StartFrame;
 
 
@@ -62,11 +62,12 @@ namespace OpenglTester
 			b_IsAnimated = true;
 
 			tex_Image=  contentManager.Load<Texture2D>(imagePath);
-			v2_Size.Y = tex_Image.Height;
-			v2_Size.X = tex_Image.Width;
+
 			v2_Position.X = 0;
 			v2_Position.Y = 0;
-			f_FrameWidth = tex_Image.Width / i_NumOfFrames; // so what the animator thinks the size of the frames are
+			f_FrameSize.X = tex_Image.Width / i_NumOfFrames; // so what the animator thinks the size of the frames are
+			v2_Size.Y = tex_Image.Height;
+			v2_Size.X = f_FrameSize.X;
 			f_Rotation = 0;
 			i_CurrentFrame = 0;
 			f_ElapsedGameTime=0;
@@ -87,14 +88,14 @@ namespace OpenglTester
 			i_TimeToCompleteAnim = timeToComplete;
 			f_TimePerFrame = i_TimeToCompleteAnim / i_NumOfFrames;
 			b_IsAnimated = true;
-			
+			f_FrameSize.X = frameSize; // so what the animator thinks the size of the frames are
 			tex_Image=  contentManager.Load<Texture2D>(imagePath);
 			v2_Size.Y = tex_Image.Height;
-			v2_Size.X = tex_Image.Width;
+			v2_Size.X = f_FrameSize.X;
 			v2_Position.X = 0;
 			v2_Position.Y = 0;
 
-			f_FrameWidth = frameSize; // so what the animator thinks the size of the frames are
+
 
 			f_Rotation = 0;
 			i_CurrentFrame = 0;
@@ -130,8 +131,23 @@ namespace OpenglTester
 			f_TimePerFrame = i_TimeToCompleteAnim / i_NumOfFrames;
 
 		}
-		// update function
-		// 
+
+
+
+		virtual public bool CheckCollision (Object other)
+		{
+			Rectangle thisObjectRect = new Rectangle((int)v2_Position.X,(int)v2_Position.Y,(int)v2_Size.X,(int)v2_Size.Y);
+			Rectangle otherRect = new Rectangle((int)other.GetPosition().X,(int)other.GetPosition().Y,(int)other.GetSize().X,(int)other.GetSize().Y);
+
+			if(thisObjectRect.Intersects(otherRect) || otherRect.Intersects(thisObjectRect))
+				return true;
+			else 
+				return false;
+
+		}
+
+
+		// update function 
 		// just pass through the (float)gameTime.ElapsedGameTime.TotalSeconds in game class
 
 		virtual public void Update(float Elapsed)
@@ -168,8 +184,8 @@ namespace OpenglTester
 				/// if someone really needs vertical i can change it
 
 				// anyway.. this creates the rectangle that the animation will use
-				Rectangle AnimSourceRect = new Rectangle((int)((f_FrameWidth * i_CurrentFrame)+i_StartFrame*f_FrameWidth), 0,
-				                                 (int)f_FrameWidth, tex_Image.Height);
+				Rectangle AnimSourceRect = new Rectangle((int)((f_FrameSize.X * i_CurrentFrame)+i_StartFrame*f_FrameSize.X), 0,
+				                                         (int)f_FrameSize.X, tex_Image.Height);
 
 				spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
 				           f_Rotation, new Vector2(0,0), 1, SpriteEffects.None, 0f);
