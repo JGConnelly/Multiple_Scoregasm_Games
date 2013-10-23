@@ -21,6 +21,7 @@ namespace OpenglTester
 		ContentManager contentManager;
 		SpriteBatch spriteBatch;
 		AI AnAI;
+		Object SomeFuckingThing;
 		Player player;
 
 
@@ -31,7 +32,13 @@ namespace OpenglTester
 			contentManager = new ContentManager(Content.ServiceProvider);
 			contentManager.RootDirectory = "Content";	            
 			graphics.IsFullScreen = true;	
-			AnAI = new AI("Untitled",graphics,contentManager );
+
+			// in this example of the animated object:
+			// 4th arg: using the untitled image i only want to render through 3 of the four frames 
+			// 5th arg: time to animate the entire image
+			// size vertically of individual frames
+			SomeFuckingThing = new Object("Untitled",graphics,contentManager,4,4,64);
+			SomeFuckingThing.SetAnimationStartPoint(1,2,2);
 
 		}
 
@@ -79,8 +86,8 @@ namespace OpenglTester
 				Exit ();
 			}
 			// TODO: Add your update logic here		
-			AnAI.Update(timeDelta);
 			base.Update (gameTime);
+			SomeFuckingThing.Update(timeDelta);
 		}
 
 		/// <summary>
@@ -93,7 +100,7 @@ namespace OpenglTester
 			spriteBatch.Begin();
 			//TODO: Add your drawing code here
             //so draw your objects etc
-			AnAI.Draw(spriteBatch);
+			SomeFuckingThing.Draw(spriteBatch);
 			spriteBatch.End();
 			base.Draw (gameTime);
 		}
