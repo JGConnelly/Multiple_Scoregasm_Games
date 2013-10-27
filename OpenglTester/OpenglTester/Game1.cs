@@ -22,8 +22,6 @@ namespace OpenglTester
 		SpriteBatch spriteBatch;
 		AI SomeFuckingThing;
 
-
-
 		public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager (this);
@@ -31,7 +29,6 @@ namespace OpenglTester
 			contentManager.RootDirectory = "Content";	            
 			graphics.IsFullScreen = true;	
 			SomeFuckingThing = new AI("Untitled",graphics,contentManager );
-
 		}
 
 		/// <summary>
