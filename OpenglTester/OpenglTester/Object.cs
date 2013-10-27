@@ -106,21 +106,20 @@ namespace OpenglTester
 		}
 
 		// Accessors and mutators
-		Vector2 GetPosition()
+
+		public Vector2 Position 
 		{
-			return v2_Position;
+			set {v2_Position=value; }
+			get {return v2_Position;}
 		}
-		Vector2 GetSize()
+		public Vector2 Size 
 		{
-			return v2_Size;
+			set {v2_Size=value; }
+			get {return v2_Size;}
 		}
-		public void SetPosition (Vector2 newPos)
-		{
-			v2_Position = newPos;
-		}
-		public void SetSize (Vector2 newSize)
-		{
-			v2_Size = newSize;
+		public float Rotation{
+			set {f_Rotation=value;if(f_Rotation>359)f_Rotation = 0; if(f_Rotation<0)f_Rotation = 359; }
+			get {return f_Rotation;}
 		}
 
 		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, int timeToComplete)
@@ -137,7 +136,7 @@ namespace OpenglTester
 		virtual public bool CheckCollision (Object other)
 		{
 			Rectangle thisObjectRect = new Rectangle((int)v2_Position.X,(int)v2_Position.Y,(int)v2_Size.X,(int)v2_Size.Y);
-			Rectangle otherRect = new Rectangle((int)other.GetPosition().X,(int)other.GetPosition().Y,(int)other.GetSize().X,(int)other.GetSize().Y);
+			Rectangle otherRect = new Rectangle((int)other.Position.X,(int)other.Position.Y,(int)other.Size.X,(int)other.Size.Y);
 
 			if(thisObjectRect.Intersects(otherRect) || otherRect.Intersects(thisObjectRect))
 				return true;

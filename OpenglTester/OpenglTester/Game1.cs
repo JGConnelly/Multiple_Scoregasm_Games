@@ -22,6 +22,7 @@ namespace OpenglTester
 		SpriteBatch spriteBatch;
 		Object SomeFuckingThing;
 		Object OtherThing;
+		Emitter TestEmitter;
 
 
 		public Game1 ()
@@ -30,6 +31,7 @@ namespace OpenglTester
 			contentManager = new ContentManager(Content.ServiceProvider);
 			contentManager.RootDirectory = "Content";	            
 			graphics.IsFullScreen = true;	
+			TestEmitter = new Emitter(50,50,0,359);
 
 			// in this example of the animated object:
 			// 4th arg: using the untitled image i only want to render through 3 of the four frames 
@@ -38,7 +40,7 @@ namespace OpenglTester
 			SomeFuckingThing = new Object("Untitled",graphics,contentManager,4,4,64);
 			OtherThing = new Object("Untitled",graphics,contentManager);
 			SomeFuckingThing.SetAnimationStartPoint(1,2,2);
-			OtherThing.SetPosition(new Vector2(200,200));
+			OtherThing.Position =new Vector2(200,200);
 		}
 
 		/// <summary>
@@ -51,6 +53,7 @@ namespace OpenglTester
 		{
 			// TODO: Add your initialization logic here
 			base.Initialize ();
+			TestEmitter.Initialise(450,450,graphics,contentManager);
 				
 		}
 
@@ -91,6 +94,8 @@ namespace OpenglTester
 			// TODO: Add your update logic here	
 			OtherThing.Update(timeDelta);
 			OtherThing.CheckCollision(SomeFuckingThing);
+
+			TestEmitter.Update(timeDelta);
 			SomeFuckingThing.Update(timeDelta);
 			base.Update (gameTime);
 		}
@@ -107,7 +112,7 @@ namespace OpenglTester
             //so draw your objects etc
 			SomeFuckingThing.Draw(spriteBatch);
 			OtherThing.Draw(spriteBatch);
-
+			TestEmitter.Draw(spriteBatch);
 
 			spriteBatch.End();
 

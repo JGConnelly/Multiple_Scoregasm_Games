@@ -26,6 +26,28 @@ namespace OpenglTester
 
 
 		}
+
+		// mutators and accesors 
+		public void setRotationVel (float Rot, float RotVel)
+		{
+			f_Rotation = Rot; 
+			f_RotationalVelocity = RotVel;
+		}
+		public void SetVelocity(Vector2 vel)
+		{
+			v2_LinearVelocity = vel;
+		}
+		public void SetLife(float lifetime)
+		{
+			f_LifeRemaining = lifetime;
+		}
+		public bool Alive 
+		{
+			set {b_Alive=value; }
+			get {return b_Alive;}
+		} 
+
+
 		public override void Update (float Elapsed)
 		{
 			// now move the sprite to appropriate position
@@ -64,6 +86,7 @@ namespace OpenglTester
 			if (b_Alive)
 				base.Draw (spriteBatch);
 		}
+
 	}
 }
 
