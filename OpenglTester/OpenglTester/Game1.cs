@@ -39,7 +39,7 @@ namespace OpenglTester
 			// size vertically of individual frames
 			SomeFuckingThing = new Object("Untitled",graphics,contentManager,4,4,64);
 			SomeFuckingThing.SetAnimationStartPoint(1,2,2);
-
+			player = new Player("Assn7MainCharacterSpritesheet",graphics,contentManager,65,3,32f);
 		}
 
 		/// <summary>
@@ -87,7 +87,7 @@ namespace OpenglTester
 			}
 			// TODO: Add your update logic here		
 			base.Update (gameTime);
-			SomeFuckingThing.Update(timeDelta);
+			player.Update(timeDelta);
 		}
 
 		/// <summary>
@@ -100,7 +100,7 @@ namespace OpenglTester
 			spriteBatch.Begin();
 			//TODO: Add your drawing code here
             //so draw your objects etc
-			SomeFuckingThing.Draw(spriteBatch);
+			player.Draw(spriteBatch);
 			spriteBatch.End();
 			base.Draw (gameTime);
 		}
