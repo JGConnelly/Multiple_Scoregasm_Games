@@ -140,7 +140,7 @@ namespace OpenglTester
 		public void GenerateAlpha ()
 		{
 
-			tex_Image = Game.Content.Load<Texture2D>("mySprite");  
+			//tex_Image = Game.Content.Load<Texture2D>("mySprite");  
 			Color[] mySpriteData = new Color[tex_Image.Height * tex_Image.Width];  
 			tex_Image.GetData<Color>(mySpriteData); 
 
