@@ -19,11 +19,13 @@ namespace OpenglTester
 	public class PlayState : AbstractState
 	{
 		static readonly PlayState playInstance = new PlayState();
+		Object playBG;
 		
 		public override void Init()
 		{
 			Console.WriteLine ("PlayState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
+			playBG = new Object("game", Game1.graphics, Game1.contentManager);
 		}
 		
 		public override void Cleanup ()
@@ -62,12 +64,13 @@ namespace OpenglTester
 		
 		public override void Update (StateManager game, float dT)
 		{
-			
+			playBG.Update(dT);
 		}
 		
 		public override void Draw (StateManager game, float dT)
 		{
 			//draw stuff to the screen
+			playBG.Draw(Game1.spriteBatch);
 		}
 		
 		public static PlayState GetInstance ()

@@ -17,13 +17,13 @@ namespace OpenglTester
 	public class SplashState : AbstractState
 	{
 		static readonly SplashState splashInstance = new SplashState();
-		AI SomeFuckingThing;
+		Object splashBG;
 		
 		public override void Init()
 		{
 			Console.WriteLine("SplashState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
-			SomeFuckingThing = new AI("Untitled", Game1.graphics, Game1.contentManager);
+			splashBG = new Object("splash", Game1.graphics, Game1.contentManager);
 		}
 		
 		public override void Cleanup()
@@ -62,13 +62,13 @@ namespace OpenglTester
 		
 		public override void Update(StateManager game, float dT)
 		{
-			SomeFuckingThing.Update(dT);
+			splashBG.Update(dT);
 		}
 		
 		public override void Draw(StateManager game, float dT)
 		{
 			//draw stuff to the screen
-			SomeFuckingThing.Draw(Game1.spriteBatch);
+			splashBG.Draw(Game1.spriteBatch);
 		}
 		
 		public static SplashState GetInstance()
