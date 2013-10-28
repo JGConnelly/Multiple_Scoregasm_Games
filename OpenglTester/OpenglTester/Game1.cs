@@ -17,6 +17,13 @@ namespace OpenglTester
 	public class Game1 : Game
 	{
 
+		
+
+		AI AnAI;
+
+		Player player;
+
+
 		public static GraphicsDeviceManager graphics;
 		public static ContentManager contentManager;
 		public static SpriteBatch spriteBatch;
@@ -30,9 +37,18 @@ namespace OpenglTester
 			contentManager = new ContentManager(Content.ServiceProvider);
 			contentManager.RootDirectory = "Content";	            
 
+
 			graphics.IsFullScreen = true;
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch (GraphicsDevice);
+
+
+			// in this example of the animated object:
+			// 4th arg: using the untitled image i only want to render through 3 of the four frames 
+			// 5th arg: time to animate the entire image
+			// size vertically of individual frames
+
+			player = new Player("Assn7MainCharacterSpritesheet",graphics,contentManager,65,3,32f);
 
 		}
 
@@ -81,20 +97,16 @@ namespace OpenglTester
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
 			if(Keyboard.GetState().IsKeyDown(Keys.Escape))
 			{
-
-				Console.Out.WriteLine("quitting");
-				Exit();
+				Console.Out.WriteLine("quiting");
+				Exit ();
 			}
-			;
 
-
-			if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-			{
-				Exit();
+			if (GamePad.GetState (PlayerIndex.One).Buttons.Back == ButtonState.Pressed) {
+				Exit ();
 			}
-			// TODO: Add your update logic here	
-
-			base.Update(gameTime);
+			// TODO: Add your update logic here		
+			base.Update (gameTime);
+			player.Update(timeDelta);
 
 		}
 
@@ -108,12 +120,16 @@ namespace OpenglTester
 			spriteBatch.Begin();
 			//TODO: Add your drawing code here
 
+
 			//so draw your objects etc
 			gameManager.Draw (timeDelta);
+
+            //so draw your objects etc
+			player.Draw(spriteBatch);
+
 			spriteBatch.End();
 			base.Draw(gameTime);
 
 		}
 	}
 }
-
