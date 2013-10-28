@@ -5,8 +5,6 @@
  * Last Updated: Tuesday 22 October 2013 4pm
  * Comments: This is the splash state
  * ****************************************/
-
-
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,17 +16,17 @@ namespace OpenglTester
 {
 	public class SplashState : AbstractState
 	{
-		static readonly SplashState menuInstance = new SplashState();
+		static readonly SplashState splashInstance = new SplashState();
 		AI SomeFuckingThing;
 		
 		public override void Init()
 		{
-			Console.WriteLine ("SplashState initialized");
+			Console.WriteLine("SplashState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
-			SomeFuckingThing = new AI("Untitled",graphics,contentManager );
+			SomeFuckingThing = new AI("Untitled", Game1.graphics, Game1.contentManager);
 		}
 		
-		public override void Cleanup ()
+		public override void Cleanup()
 		{
 			Console.WriteLine("SplashState cleaned up");
 			//TODO: delete things
@@ -42,35 +40,37 @@ namespace OpenglTester
 		{
 		}
 		
-		public override void LoadContent (StateManager game)
+		public override void LoadContent(StateManager game)
 		{
 			//load the content for the splashstate
 		}
 		
-		public override void HandleEvents (StateManager game, float dT)
+		public override void HandleEvents(StateManager game, float dT)
 		{
-			if (Keyboard.GetState ().IsKeyDown (Keys.Space)) {
-				ChangeState (game, MenuState.GetInstance ());
+			if(StateManager.spaceIsDown)
+			{
+				ChangeState(game, MenuState.GetInstance());
 			}
 			//TODO: handle events here
 		}
 		
-		public override void Update (StateManager game, float dT)
+		public override void Update(StateManager game, float dT)
 		{
-			
+			SomeFuckingThing.Update(dT);
 		}
 		
-		public override void Draw (StateManager game, float dT)
+		public override void Draw(StateManager game, float dT)
 		{
 			//draw stuff to the screen
+			SomeFuckingThing.Draw(Game1.spriteBatch);
 		}
 		
-		public static MenuState GetInstance ()
+		public static SplashState GetInstance()
 		{
-			return menuInstance;
+			return splashInstance;
 		}
 		
-		private SplashState ()
+		private SplashState()
 		{
 			//Do nothing
 		}

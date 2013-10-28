@@ -23,7 +23,7 @@ namespace OpenglTester
 	{
 		private bool isRunning;
 		private List<AbstractState> states;
-		SpriteBatch spriteBatch;
+		public static bool spaceIsDown;
 		
 		public void Init()
 		{
@@ -31,6 +31,7 @@ namespace OpenglTester
 			//TODO: This method should receive the parameters for title, window width and ehight, fullscreen, etc
 			//TODO: then initialize the framework window
 			isRunning = true;
+			spaceIsDown = false;
 		}
 		
 		public void Cleanup ()
@@ -94,6 +95,16 @@ namespace OpenglTester
 		{
 			//call the handle events method on the current state
 			states[states.Count - 1].HandleEvents(this, dT);
+
+			//use spacebar to change states
+			if(Keyboard.GetState().IsKeyDown(Keys.Space) && (spaceIsDown == false))
+			{
+				spaceIsDown = true;
+			}
+			if (Keyboard.GetState().IsKeyUp(Keys.Space))
+			{
+				spaceIsDown = false;
+			}
 		}
 		
 		public void Update(float dT)

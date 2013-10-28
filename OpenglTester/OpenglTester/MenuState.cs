@@ -1,39 +1,76 @@
 /******************************************
- * AbstractState.cs
+ * MenuState.cs
  * Author: Tash
  * Created: Tuesday 22 October 2013
  * Last Updated: Tuesday 22 October 2013 4pm
- * Comments: This is a virtual class that all the game states inherit from. Not much to see here, excpet some virtual functions and the ChangeState function.
+ * Comments: This is the menu state
  * ****************************************/
 
+
 using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Storage;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace OpenglTester
 {
-	public abstract class AbstractState
+	public class MenuState : AbstractState
 	{
-		//virtual functions must be implemented by any derived classes
-		public abstract void Init ();
-		public abstract void Cleanup ();
-		
-		public abstract void Pause();
-		public abstract void Resume();
-		
-		public abstract void LoadContent(StateManager game);
-		public abstract void HandleEvents(StateManager game, float dT);
-		public abstract void Update(StateManager game, float dT);
-		public abstract void Draw(StateManager game, float dT);
-		
-		
-		public void ChangeState (StateManager game, AbstractState state)
+		static readonly MenuState menuInstance = new MenuState();
+		public override void Init()
 		{
-			game.ChangeState(state);
+			Console.WriteLine ("MenuState initialized");
+			//TODO: load the backgrounds and buttons and stuff here
 		}
 		
-		//protected constructor can only be accessed by derived classes
-		protected AbstractState ()
+		public override void Cleanup ()
 		{
-			//do nothing
+			Console.WriteLine("MenuState cleaned up");
+			//TODO: delete things
+		}
+		
+		public override void Pause()
+		{
+		}
+		
+		public override void Resume()
+		{
+		}
+		
+		public override void LoadContent (StateManager game)
+		{
+			//load the content for the menustate
+		}
+
+		public override void HandleEvents (StateManager game, float dT)
+		{
+			if (StateManager.spaceIsDown) 
+			{
+				ChangeState (game, PlayState.GetInstance ());
+			}
+			//TODO: handle events here
+		}
+		
+		public override void Update (StateManager game, float dT)
+		{
+			
+		}
+		
+		public override void Draw (StateManager game, float dT)
+		{
+			//draw stuff to the screen
+		}
+		
+		public static MenuState GetInstance ()
+		{
+			return menuInstance;
+		}
+		
+		private MenuState ()
+		{
+			//Do nothing
 		}
 	}
 }
