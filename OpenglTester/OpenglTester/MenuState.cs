@@ -19,6 +19,7 @@ namespace OpenglTester
 	public class MenuState : AbstractState
 	{
 		static readonly MenuState menuInstance = new MenuState();
+
 		public override void Init()
 		{
 			Console.WriteLine ("MenuState initialized");
@@ -46,9 +47,15 @@ namespace OpenglTester
 
 		public override void HandleEvents (StateManager game, float dT)
 		{
-			if (StateManager.spaceIsDown) 
+			//press space to change to PlayState
+			if(Keyboard.GetState().IsKeyDown(Keys.Space) && (!StateManager.spaceIsDown))
 			{
-				ChangeState (game, PlayState.GetInstance ());
+				StateManager.spaceIsDown = true;
+				ChangeState(game, PlayState.GetInstance());
+			}
+			if(Keyboard.GetState().IsKeyUp(Keys.Space) && StateManager.spaceIsDown)
+			{
+				StateManager.spaceIsDown = false;
 			}
 			//TODO: handle events here
 		}

@@ -47,9 +47,15 @@ namespace OpenglTester
 		
 		public override void HandleEvents (StateManager game, float dT)
 		{
-			if (StateManager.spaceIsDown) 
+			//press space to change to SplashState
+			if(Keyboard.GetState().IsKeyDown(Keys.Space) && (!StateManager.spaceIsDown))
 			{
-				ChangeState (game, SplashState.GetInstance ());
+				StateManager.spaceIsDown = true;
+				ChangeState(game, SplashState.GetInstance());
+			}
+			if(Keyboard.GetState().IsKeyUp(Keys.Space) && StateManager.spaceIsDown)
+			{
+				StateManager.spaceIsDown = false;
 			}
 			//TODO: handle events here
 		}
