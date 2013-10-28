@@ -53,7 +53,7 @@ namespace OpenglTester
 			if(Keyboard.GetState().IsKeyDown(Keys.Space) && (!StateManager.spaceIsDown))
 			{
 				StateManager.spaceIsDown = true;
-				ChangeState(game, SplashState.GetInstance());
+				ChangeState(game, MenuState.GetInstance());
 			}
 			if(Keyboard.GetState().IsKeyUp(Keys.Space) && StateManager.spaceIsDown)
 			{
