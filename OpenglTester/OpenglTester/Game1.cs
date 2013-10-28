@@ -116,8 +116,9 @@ namespace OpenglTester
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			Game1.graphics.GraphicsDevice.Clear (Color.AntiqueWhite);
-			spriteBatch.Begin();
+			Game1.graphics.GraphicsDevice.Clear (Color.CornflowerBlue);
+
+			spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
 			//TODO: Add your drawing code here
 
 

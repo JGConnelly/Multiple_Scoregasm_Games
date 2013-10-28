@@ -149,7 +149,7 @@ namespace OpenglTester
 			byte blueValue  = mySpriteData[0].B;
 
 
-			for (int j = 0; j < mySpriteData.Length; j++)  
+			for (int j = 0; j < tex_Image.Height * tex_Image.Width ; j++)  
 			{
 				if(mySpriteData[j].R == redValue && mySpriteData[j].G == greenValue && mySpriteData[j].B == blueValue)
 				{
