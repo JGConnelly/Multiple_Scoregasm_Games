@@ -16,10 +16,6 @@ namespace OpenglTester
 		{
 			Start = a; Frames = b; TimeForCompletion = c;
 		}
-		//public AnimationInfo ()
-		//{
-		//	Start = 0; Frames = 1; TimeForCompletion = 1;
-		//}
 	};
 	public class Player : Object
 	{
