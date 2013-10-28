@@ -137,6 +137,8 @@ namespace OpenglTester
 
 		// end of Accessors and mutators
 
+
+		// generates the alpha from the top left pixel.... i think
 		public void GenerateAlpha ()
 		{
 
@@ -159,6 +161,7 @@ namespace OpenglTester
 			tex_Image.SetData<Color>(mySpriteData);
 		}
 
+		// flips the image horizontally
 		public void FlipHorizontal ()
 		{
 			if(b_FlipImage)
@@ -252,10 +255,8 @@ namespace OpenglTester
 			}
 
 		}
-
-
 		
-		
+
 	}
 }
 

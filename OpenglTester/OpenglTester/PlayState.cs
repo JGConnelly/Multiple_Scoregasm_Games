@@ -21,6 +21,10 @@ namespace OpenglTester
 		static readonly PlayState playInstance = new PlayState();
 		Object playBG;
 		
+		AI AnAI;
+		
+		Player player;
+		
 		public override void Init()
 		{
 			Console.WriteLine ("PlayState initialized");
@@ -61,9 +65,10 @@ namespace OpenglTester
 			}
 			//TODO: handle events here
 		}
-		
+
 		public override void Update (StateManager game, float dT)
 		{
+			player.Update(dT);
 			playBG.Update(dT);
 		}
 		
@@ -71,6 +76,8 @@ namespace OpenglTester
 		{
 			//draw stuff to the screen
 			playBG.Draw(Game1.spriteBatch);
+			//so draw your objects etc
+			player.Draw(Game1.spriteBatch);
 		}
 		
 		public static PlayState GetInstance ()

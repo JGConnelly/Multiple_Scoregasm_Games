@@ -19,9 +19,6 @@ namespace OpenglTester
 
 		
 
-		AI AnAI;
-
-		Player player;
 
 
 		public static GraphicsDeviceManager graphics;
@@ -106,7 +103,7 @@ namespace OpenglTester
 			}
 			// TODO: Add your update logic here		
 			base.Update (gameTime);
-			player.Update(timeDelta);
+
 
 		}
 
@@ -124,9 +121,8 @@ namespace OpenglTester
 
 			//so draw your objects etc
 			gameManager.Draw (timeDelta);
-
-            //so draw your objects etc
-			player.Draw(spriteBatch);
+			/// draw in the playstate manager
+           
 
 			spriteBatch.End();
 			base.Draw(gameTime);
