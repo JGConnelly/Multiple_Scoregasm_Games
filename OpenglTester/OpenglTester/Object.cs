@@ -27,7 +27,7 @@ namespace OpenglTester
 
 		protected bool b_IsAnimated;
 		protected bool b_Paused;
-
+		protected bool b_FlipImage;
 
 		// create a non animated object
 		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager)
@@ -49,6 +49,7 @@ namespace OpenglTester
 			f_TimePerFrame= 0;
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
+			b_FlipImage = false;
 		}
 		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , int timeToComplete)
 		{
@@ -74,6 +75,7 @@ namespace OpenglTester
 			f_ElapsedGameTime=0;
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
+			b_FlipImage = false;
 
 
 		}
@@ -104,6 +106,7 @@ namespace OpenglTester
 			f_ElapsedGameTime=0;
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
+			b_FlipImage = false;
 
 
 		}
@@ -136,7 +139,13 @@ namespace OpenglTester
 
 		// end of Accessors and mutators
 
-
+		public void FlipHorizontal ()
+		{
+			if(b_FlipImage)
+				b_FlipImage = false;
+			else
+				b_FlipImage = true;
+		}
 		// set the starting frame 
 		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, int timeToComplete)
 		{
@@ -194,6 +203,9 @@ namespace OpenglTester
 
 		virtual public void Draw (SpriteBatch spriteBatch)
 		{
+
+
+
 			if (b_IsAnimated) {
 				// only using horizontal animation right now 
 				/// if someone really needs vertical i can change it
@@ -201,14 +213,20 @@ namespace OpenglTester
 				// anyway.. this creates the rectangle that the animation will use
 				Rectangle AnimSourceRect = new Rectangle((int)((f_FrameSize.X * i_CurrentFrame)+i_StartFrame*f_FrameSize.X), 0,
 				                                         (int)f_FrameSize.X, tex_Image.Height);
-
-				spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
-				           f_Rotation, new Vector2(0,0), 1, SpriteEffects.None, 0f);
+				if(b_FlipImage)
+					spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
+				           	f_Rotation, new Vector2(0,0), 1, SpriteEffects.FlipHorizontally, 0f);
+				else
+					spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
+					                 f_Rotation, new Vector2(0,0), 1, SpriteEffects.None, 0f);
 
 			} 
 			else 
 			{
-				spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1f, SpriteEffects.None, 0f);
+				if(b_FlipImage)
+					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1f, SpriteEffects.FlipHorizontally, 0f);
+				else
+					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1f, SpriteEffects.None, 0f);
 			}
 
 		}
