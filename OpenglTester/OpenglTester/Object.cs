@@ -22,6 +22,7 @@ namespace OpenglTester
 
 		protected Vector2 v2_Position;
 		protected Vector2 v2_Size;
+		protected Vector2 v2_Origin;
 		protected float f_Rotation;
 
 		protected bool b_IsAnimated;
@@ -47,13 +48,13 @@ namespace OpenglTester
 			f_ElapsedGameTime =0;
 			f_TimePerFrame= 0;
 			i_StartFrame = 0;
+			v2_Origin = new Vector2(0,0);
 		}
 		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , int timeToComplete)
 		{
 
 
 			b_Paused = false;
-
 
 			
 			i_NumOfFrames =numberOfFrames;
@@ -72,6 +73,7 @@ namespace OpenglTester
 			i_CurrentFrame = 0;
 			f_ElapsedGameTime=0;
 			i_StartFrame = 0;
+			v2_Origin = new Vector2(0,0);
 
 
 		}
@@ -101,6 +103,7 @@ namespace OpenglTester
 			i_CurrentFrame = 0;
 			f_ElapsedGameTime=0;
 			i_StartFrame = 0;
+			v2_Origin = new Vector2(0,0);
 
 
 		}
@@ -117,11 +120,24 @@ namespace OpenglTester
 			set {v2_Size=value; }
 			get {return v2_Size;}
 		}
-		public float Rotation{
+		public float Rotation
+		{
 			set {f_Rotation=value;if(f_Rotation>359)f_Rotation = 0; if(f_Rotation<0)f_Rotation = 359; }
 			get {return f_Rotation;}
 		}
+		public void SetCenter()
+		{
+			v2_Origin = v2_Size/2;
+		}	
+		public void SetOffCenter()
+		{
+			v2_Origin = new Vector2(0,0);
+		}
 
+		// end of Accessors and mutators
+
+
+		// set the starting frame 
 		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, int timeToComplete)
 		{
 			i_StartFrame = startPoint;
@@ -192,7 +208,7 @@ namespace OpenglTester
 			} 
 			else 
 			{
-				spriteBatch.Draw (tex_Image, v2_Position, null, Color.White, f_Rotation, new Vector2 (0, 0), 1f, SpriteEffects.None, 0f);
+				spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1f, SpriteEffects.None, 0f);
 			}
 
 		}

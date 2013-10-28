@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 
-
 #endregion
 
 namespace OpenglTester
@@ -17,30 +16,24 @@ namespace OpenglTester
 	/// </summary>
 	public class Game1 : Game
 	{
-		GraphicsDeviceManager graphics;
-		ContentManager contentManager;
-		SpriteBatch spriteBatch;
-		Object SomeFuckingThing;
-		Object OtherThing;
-		Emitter TestEmitter;
+
+		public static GraphicsDeviceManager graphics;
+		public static ContentManager contentManager;
+		public static SpriteBatch spriteBatch;
+		StateManager gameManager = new StateManager();
+		float timeDelta;
 
 
-		public Game1 ()
+		public Game1()
 		{
-			graphics = new GraphicsDeviceManager (this);
+			graphics = new GraphicsDeviceManager(this);
 			contentManager = new ContentManager(Content.ServiceProvider);
 			contentManager.RootDirectory = "Content";	            
-			graphics.IsFullScreen = true;	
-			TestEmitter = new Emitter(50,50,0,359);
 
-			// in this example of the animated object:
-			// 4th arg: using the untitled image i only want to render through 3 of the four frames 
-			// 5th arg: time to animate the entire image
-			// size vertically of individual frames
-			SomeFuckingThing = new Object("Untitled",graphics,contentManager,4,4,64);
-			OtherThing = new Object("Untitled",graphics,contentManager);
-			SomeFuckingThing.SetAnimationStartPoint(1,2,2);
-			OtherThing.Position =new Vector2(200,200);
+			graphics.IsFullScreen = true;
+			// Create a new SpriteBatch, which can be used to draw textures.
+			spriteBatch = new SpriteBatch (GraphicsDevice);
+
 		}
 
 		/// <summary>
@@ -49,11 +42,16 @@ namespace OpenglTester
 		/// related content.  Calling base.Initialize will enumerate through any components
 		/// and initialize them as well.
 		/// </summary>
-		protected override void Initialize ()
+		protected override void Initialize()
 		{
 			// TODO: Add your initialization logic here
-			base.Initialize ();
-			TestEmitter.Initialise(450,450,graphics,contentManager);
+
+			base.Initialize();
+
+			//initialize the game state manager and set the initial state to the splash screen
+			gameManager.Init();
+			gameManager.ChangeState(SplashState.GetInstance ());
+
 				
 		}
 
@@ -61,10 +59,8 @@ namespace OpenglTester
 		/// LoadContent will be called once per game and is the place to load
 		/// all of your content.
 		/// </summary>
-		protected override void LoadContent ()
+		protected override void LoadContent()
 		{
-			// Create a new SpriteBatch, which can be used to draw textures.
-			spriteBatch = new SpriteBatch (GraphicsDevice);
 			//Texture2D pic= new Texture2D(;
 			//TODO: use this.Content to load your game content here 
 		}
@@ -74,49 +70,49 @@ namespace OpenglTester
 		/// checking for collisions, gathering input, and playing audio.
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Update (GameTime gameTime)
+		protected override void Update(GameTime gameTime)
 		{
-			float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+			timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+			//update the current state
+			gameManager.HandleEvents (timeDelta);
+			gameManager.Update (timeDelta);
+
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
-			if (Keyboard.GetState().IsKeyDown(Keys.Escape) )
+			if(Keyboard.GetState().IsKeyDown(Keys.Escape))
 			{
 
-				Console.Out.WriteLine("quiting");
+				Console.Out.WriteLine("quitting");
+				Exit();
+			}
+			;
 
 
-
-				Exit ();
-			};
-
-			if (GamePad.GetState (PlayerIndex.One).Buttons.Back == ButtonState.Pressed) {
-				Exit ();
+			if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+			{
+				Exit();
 			}
 			// TODO: Add your update logic here	
-			OtherThing.Update(timeDelta);
-			OtherThing.CheckCollision(SomeFuckingThing);
 
-			TestEmitter.Update(timeDelta);
-			SomeFuckingThing.Update(timeDelta);
-			base.Update (gameTime);
+			base.Update(gameTime);
+
 		}
 
 		/// <summary>
 		/// This is called when the game should draw itself.
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Draw (GameTime gameTime)
+		protected override void Draw(GameTime gameTime)
 		{
-			graphics.GraphicsDevice.Clear (Color.AntiqueWhite);
+			Game1.graphics.GraphicsDevice.Clear (Color.AntiqueWhite);
 			spriteBatch.Begin();
 			//TODO: Add your drawing code here
-            //so draw your objects etc
-			SomeFuckingThing.Draw(spriteBatch);
-			OtherThing.Draw(spriteBatch);
-			TestEmitter.Draw(spriteBatch);
 
+			//so draw your objects etc
+			gameManager.Draw (timeDelta);
 			spriteBatch.End();
+			base.Draw(gameTime);
 
-			base.Draw (gameTime);
 		}
 	}
 }

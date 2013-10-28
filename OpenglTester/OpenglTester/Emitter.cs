@@ -47,13 +47,14 @@ namespace OpenglTester
 				Particles.Add(new Particle("par",gdm,cm));
 				Particles[i].Position=new Vector2(posx,posy);
 
-				int randnumx = randnum.Next(5,50);
-				int randnumy = randnum.Next(5,50);
-				int randDir=randnum.Next(359);
-				int randDirvel=randnum.Next(100);
+				int randnumx = randnum.Next(-50,50); //what direction on the x plane it will move
+				int randnumy = randnum.Next(-50,50); //what direction on the y plane it will move
+				int randDir=randnum.Next(359); // what direction it will face
+				int randDirvel=randnum.Next(-10,10); // what direction and speed it will spin
 				Particles[i].setRotationVel(randDir,randDirvel);
 				Particles[i].SetVelocity(new Vector2(randnumx,randnumy));
 				Particles[i].Alive= true;
+				Particles[i].SetCenter();
 			}
 
 		}
