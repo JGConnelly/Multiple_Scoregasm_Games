@@ -16,10 +16,7 @@ namespace OpenglTester
 	/// </summary>
 	public class Game1 : Game
 	{
-
 		
-
-
 
 		public static GraphicsDeviceManager graphics;
 		public static ContentManager contentManager;
@@ -45,8 +42,11 @@ namespace OpenglTester
 			// 5th arg: time to animate the entire image
 			// size vertically of individual frames
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> JacobSwagStation
 		}
 
 		/// <summary>

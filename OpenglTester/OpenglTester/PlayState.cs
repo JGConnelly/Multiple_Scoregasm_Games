@@ -22,15 +22,21 @@ namespace OpenglTester
 		Object playBG;
 		
 		AI AnAI;
-		
 		Player player;
-		
+		SnowEmitter SnowFall;
 		public override void Init()
 		{
 			Console.WriteLine ("PlayState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
 			playBG = new Object("game", Game1.graphics, Game1.contentManager);
+<<<<<<< HEAD
 			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,3,32f);
+=======
+
+			// seting up the new player
+			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,3,32f);
+			SnowFall = new SnowEmitter(0
+>>>>>>> JacobSwagStation
 		}
 		
 		public override void Cleanup ()
@@ -41,10 +47,12 @@ namespace OpenglTester
 		
 		public override void Pause()
 		{
+
 		}
 		
 		public override void Resume()
 		{
+
 		}
 		
 		public override void LoadContent (StateManager game)
@@ -54,6 +62,15 @@ namespace OpenglTester
 		
 		public override void HandleEvents (StateManager game, float dT)
 		{
+			//movement of player
+			if (Keyboard.GetState ().IsKeyDown (Keys.D)) 
+			{
+				//player.CheckCollision
+			}
+			if (Keyboard.GetState ().IsKeyDown (Keys.A)) 
+			{
+
+			}
 			//press space to change to SplashState
 			if(Keyboard.GetState().IsKeyDown(Keys.Space) && (!StateManager.spaceIsDown))
 			{
