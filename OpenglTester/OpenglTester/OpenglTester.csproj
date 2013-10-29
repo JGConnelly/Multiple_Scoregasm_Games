@@ -51,6 +51,8 @@
     <Compile Include="PlayState.cs" />
     <Compile Include="SplashState.cs" />
     <Compile Include="StateManager.cs" />
+    <Compile Include="Button.cs" />
+    <Compile Include="InputHandler.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Emitters\Emitter.cs" />
     <Compile Include="Emitters\SnowEmitter.cs" />

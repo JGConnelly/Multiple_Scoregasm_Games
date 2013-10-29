@@ -16,11 +16,11 @@ namespace OpenglTester
 		{
 
 			b_SwingLeft = true;
-			f_SwingTime = 2.5;
+			f_SwingTime = 2.5f;
 
 		}
 
-		public override void Initialise ( GraphicsDeviceManager gdm, ContentManager cm)
+		public override void Initialise (int posx , int posy, GraphicsDeviceManager gdm, ContentManager cm)
 		{
 			for (int i =0; i < i_ParticleNumber; i ++) 
 			{
@@ -58,7 +58,7 @@ namespace OpenglTester
 			// check whether to reset the swing timer.
 			if (f_SwingTime < 0) 
 			{
-				f_SwingTime = 2.5;
+				f_SwingTime = 2.5f;
 
 				// switch the swing
 				if(b_SwingLeft)

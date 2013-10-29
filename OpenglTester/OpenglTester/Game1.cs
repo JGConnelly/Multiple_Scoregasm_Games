@@ -22,6 +22,7 @@ namespace OpenglTester
 		public static ContentManager contentManager;
 		public static SpriteBatch spriteBatch;
 		StateManager gameManager = new StateManager();
+		InputHandler input = new InputHandler();
 		float timeDelta;
 
 
@@ -42,11 +43,7 @@ namespace OpenglTester
 			// 5th arg: time to animate the entire image
 			// size vertically of individual frames
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> JacobSwagStation
 		}
 
 		/// <summary>
@@ -86,13 +83,14 @@ namespace OpenglTester
 		protected override void Update(GameTime gameTime)
 		{
 			timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+			input.Update();
 
 			//update the current state
 			gameManager.HandleEvents (timeDelta);
 			gameManager.Update (timeDelta);
 
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
-			if(Keyboard.GetState().IsKeyDown(Keys.Escape))
+			if(InputHandler.escPressed)
 			{
 				Console.Out.WriteLine("quiting");
 				Exit ();
@@ -105,6 +103,7 @@ namespace OpenglTester
 			base.Update (gameTime);
 
 
+
 		}
 
 		/// <summary>
@@ -113,9 +112,11 @@ namespace OpenglTester
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
+
 			Game1.graphics.GraphicsDevice.Clear (Color.CornflowerBlue);
 
 			spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
+
 			//TODO: Add your drawing code here
 
 

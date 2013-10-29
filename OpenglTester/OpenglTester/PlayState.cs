@@ -29,14 +29,12 @@ namespace OpenglTester
 			Console.WriteLine ("PlayState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
 			playBG = new Object("game", Game1.graphics, Game1.contentManager);
-<<<<<<< HEAD
-			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,3,32f);
-=======
+
 
 			// seting up the new player
 			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,3,32f);
-			SnowFall = new SnowEmitter(0
->>>>>>> JacobSwagStation
+			//SnowFall = new SnowEmitter(0
+
 		}
 		
 		public override void Cleanup ()
@@ -60,8 +58,9 @@ namespace OpenglTester
 			//load the content for the playstate
 		}
 		
-		public override void HandleEvents (StateManager game, float dT)
+		public override void HandleEvents(StateManager game, float dT)
 		{
+
 			//movement of player
 			if (Keyboard.GetState ().IsKeyDown (Keys.D)) 
 			{
@@ -71,13 +70,20 @@ namespace OpenglTester
 			{
 
 			}
+
+			//press left bumper on the controller to go back to the splash screen
+			//if(GamePad.GetState(PlayerIndex.One).Buttons.LeftShoulder == ButtonState.Pressed)
+			//{
+			//	ChangeState(game, SplashState.GetInstance());
+			//}
+
 			//press space to change to SplashState
-			if(Keyboard.GetState().IsKeyDown(Keys.Space) && (!StateManager.spaceIsDown))
+			if(InputHandler.confirmPressed && (!StateManager.spaceIsDown))
 			{
 				StateManager.spaceIsDown = true;
 				ChangeState(game, MenuState.GetInstance());
 			}
-			if(Keyboard.GetState().IsKeyUp(Keys.Space) && StateManager.spaceIsDown)
+			if(!InputHandler.confirmPressed && StateManager.spaceIsDown)
 			{
 				StateManager.spaceIsDown = false;
 			}
@@ -102,7 +108,8 @@ namespace OpenglTester
 		{
 			return playInstance;
 		}
-		
+
+		//private constructor
 		private PlayState ()
 		{
 			//Do nothing

@@ -98,6 +98,8 @@ namespace OpenglTester
 		
 		public void Update(float dT)
 		{
+			//check all the inputs, save them all as public static variables so other classes can use them
+			//this prevents excessive GetState()
 			//call the update method on the current state
 			states[states.Count - 1].Update(this, dT);
 		}

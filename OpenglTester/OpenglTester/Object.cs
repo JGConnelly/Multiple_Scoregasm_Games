@@ -57,7 +57,7 @@ namespace OpenglTester
 
 
 			b_Paused = false;
-			i_NumOfFrames =numberOfFrames;
+			i_TotalFrames =numberOfFrames;
 			i_TimeToCompleteAnim = timeToComplete;
 
 			f_TimePerFrame = i_TimeToCompleteAnim / numberOfFrames;
@@ -67,7 +67,7 @@ namespace OpenglTester
 
 			v2_Position.X = 0;
 			v2_Position.Y = 0;
-			f_FrameSize.X = tex_Image.Width / i_NumOfFrames; // so what the animator thinks the size of the frames are
+			f_FrameSize.X = tex_Image.Width / i_TotalFrames; // so what the animator thinks the size of the frames are
 			v2_Size.Y = tex_Image.Height;
 			v2_Size.X = f_FrameSize.X;
 			f_Rotation = 0;
