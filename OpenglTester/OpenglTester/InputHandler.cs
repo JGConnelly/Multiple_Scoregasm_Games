@@ -23,6 +23,8 @@ namespace OpenglTester
 		public static bool upPressed = false;
 		public static bool confirmPressed = false; //user has pressed enter or space or A
 		public static bool escPressed = false; //user has pressed esc or start
+		public static bool sprintPressed = false; // shift or B
+		public static bool punchPressed = false; // right ctrl or e or X
 		//public static bool backPressed = false; // user has pressed B or ???
 
 		//individual xbox buttons
@@ -58,8 +60,11 @@ namespace OpenglTester
 		public static bool keyA = false;
 		public static bool keyS = false;
 		public static bool keyD = false;
+		public static bool keyE = false;
 		public static bool keyEnter = false;
 		public static bool keyEsc = false;
+		public static bool keyCtrl = false;
+		public static bool keyShift = false;
 
 
 
@@ -109,6 +114,18 @@ namespace OpenglTester
 				escPressed = true;
 			else
 				escPressed = false;
+
+			//sprintPressed is true if B or shift
+			if (keyShift || btnB)
+				sprintPressed = true;
+			else
+				sprintPressed = false;
+
+			//punchPressed is true if X or ctrl or e
+			if (btnX || keyE || keyCtrl)
+				punchPressed = true;
+			else
+				punchPressed = false;
 		}
 
 		public void UpdateController()
@@ -266,6 +283,24 @@ namespace OpenglTester
 				keyD = true;
 			else
 				keyD = false;
+			//e
+			if (kb.IsKeyDown(Keys.E))
+				keyE = true;
+			else
+				keyE = false;
+
+			//shift
+			if (kb.IsKeyDown(Keys.LeftShift) || kb.IsKeyDown(Keys.RightShift))
+				keyShift = true;
+			else
+				keyShift = false;
+
+			//ctrl
+			if (kb.IsKeyDown(Keys.RightControl) || kb.IsKeyDown(Keys.LeftControl))
+				keyCtrl = true;
+			else
+				keyCtrl = false;
+
 		}
 	}
 }

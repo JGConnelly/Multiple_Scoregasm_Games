@@ -16,10 +16,6 @@ namespace OpenglTester
 		{
 			Start = a; Frames = b; TimeForCompletion = c;
 		}
-		//public AnimationInfo ()
-		//{
-		//	Start = 0; Frames = 1; TimeForCompletion = 1;
-		//}
 	};
 	public class Player : Object
 	{
@@ -34,9 +30,9 @@ namespace OpenglTester
 			punch
 		};
 
-		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,6), Run = new AnimationInfo(1,16,12);
+		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,5), Run = new AnimationInfo(1,16,12);
 		AnimationInfo CurrentAnimation = new AnimationInfo(0,1,1);
-		bool isLeft= false;//False if moving/Facing Right, True if Left;
+
 		Action CurrentAction = Action.idle;
 		Action LastAction = Action.idle;
 		#endregion
@@ -63,12 +59,12 @@ namespace OpenglTester
 				}
 				if(Keyboard.GetState().IsKeyDown(Keys.Right))
 				{
-					isLeft = false;
+					b_FlipImage = false;
 					Console.WriteLine("Right");
 				}
 				else if (Keyboard.GetState().IsKeyDown(Keys.Left))
 				{
-					isLeft = true;
+					b_FlipImage = true;
 					Console.WriteLine("Left");
 				}
 

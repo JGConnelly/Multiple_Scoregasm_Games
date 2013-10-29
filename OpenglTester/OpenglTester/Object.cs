@@ -12,7 +12,7 @@ namespace OpenglTester
 		protected Texture2D tex_Image;
 		protected int i_TotalFrames;
 		protected int i_NumOfFramesToAnim;
-		protected int i_TimeToCompleteAnim;
+		protected float f_TimeToCompleteAnim;
 		protected int i_CurrentFrame;
 		protected Vector2 f_FrameSize;
 		protected int i_StartFrame;
@@ -39,7 +39,7 @@ namespace OpenglTester
 			v2_Size.X = tex_Image.Width;
 
 			i_TotalFrames =0;
-			i_TimeToCompleteAnim = 0;
+			f_TimeToCompleteAnim = 0;
 			v2_Position.X = 0;
 			v2_Position.Y = 0;
 			b_IsAnimated = false;
@@ -52,15 +52,15 @@ namespace OpenglTester
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
 		}
-		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , int timeToComplete)
+		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , float timeToComplete)
 		{
 
 
 			b_Paused = false;
 			i_TotalFrames =numberOfFrames;
-			i_TimeToCompleteAnim = timeToComplete;
+			f_TimeToCompleteAnim = timeToComplete;
 
-			f_TimePerFrame = i_TimeToCompleteAnim / numberOfFrames;
+			f_TimePerFrame = f_TimeToCompleteAnim / numberOfFrames;
 			b_IsAnimated = true;
 
 			tex_Image=  contentManager.Load<Texture2D>(imagePath);
@@ -79,7 +79,7 @@ namespace OpenglTester
 
 		}
 
-		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int TotNumberOfFrames , int timeToComplete,float frameSize)
+		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int TotNumberOfFrames , float timeToComplete,float frameSize)
 		{
 			
 			
@@ -88,8 +88,8 @@ namespace OpenglTester
 			
 			
 			i_TotalFrames =TotNumberOfFrames;
-			i_TimeToCompleteAnim = timeToComplete;
-			f_TimePerFrame = i_TimeToCompleteAnim / i_TotalFrames;
+			f_TimeToCompleteAnim = timeToComplete;
+			f_TimePerFrame = f_TimeToCompleteAnim / i_TotalFrames;
 			b_IsAnimated = true;
 			f_FrameSize.X = frameSize; // so what the animator thinks the size of the frames are
 			tex_Image=  contentManager.Load<Texture2D>(imagePath);
@@ -173,12 +173,12 @@ namespace OpenglTester
 
 
 		// set the starting frame 
-		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, int timeToComplete)
+		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, float timeToComplete)
 		{
 			i_StartFrame = startPoint;
 			i_NumOfFramesToAnim = numberOfFrames;
-			i_TimeToCompleteAnim = timeToComplete;
-			f_TimePerFrame = i_TimeToCompleteAnim / i_NumOfFramesToAnim;
+			f_TimeToCompleteAnim = timeToComplete;
+			f_TimePerFrame = f_TimeToCompleteAnim / i_NumOfFramesToAnim;
 
 		}
 
