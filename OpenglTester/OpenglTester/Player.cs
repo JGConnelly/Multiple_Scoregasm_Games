@@ -30,7 +30,7 @@ namespace OpenglTester
 			punch
 		};
 
-		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,6), Run = new AnimationInfo(1,16,12);
+		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,6), Run = new AnimationInfo(1,16,12), Punch = new AnimationInfo(23,6,5);
 		AnimationInfo CurrentAnimation = new AnimationInfo(0,1,1);
 
 		Action CurrentAction = Action.idle;
@@ -41,7 +41,7 @@ namespace OpenglTester
 		{
 			b_IsAnimated = true;
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
-
+			GenerateAlpha();
 		}
 
 		public void Update (float Elapsed)
@@ -60,22 +60,39 @@ namespace OpenglTester
 				if(Keyboard.GetState().IsKeyDown(Keys.Right))
 				{
 					b_FlipImage = false;
-					Console.WriteLine("Right");
+
+					if(CurrentAction == Action.run)
+					{
+						v2_Position.X+=200*Elapsed;
+					}
+					else
+					{
+						v2_Position.X+=5*Elapsed;
+					}
 				}
 				else if (Keyboard.GetState().IsKeyDown(Keys.Left))
 				{
 					b_FlipImage = true;
-					Console.WriteLine("Left");
+
+					if(CurrentAction == Action.run)
+					{
+						v2_Position.X-=200*Elapsed;
+					}
+					else
+					{
+						v2_Position.X-=5*Elapsed;
+					}
 				}
 
 			}
-			/*else if()
+			else if(Keyboard.GetState().IsKeyDown(Keys.RightControl))
 			{
+				CurrentAction = Action.punch;
 
 			}
 			//Work out if jumping
 			//Also need to work out if grounded
-			else if()
+			/*else if()
 			{
 				//if right key or left key is also down, move in that direction midair
 			}*/
@@ -93,6 +110,9 @@ namespace OpenglTester
 				break;
 			case Action.run:
 				CurrentAnimation = Run;
+				break;
+			case Action.punch:
+				CurrentAnimation = Punch;
 				break;
 			default:
 				CurrentAnimation = Idle;
