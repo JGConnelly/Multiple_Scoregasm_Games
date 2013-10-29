@@ -30,7 +30,7 @@ namespace OpenglTester
 			punch
 		};
 
-		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,6), Run = new AnimationInfo(1,16,12);
+		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,5), Run = new AnimationInfo(1,16,12);
 		AnimationInfo CurrentAnimation = new AnimationInfo(0,1,1);
 
 		Action CurrentAction = Action.idle;
