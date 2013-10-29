@@ -17,14 +17,14 @@ namespace OpenglTester
 		private bool b_FollowRotation;
 
 		private float f_LifeRemaining;
-
+		private bool b_NeverDies;
 
 
 
 		public Particle (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager):base ( imagePath , gdevman, contentManager)
 		{
-
-
+			b_NeverDies = false;
+			GenerateAlpha();
 		}
 
 		// mutators and accesors 
@@ -41,9 +41,18 @@ namespace OpenglTester
 		{
 			v2_LinearVelocity = vel;
 		}
+		/// <summary>
+		/// Sets the life.
+		/// to never die  = -1 
+		/// </summary>
+		/// <param name='lifetime'>
+		/// Lifetime.
+		/// </param>
 		public void SetLife(float lifetime)
 		{
 			f_LifeRemaining = lifetime;
+			if(f_LifeRemaining== -1)
+				b_NeverDies =true;
 		}
 		public bool Alive 
 		{
@@ -87,7 +96,7 @@ namespace OpenglTester
 		}
 		public override void Draw (SpriteBatch spriteBatch)
 		{
-			if (b_Alive)
+			if (b_Alive || b_NeverDies)
 				base.Draw (spriteBatch);
 		}
 

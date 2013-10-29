@@ -24,6 +24,8 @@ namespace OpenglTester
 		AI AnAI;
 		Player player;
 		SnowEmitter SnowFall;
+
+
 		public override void Init()
 		{
 			Console.WriteLine ("PlayState initialized");
@@ -33,7 +35,10 @@ namespace OpenglTester
 
 			// seting up the new player
 			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,20,32f);
-			//SnowFall = new SnowEmitter(0
+			SnowFall = new SnowEmitter(0,1500,1200,1000,10);
+			SnowFall.Initialise(0,0,Game1.graphics,Game1.contentManager);
+
+
 
 		}
 		
@@ -94,6 +99,8 @@ namespace OpenglTester
 		{
 			player.Update(dT);
 			playBG.Update(dT);
+			SnowFall.Update(dT);
+
 		}
 		
 		public override void Draw (StateManager game, float dT)
@@ -102,6 +109,8 @@ namespace OpenglTester
 			playBG.Draw(Game1.spriteBatch);
 			//so draw your objects etc
 			player.Draw(Game1.spriteBatch);
+			SnowFall.Draw(Game1.spriteBatch);
+
 		}
 		
 		public static PlayState GetInstance ()
