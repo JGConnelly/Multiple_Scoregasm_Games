@@ -11,13 +11,16 @@ namespace OpenglTester
 		private bool b_SwingLeft;
 		private float f_SwingTime;
 		private float f_HorizontalSpeed;
+		private int i_SkyHeight;
+		private int i_SkyWidth;
 		// the height is how hight the snow will fall, and the width of how far the snow fall stretches
-		public SnowEmitter (float Height, float Width,int num, float time, float dirh,float dirl):base( num,  time,  dirh, dirl)
+		public SnowEmitter (int Height, int Width,int num, float time, float dirh,float dirl):base( num,  time,  dirh, dirl)
 		{
 
 			b_SwingLeft = true;
 			f_SwingTime = 2.5f;
-
+			i_SkyHeight = Height;
+			i_SkyWidth = Width;
 		}
 
 		public override void Initialise (int posx , int posy, GraphicsDeviceManager gdm, ContentManager cm)
@@ -26,8 +29,8 @@ namespace OpenglTester
 			{
 				Particles.Add(new Particle("par",gdm,cm));
 				//FIX 
-				//int posx = randnum.Next(0,Width);
-				//Particles[i].Position=new Vector2(posx,Height);
+				int pos_x = randnum.Next(0,i_SkyWidth);
+				Particles[i].Position=new Vector2(pos_x,i_SkyHeight);
 			}
 			//base.Initialise (posx, posy, gdm, cm);
 		}

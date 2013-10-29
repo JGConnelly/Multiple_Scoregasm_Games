@@ -32,7 +32,7 @@ namespace OpenglTester
 
 
 			// seting up the new player
-			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,3,32f);
+			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,20,32f);
 			//SnowFall = new SnowEmitter(0
 
 		}
