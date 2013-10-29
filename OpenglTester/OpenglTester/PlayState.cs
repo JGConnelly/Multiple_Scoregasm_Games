@@ -30,6 +30,7 @@ namespace OpenglTester
 			Console.WriteLine ("PlayState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
 			playBG = new Object("game", Game1.graphics, Game1.contentManager);
+			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,3,32f);
 		}
 		
 		public override void Cleanup ()

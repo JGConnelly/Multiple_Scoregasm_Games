@@ -45,7 +45,7 @@ namespace OpenglTester
 			// 5th arg: time to animate the entire image
 			// size vertically of individual frames
 
-			player = new Player("Assn7MainCharacterSpritesheet",graphics,contentManager,65,3,32f);
+
 
 		}
 
