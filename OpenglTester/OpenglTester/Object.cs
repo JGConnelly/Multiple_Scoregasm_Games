@@ -56,10 +56,9 @@ namespace OpenglTester
 
 
 			b_Paused = false;
-
-			
 			i_NumOfFrames =numberOfFrames;
 			i_TimeToCompleteAnim = timeToComplete;
+
 			f_TimePerFrame = i_TimeToCompleteAnim / numberOfFrames;
 			b_IsAnimated = true;
 
@@ -76,7 +75,6 @@ namespace OpenglTester
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
-
 
 		}
 
@@ -139,6 +137,28 @@ namespace OpenglTester
 
 		// end of Accessors and mutators
 
+		public void GenerateAlpha ()
+		{
+
+			//tex_Image = Game.Content.Load<Texture2D>("mySprite");  
+			Color[] mySpriteData = new Color[tex_Image.Height * tex_Image.Width];  
+			tex_Image.GetData<Color>(mySpriteData); 
+
+			byte redValue  = mySpriteData[0].R;
+			byte greenValue  = mySpriteData[0].G;
+			byte blueValue  = mySpriteData[0].B;
+
+
+			for (int j = 0; j < mySpriteData.Length; j++)  
+			{
+				if(mySpriteData[j].R == redValue && mySpriteData[j].G == greenValue && mySpriteData[j].B == blueValue)
+				{
+					mySpriteData[j].A = (byte)0;  
+				}
+			}  
+			tex_Image.SetData<Color>(mySpriteData);
+		}
+
 		public void FlipHorizontal ()
 		{
 			if(b_FlipImage)
@@ -146,6 +166,8 @@ namespace OpenglTester
 			else
 				b_FlipImage = true;
 		}
+
+
 		// set the starting frame 
 		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, int timeToComplete)
 		{
@@ -176,7 +198,7 @@ namespace OpenglTester
 
 		virtual public void Update(float Elapsed)
 		{
-			 
+
 
 			// if the sprite is animated 
 			if (b_IsAnimated) 
@@ -205,8 +227,8 @@ namespace OpenglTester
 		{
 
 
-
-			if (b_IsAnimated) {
+			if (b_IsAnimated) 
+			{
 				// only using horizontal animation right now 
 				/// if someone really needs vertical i can change it
 
