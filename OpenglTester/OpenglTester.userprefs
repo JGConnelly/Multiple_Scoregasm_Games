@@ -5,7 +5,7 @@
       <File FileName="OpenglTester\Game1.cs" Line="6" Column="39" />
       <File FileName="OpenglTester\Player.cs" Line="18" Column="4" />
       <File FileName="OpenglTester\PlayState.cs" Line="86" Column="64" />
-      <File FileName="OpenglTester\InputHandler.cs" Line="94" Column="4" />
+      <File FileName="OpenglTester\InputHandler.cs" Line="106" Column="1" />
       <File FileName="OpenglTester\Resolution.cs" Line="4" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
