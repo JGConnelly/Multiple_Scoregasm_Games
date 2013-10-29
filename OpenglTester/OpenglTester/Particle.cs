@@ -33,6 +33,10 @@ namespace OpenglTester
 			f_Rotation = Rot; 
 			f_RotationalVelocity = RotVel;
 		}
+		public Vector2 GetVelocity ()
+		{
+			return v2_LinearVelocity;
+		}
 		public void SetVelocity(Vector2 vel)
 		{
 			v2_LinearVelocity = vel;
