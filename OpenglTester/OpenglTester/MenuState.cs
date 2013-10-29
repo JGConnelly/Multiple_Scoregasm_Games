@@ -50,12 +50,12 @@ namespace OpenglTester
 		public override void HandleEvents (StateManager game, float dT)
 		{
 			//press space to change to PlayState
-			if(Keyboard.GetState().IsKeyDown(Keys.Space) && (!StateManager.spaceIsDown))
+			if(InputHandler.confirmPressed && (!StateManager.spaceIsDown))
 			{
 				StateManager.spaceIsDown = true;
 				ChangeState(game, PlayState.GetInstance());
 			}
-			if(Keyboard.GetState().IsKeyUp(Keys.Space) && StateManager.spaceIsDown)
+			if(!InputHandler.confirmPressed && StateManager.spaceIsDown)
 			{
 				StateManager.spaceIsDown = false;
 			}
@@ -77,7 +77,8 @@ namespace OpenglTester
 		{
 			return menuInstance;
 		}
-		
+
+		//private constructor
 		private MenuState ()
 		{
 			//Do nothing

@@ -9,7 +9,7 @@
       <File FileName="OpenglTester\StateManager.cs" Line="26" Column="41" />
       <File FileName="OpenglTester\AbstractState.cs" Line="32" Column="3" />
       <File FileName="OpenglTester\SplashState.cs" Line="70" Column="30" />
-      <File FileName="OpenglTester\MenuState.cs" Line="68" Column="4" />
+      <File FileName="OpenglTester\MenuState.cs" Line="34" Column="25" />
       <File FileName="OpenglTester\PlayState.cs" Line="33" Column="47" />
     </Files>
   </MonoDevelop.Ide.Workbench>

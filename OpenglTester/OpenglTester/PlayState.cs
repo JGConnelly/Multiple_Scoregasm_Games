@@ -47,15 +47,20 @@ namespace OpenglTester
 			//load the content for the playstate
 		}
 		
-		public override void HandleEvents (StateManager game, float dT)
+		public override void HandleEvents(StateManager game, float dT)
 		{
+			//press left bumper on the controller to go back to the splash screen
+			//if(GamePad.GetState(PlayerIndex.One).Buttons.LeftShoulder == ButtonState.Pressed)
+			//{
+			//	ChangeState(game, SplashState.GetInstance());
+			//}
 			//press space to change to SplashState
-			if(Keyboard.GetState().IsKeyDown(Keys.Space) && (!StateManager.spaceIsDown))
+			if(InputHandler.confirmPressed && (!StateManager.spaceIsDown))
 			{
 				StateManager.spaceIsDown = true;
 				ChangeState(game, MenuState.GetInstance());
 			}
-			if(Keyboard.GetState().IsKeyUp(Keys.Space) && StateManager.spaceIsDown)
+			if(!InputHandler.confirmPressed && StateManager.spaceIsDown)
 			{
 				StateManager.spaceIsDown = false;
 			}
@@ -77,7 +82,8 @@ namespace OpenglTester
 		{
 			return playInstance;
 		}
-		
+
+		//private constructor
 		private PlayState ()
 		{
 			//Do nothing

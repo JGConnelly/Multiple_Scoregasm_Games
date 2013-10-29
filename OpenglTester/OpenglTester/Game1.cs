@@ -20,6 +20,7 @@ namespace OpenglTester
 		public static ContentManager contentManager;
 		public static SpriteBatch spriteBatch;
 		StateManager gameManager = new StateManager();
+		InputHandler input = new InputHandler();
 		float timeDelta;
 
 		public Game1()
@@ -67,23 +68,19 @@ namespace OpenglTester
 		protected override void Update(GameTime gameTime)
 		{
 			timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+			input.Update();
 
 			//update the current state
 			gameManager.HandleEvents (timeDelta);
 			gameManager.Update (timeDelta);
 
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
-			if(Keyboard.GetState().IsKeyDown(Keys.Escape))
+			if(InputHandler.escPressed)
 			{
 				Console.Out.WriteLine("quitting");
 				Exit();
 			}
-			;
 
-			if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-			{
-				Exit();
-			}
 			// TODO: Add your update logic here	
 			base.Update(gameTime);
 		}
@@ -96,6 +93,7 @@ namespace OpenglTester
 		{
 			Game1.graphics.GraphicsDevice.Clear (Color.AntiqueWhite);
 			spriteBatch.Begin();
+
 			//TODO: Add your drawing code here
 			//so draw your objects etc
 			gameManager.Draw (timeDelta);

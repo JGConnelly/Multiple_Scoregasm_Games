@@ -50,6 +50,8 @@
     <Compile Include="PlayState.cs" />
     <Compile Include="SplashState.cs" />
     <Compile Include="StateManager.cs" />
+    <Compile Include="Button.cs" />
+    <Compile Include="InputHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
