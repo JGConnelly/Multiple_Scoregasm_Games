@@ -46,19 +46,21 @@
     <Compile Include="Object.cs" />
     <Compile Include="AI.cs" />
     <Compile Include="Particle.cs" />
-    <Compile Include="Emitter.cs" />
     <Compile Include="AbstractState.cs" />
     <Compile Include="MenuState.cs" />
     <Compile Include="PlayState.cs" />
     <Compile Include="SplashState.cs" />
     <Compile Include="StateManager.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Emitters\Emitter.cs" />
+    <Compile Include="Emitters\SnowEmitter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
+    <Folder Include="Emitters\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -66,8 +68,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\par.png">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\game.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -76,7 +78,7 @@
     </Content>
     <Content Include="Content\splash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
+    </Content>
     <Content Include="Content\runstrip.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

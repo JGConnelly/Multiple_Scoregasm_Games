@@ -10,7 +10,8 @@ namespace OpenglTester
 	{
 	
 		protected Texture2D tex_Image;
-		protected int i_NumOfFrames;
+		protected int i_TotalFrames;
+		protected int i_NumOfFramesToAnim;
 		protected int i_TimeToCompleteAnim;
 		protected int i_CurrentFrame;
 		protected Vector2 f_FrameSize;
@@ -37,7 +38,7 @@ namespace OpenglTester
 			v2_Size.Y = tex_Image.Height;
 			v2_Size.X = tex_Image.Width;
 
-			i_NumOfFrames =0;
+			i_TotalFrames =0;
 			i_TimeToCompleteAnim = 0;
 			v2_Position.X = 0;
 			v2_Position.Y = 0;
@@ -78,7 +79,7 @@ namespace OpenglTester
 
 		}
 
-		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , int timeToComplete,float frameSize)
+		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int TotNumberOfFrames , int timeToComplete,float frameSize)
 		{
 			
 			
@@ -86,9 +87,9 @@ namespace OpenglTester
 			
 			
 			
-			i_NumOfFrames =numberOfFrames;
+			i_TotalFrames =TotNumberOfFrames;
 			i_TimeToCompleteAnim = timeToComplete;
-			f_TimePerFrame = i_TimeToCompleteAnim / i_NumOfFrames;
+			f_TimePerFrame = i_TimeToCompleteAnim / i_TotalFrames;
 			b_IsAnimated = true;
 			f_FrameSize.X = frameSize; // so what the animator thinks the size of the frames are
 			tex_Image=  contentManager.Load<Texture2D>(imagePath);
@@ -175,9 +176,9 @@ namespace OpenglTester
 		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, int timeToComplete)
 		{
 			i_StartFrame = startPoint;
-			i_NumOfFrames = numberOfFrames;
+			i_NumOfFramesToAnim = numberOfFrames;
 			i_TimeToCompleteAnim = timeToComplete;
-			f_TimePerFrame = i_TimeToCompleteAnim / i_NumOfFrames;
+			//f_TimePerFrame = i_TimeToCompleteAnim / i_NumOfFramesToAnim;
 
 		}
 
@@ -214,7 +215,7 @@ namespace OpenglTester
 				{
 					i_CurrentFrame++;
 					// Keep the Frame between 0 and the total frames, minus one.
-					i_CurrentFrame = i_CurrentFrame % i_NumOfFrames;
+					i_CurrentFrame = i_CurrentFrame % i_NumOfFramesToAnim;
 					f_ElapsedGameTime -= f_TimePerFrame;
 				}
 				

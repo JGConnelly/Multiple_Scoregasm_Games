@@ -16,10 +16,7 @@ namespace OpenglTester
 	/// </summary>
 	public class Game1 : Game
 	{
-
 		
-
-
 
 		public static GraphicsDeviceManager graphics;
 		public static ContentManager contentManager;
@@ -44,8 +41,6 @@ namespace OpenglTester
 			// 4th arg: using the untitled image i only want to render through 3 of the four frames 
 			// 5th arg: time to animate the entire image
 			// size vertically of individual frames
-
-			player = new Player("Assn7MainCharacterSpritesheet",graphics,contentManager,65,3,32f);
 
 		}
 
