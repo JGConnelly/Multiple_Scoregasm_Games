@@ -18,7 +18,7 @@ namespace OpenglTester
 
 		void Update(double DeltaTime)
 		{
-			base.Update(DeltaTime);
+			base.Update((float)DeltaTime);
 		}
 		void Draw(SpriteBatch spriteBatch)
 		{
