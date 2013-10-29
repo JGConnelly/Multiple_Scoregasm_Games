@@ -2,6 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Player.cs">
     <Files>
+<<<<<<< HEAD
       <File FileName="OpenglTester\Program.cs" Line="17" Column="14" />
       <File FileName="OpenglTester\Game1.cs" Line="103" Column="27" />
       <File FileName="OpenglTester\Object.cs" Line="185" Column="1" />
@@ -13,6 +14,13 @@
       <File FileName="OpenglTester\Emitters\Emitter.cs" Line="49" Column="1" />
       <File FileName="OpenglTester\Emitters\SnowEmitter.cs" Line="28" Column="11" />
       <File FileName="OpenglTester\InputHandler.cs" Line="128" Column="26" />
+=======
+      <File FileName="OpenglTester\Game1.cs" Line="6" Column="39" />
+      <File FileName="OpenglTester\Player.cs" Line="18" Column="4" />
+      <File FileName="OpenglTester\PlayState.cs" Line="86" Column="64" />
+      <File FileName="OpenglTester\InputHandler.cs" Line="106" Column="1" />
+      <File FileName="OpenglTester\Resolution.cs" Line="4" Column="27" />
+>>>>>>> TashIsLLCoolJ
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
