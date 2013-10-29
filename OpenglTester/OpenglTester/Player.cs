@@ -30,7 +30,7 @@ namespace OpenglTester
 			punch
 		};
 
-		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,6), Run = new AnimationInfo(1,16,12), Punch = new AnimationInfo(23,6,5);
+		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,6), Run = new AnimationInfo(1,16,12), Punch = new AnimationInfo(23,6,4);
 		AnimationInfo CurrentAnimation = new AnimationInfo(0,1,1);
 
 		Action CurrentAction = Action.idle;
@@ -50,14 +50,14 @@ namespace OpenglTester
 			LastAction = CurrentAction;
 
 			//determine facing, as well as whether running or not.
-			if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
+			if (InputHandler.leftPressed || InputHandler.rightPressed)
 			{
 				CurrentAction = Action.walk;
 				if (Keyboard.GetState().IsKeyDown(Keys.RightShift))
 				{
 					CurrentAction = Action.run;
 				}
-				if(Keyboard.GetState().IsKeyDown(Keys.Right))
+				if(InputHandler.rightPressed)
 				{
 					b_FlipImage = false;
 
@@ -70,7 +70,7 @@ namespace OpenglTester
 						v2_Position.X+=5*Elapsed;
 					}
 				}
-				else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+				else if (InputHandler.leftPressed)
 				{
 					b_FlipImage = true;
 
