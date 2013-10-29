@@ -9,7 +9,7 @@
       <File FileName="OpenglTester\StateManager.cs" Line="34" Column="4" />
       <File FileName="OpenglTester\Player.cs" Line="108" Column="25" />
       <File FileName="OpenglTester\PlayState.cs" Line="99" Column="4" />
-      <File FileName="OpenglTester\Particle.cs" Line="40" Column="39" />
+      <File FileName="OpenglTester\Particle.cs" Line="35" Column="4" />
       <File FileName="OpenglTester\Emitters\Emitter.cs" Line="11" Column="94" />
       <File FileName="OpenglTester\Emitters\SnowEmitter.cs" Line="80" Column="44" />
     </Files>
