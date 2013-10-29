@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Game1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\InputHandler.cs">
     <Files>
-      <File FileName="OpenglTester\Game1.cs" Line="22" Column="49" />
+      <File FileName="OpenglTester\Game1.cs" Line="6" Column="39" />
       <File FileName="OpenglTester\Player.cs" Line="18" Column="4" />
       <File FileName="OpenglTester\PlayState.cs" Line="86" Column="64" />
-      <File FileName="OpenglTester\InputHandler.cs" Line="24" Column="91" />
+      <File FileName="OpenglTester\InputHandler.cs" Line="94" Column="4" />
       <File FileName="OpenglTester\Resolution.cs" Line="4" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>

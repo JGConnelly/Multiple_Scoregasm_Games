@@ -93,13 +93,13 @@ namespace OpenglTester
 				rightPressed = false;
 
 			//moveUp is true if stick or dpad or w or up arrow are pressed
-			if (btnDPadUp || (stickLeftY < 0) || keyW || keyUp)
+			if (btnDPadUp || (stickLeftY > 0) || keyW || keyUp)
 				upPressed = true;
 			else
 				upPressed = false;
 
 			//moveDown is true if stick or dpad or s or down arrow are pressed
-			if (btnDPadDown || (stickLeftY > 0) || keyS || keyDown)
+			if (btnDPadDown || (stickLeftY < 0) || keyS || keyDown)
 				downPressed = true;
 			else
 				downPressed = false;
