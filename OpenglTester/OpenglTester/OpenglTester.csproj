@@ -56,6 +56,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Emitters\Emitter.cs" />
     <Compile Include="Emitters\SnowEmitter.cs" />
+    <Compile Include="Resolution.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
