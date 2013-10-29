@@ -173,6 +173,18 @@ namespace OpenglTester
 
 
 		// set the starting frame 
+		/// <summary>
+		/// Sets the animation start point.
+		/// </summary>
+		/// <param name='startPoint'>
+		/// Start point.
+		/// </param>
+		/// <param name='numberOfFrames'>
+		/// Number of frames.
+		/// </param>
+		/// <param name='timeToComplete'>
+		/// Time to complete.
+		/// </param>
 		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, float timeToComplete)
 		{
 			i_StartFrame = startPoint;

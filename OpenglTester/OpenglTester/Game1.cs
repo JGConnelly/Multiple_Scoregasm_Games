@@ -25,7 +25,9 @@ namespace OpenglTester
 		InputHandler input = new InputHandler();
 		float timeDelta;
 
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="OpenglTester.Game1"/> class.
+		/// </summary>
 		public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
