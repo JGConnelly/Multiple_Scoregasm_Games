@@ -25,61 +25,100 @@ namespace OpenglTester
 			idle,
 			walk,
 			run,
+			crouch,
 			sneak,
 			jump,
 			punch
 		};
-
-		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,5), Run = new AnimationInfo(1,16,12);
+		
+		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
+					   Run = new AnimationInfo(1,16,4), Punch = new AnimationInfo(23,6,2),
+						Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1);
 		AnimationInfo CurrentAnimation = new AnimationInfo(0,1,1);
-
+		
 		Action CurrentAction = Action.idle;
 		Action LastAction = Action.idle;
-		#endregion
-
+#endregion
+		
 		public Player(string imagePath , GraphicsDeviceManager gdevman , ContentManager contentManager,int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath , gdevman, contentManager, numberOfFrames ,  timeToComplete, frameSize)
 		{
 			b_IsAnimated = true;
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
-
+			GenerateAlpha();
 		}
-
+		
 		public void Update (float Elapsed)
 		{
 			// CurrentAction - Work it out based on input
 			LastAction = CurrentAction;
-
+			
 			//determine facing, as well as whether running or not.
-			if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
+			if (InputHandler.downPressed) 
+			{
+				CurrentAction = Action.crouch;
+				if(InputHandler.leftPressed || InputHandler.rightPressed)
+				{
+					CurrentAction = Action.sneak;
+					if(InputHandler.rightPressed)
+					{
+						b_FlipImage = false;
+						v2_Position.X+=5*Elapsed;
+
+					}
+					else if (InputHandler.leftPressed)
+					{
+						b_FlipImage = true;
+						v2_Position.X-=5*Elapsed;
+
+					}
+				}
+			}
+			else if (InputHandler.leftPressed || InputHandler.rightPressed)
 			{
 				CurrentAction = Action.walk;
-				if (Keyboard.GetState().IsKeyDown(Keys.RightShift))
+				if (InputHandler.sprintPressed)
 				{
 					CurrentAction = Action.run;
 				}
-				if(Keyboard.GetState().IsKeyDown(Keys.Right))
+				if(InputHandler.rightPressed)
 				{
 					b_FlipImage = false;
-					Console.WriteLine("Right");
+					
+					if(CurrentAction == Action.run)
+					{
+						v2_Position.X+=200*Elapsed;
+					}
+					else
+					{
+						v2_Position.X+=8*Elapsed;
+					}
 				}
-				else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+				else if (InputHandler.leftPressed)
 				{
 					b_FlipImage = true;
-					Console.WriteLine("Left");
+					
+					if(CurrentAction == Action.run)
+					{
+						v2_Position.X-=200*Elapsed;
+					}
+					else
+					{
+						v2_Position.X-=8*Elapsed;
+					}
 				}
-
+				
 			}
-			/*else if()
+			else if(InputHandler.punchPressed)
 			{
-
+				CurrentAction = Action.punch;
 			}
-			//Work out if jumping
+			/*//Work out if jumping
 			//Also need to work out if grounded
 			else if()
 			{
 				//if right key or left key is also down, move in that direction midair
 			}*/
-			else
+				else
 			{
 				CurrentAction = Action.idle;
 			}
@@ -94,6 +133,15 @@ namespace OpenglTester
 			case Action.run:
 				CurrentAnimation = Run;
 				break;
+			case Action.crouch:
+				CurrentAnimation = Crouch;
+				break;
+			case Action.sneak:
+				CurrentAnimation = Sneak;
+				break;
+			case Action.punch:
+				CurrentAnimation = Punch;
+				break;
 			default:
 				CurrentAnimation = Idle;
 				break;
@@ -103,8 +151,8 @@ namespace OpenglTester
 			{
 				SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
 			}
-
-
+			
+			
 			base.Update(Elapsed);
 		}
 		public void Draw (SpriteBatch spriteBatch)
@@ -129,9 +177,9 @@ namespace OpenglTester
 			*/
 			base.Draw(spriteBatch);
 		}
-
-
-
+		
+		
+		
 	}
 }
 
