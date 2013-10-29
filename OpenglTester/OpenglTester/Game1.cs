@@ -19,9 +19,6 @@ namespace OpenglTester
 
 		
 
-		AI AnAI;
-
-		Player player;
 
 
 		public static GraphicsDeviceManager graphics;
@@ -48,7 +45,7 @@ namespace OpenglTester
 			// 5th arg: time to animate the entire image
 			// size vertically of individual frames
 
-			player = new Player("Assn7MainCharacterSpritesheet",graphics,contentManager,65,3,32f);
+
 
 		}
 
@@ -106,7 +103,7 @@ namespace OpenglTester
 			}
 			// TODO: Add your update logic here		
 			base.Update (gameTime);
-			player.Update(timeDelta);
+
 
 		}
 
@@ -116,16 +113,16 @@ namespace OpenglTester
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			Game1.graphics.GraphicsDevice.Clear (Color.AntiqueWhite);
-			spriteBatch.Begin();
+			Game1.graphics.GraphicsDevice.Clear (Color.CornflowerBlue);
+
+			spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
 			//TODO: Add your drawing code here
 
 
 			//so draw your objects etc
 			gameManager.Draw (timeDelta);
-
-            //so draw your objects etc
-			player.Draw(spriteBatch);
+			/// draw in the playstate manager
+           
 
 			spriteBatch.End();
 			base.Draw(gameTime);
