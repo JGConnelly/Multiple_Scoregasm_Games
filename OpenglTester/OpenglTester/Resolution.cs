@@ -2,6 +2,9 @@
  * Resolution.cs
  * Tash
  * Tuesday 29 October 2013
+ * THIS CLASS IS CURRENTLY NOT BEING USED.
+ * At the moment we're resizing with scaled spritebatch rather than viewports. But I want to keep this here just in case.
+ * 
  * The resolution class resizes the game to fit into the full screen resolution of whatever size screen it is on.
  * With help from Jack and 
  * http://blog.roboblob.com/2013/07/27/solving-resolution-independent-rendering-and-2d-camera-using-monogame/
@@ -26,6 +29,12 @@ namespace OpenglTester
 		static private bool fullScreen = true;
 		static private bool dirtyMatrix = true;
 
+		/// <summary>
+		/// Init the specified inDevice.
+		/// </summary>
+		/// <param name='inDevice'>
+		/// In device.
+		/// </param>
 		static public void Init(ref GraphicsDeviceManager inDevice)
 		{
 			device = inDevice;
@@ -35,13 +44,31 @@ namespace OpenglTester
 			ApplyResolutionSettings();
 		}
 
-		static public Matrix getTransformationMatric()
+		/// <summary>
+		/// Gets the transformation matric.
+		/// </summary>
+		/// <returns>
+		/// The transformation matric.
+		/// </returns>
+		static public Matrix GetTransformationMatrix()
 		{
 			if (dirtyMatrix)
 				RecreateScaleMatrix();
 			return scaleMatrix;
 		}
 
+		/// <summary>
+		/// Sets the resolution.
+		/// </summary>
+		/// <param name='w'>
+		/// The width.
+		/// </param>
+		/// <param name='h'>
+		/// The height.
+		/// </param>
+		/// <param name='isFull'>
+		/// If set to <c>true</c> is full.
+		/// </param>
 		static public void SetResolution(int w, int h, bool isFull)
 		{
 			screenW = w;
@@ -50,6 +77,15 @@ namespace OpenglTester
 			ApplyResolutionSettings();
 		}
 
+		/// <summary>
+		/// Sets the base resolution.
+		/// </summary>
+		/// <param name='w'>
+		/// The width.
+		/// </param>
+		/// <param name='h'>
+		/// The height.
+		/// </param>
 		static public void SetBaseResolution(int w, int h)
 		{
 			baseW = w;
@@ -57,6 +93,9 @@ namespace OpenglTester
 			dirtyMatrix = true;
 		}
 
+		/// <summary>
+		/// Applies the resolution settings.
+		/// </summary>
 		static private void ApplyResolutionSettings()
 		{
 			//if we aren't using full screen, the size can be anything smaller than the actual screen size
@@ -75,7 +114,7 @@ namespace OpenglTester
 			{
 				foreach (DisplayMode dm in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
 				{
-					//cehck the width and ehight of each mode against the passed values
+					//cehck the width and height of each mode against the passed values
 					if ((dm.Width == screenW) && (dm.Height == screenH))
 					{
 						//if the mode is supported, set buffer formats, apply changes, and return
@@ -91,6 +130,9 @@ namespace OpenglTester
 			screenH = device.PreferredBackBufferHeight;
 		}
 
+		/// <summary>
+		/// Begins the draw.
+		/// </summary>
 		static public void BeginDraw()
 		{
 			//reset veiwport to (0, 0, 1, 1)
@@ -104,12 +146,18 @@ namespace OpenglTester
 			//this will make black bars if needed, and dark orange on the game area
 		}
 
+		/// <summary>
+		/// Recreates the scale matrix.
+		/// </summary>
 		static private void RecreateScaleMatrix()
 		{
 			dirtyMatrix = false;
 			scaleMatrix = Matrix.CreateScale((float)device.GraphicsDevice.Viewport.Width / baseW, (float)device.GraphicsDevice.Viewport.Height / baseH, 1f);
 		}
 
+		/// <summary>
+		/// Sets the viewport to full screen size
+		/// </summary>
 		static public void FullViewport()
 		{
 			Viewport vp = new Viewport();
@@ -119,11 +167,20 @@ namespace OpenglTester
 			device.GraphicsDevice.Viewport = vp;
 		}
 
+		/// <summary>
+		/// Gets the base aspect ratio.
+		/// </summary>
+		/// <returns>
+		/// The base aspect ratio.
+		/// </returns>
 		static public float GetBaseAspectRatio()
 		{
 			return (float)baseW / (float)baseH;
 		}
 
+		/// <summary>
+		/// Resets the viewport.
+		/// </summary>
 		static public void ResetViewport()
 		{
 			float targetAspectRatio = GetBaseAspectRatio();
