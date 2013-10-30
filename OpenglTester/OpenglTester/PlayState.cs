@@ -89,6 +89,8 @@ namespace OpenglTester
 				StateManager.spaceIsDown = true;
 				ChangeState(game, MenuState.GetInstance());
 			}
+			if (InputHandler.btnLeftShoulder)
+				ChangeState(game, SplashState.GetInstance());
 			if(!InputHandler.confirmPressed && StateManager.spaceIsDown)
 			{
 				StateManager.spaceIsDown = false;

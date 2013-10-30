@@ -75,6 +75,10 @@ namespace OpenglTester
 
 		}
 
+		/// <summary>
+		/// This function is called every loop (from Game1.cs)
+		/// It calls the UpdateController() and UpdateKeyboard() function, and sets leftPressed, confirmPressed, punchPressed, etc.
+		/// </summary>
 		public void Update()
 		{
 			UpdateController();
