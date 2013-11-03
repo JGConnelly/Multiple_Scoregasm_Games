@@ -56,6 +56,9 @@
     <Compile Include="Player.cs" />
     <Compile Include="Emitters\Emitter.cs" />
     <Compile Include="Emitters\SnowEmitter.cs" />
+    <Compile Include="Resolution.cs" />
+    <Compile Include="FileHandler.cs" />
+    <Compile Include="Level.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -86,6 +89,18 @@
     </Content>
     <Content Include="Content\Assn7MainCharacterSpritesheet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Snow1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Snow2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Snow3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\test.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 </Project>

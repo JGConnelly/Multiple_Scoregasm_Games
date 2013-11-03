@@ -262,9 +262,9 @@ namespace OpenglTester
 			else 
 			{
 				if(b_FlipImage)
-					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1f, SpriteEffects.FlipHorizontally, 0f);
+					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1, SpriteEffects.FlipHorizontally, 0f);
 				else
-					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1f, SpriteEffects.None, 0f);
+					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1, SpriteEffects.None, 0f);
 			}
 
 		}

@@ -2,6 +2,8 @@
 using System;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
@@ -16,36 +18,35 @@ namespace OpenglTester
 	/// </summary>
 	public class Game1 : Game
 	{
-		
-
 		public static GraphicsDeviceManager graphics;
 		public static ContentManager contentManager;
 		public static SpriteBatch spriteBatch;
 		StateManager gameManager = new StateManager();
 		InputHandler input = new InputHandler();
 		float timeDelta;
+		int defaultWidth = 1920;
+		int defaultHeight = 1080;
+		Matrix SpriteScale;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="OpenglTester.Game1"/> class.
 		/// </summary>
 		public Game1()
 		{
+			////set the screen resolution
 			graphics = new GraphicsDeviceManager(this);
-			contentManager = new ContentManager(Content.ServiceProvider);
-			contentManager.RootDirectory = "Content";	            
-
-
 			graphics.IsFullScreen = true;
+
+			contentManager = new ContentManager(Content.ServiceProvider);
+			contentManager.RootDirectory = "Content";	    
+
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch (GraphicsDevice);
-
 
 			// in this example of the animated object:
 			// 4th arg: using the untitled image i only want to render through 3 of the four frames 
 			// 5th arg: time to animate the entire image
 			// size vertically of individual frames
-
-
 		}
 
 		/// <summary>
@@ -56,8 +57,13 @@ namespace OpenglTester
 		/// </summary>
 		protected override void Initialize()
 		{
-			// TODO: Add your initialization logic here
+			
+			graphics.PreferredBackBufferWidth = defaultWidth;
+			graphics.PreferredBackBufferHeight = defaultHeight;
+			graphics.ApplyChanges();
+			graphics.GraphicsDevice.DeviceReset += new EventHandler<EventArgs>(GraphicsDevice_DeviceReset);
 
+			// TODO: Add your initialization logic here
 			base.Initialize();
 
 			//initialize the game state manager and set the initial state to the splash screen
@@ -75,6 +81,13 @@ namespace OpenglTester
 		{
 			//Texture2D pic= new Texture2D(;
 			//TODO: use this.Content to load your game content here 
+
+			//scale sprites up or down based on current viewport
+			//(currently the game will stretch to avoid black bars at the bottom and right side if the display isn't 16:9
+			//to fix this, delete the heightscale line, and set the next line to be: SpriteScale = Matrix.CreateScale(screenscale, screenscale, 1);
+			float screenscale = (float)GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / defaultWidth;
+			float heightscale = (float)GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / defaultHeight;
+			SpriteScale = Matrix.CreateScale(screenscale, heightscale, 1);
 		}
 
 		/// <summary>
@@ -84,28 +97,28 @@ namespace OpenglTester
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update(GameTime gameTime)
 		{
+			//get delta time
 			timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+			//update the inputs (keyboard and controller)
 			input.Update();
 
 			//update the current state
 			gameManager.HandleEvents (timeDelta);
 			gameManager.Update (timeDelta);
 
-			// For Mobile devices, this logic will close the Game when the Back button is pressed
 			if(InputHandler.escPressed)
 			{
-				Console.Out.WriteLine("quiting");
+				Console.Out.WriteLine("quitting");
 				Exit ();
 			}
-
+			// For Mobile devices, this logic will close the Game when the Back button is pressed
 			if (GamePad.GetState (PlayerIndex.One).Buttons.Back == ButtonState.Pressed) {
 				Exit ();
 			}
+
 			// TODO: Add your update logic here		
 			base.Update (gameTime);
-
-
-
 		}
 
 		/// <summary>
@@ -115,9 +128,10 @@ namespace OpenglTester
 		protected override void Draw(GameTime gameTime)
 		{
 
-			Game1.graphics.GraphicsDevice.Clear (Color.CornflowerBlue);
+			Game1.graphics.GraphicsDevice.Clear (Color.Black);
 
-			spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
+			//spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
+			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, null, null, null, null, SpriteScale);
 
 			//TODO: Add your drawing code here
 
@@ -130,6 +144,16 @@ namespace OpenglTester
 			spriteBatch.End();
 			base.Draw(gameTime);
 
+		}
+
+		void GraphicsDevice_DeviceReset(object sender, EventArgs e)
+		{
+			//scale sprites up or down based on current viewport
+			float screenscale = (float)graphics.GraphicsDevice.Viewport.Width / defaultWidth;
+
+			//create the scale transformation for draw
+			//do not scale the sprite depts (z = 1)
+			SpriteScale = Matrix.CreateScale(screenscale, screenscale, 1);
 		}
 	}
 }

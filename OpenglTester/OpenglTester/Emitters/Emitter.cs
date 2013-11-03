@@ -5,7 +5,11 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-
+/// <summary>
+/// Emitter class 
+/// this class is a basis for any particle emmitter system
+/// i highly recommend ovewriting not reusing the funcions as this is practiacally a template
+/// </summary>/////////////////////////
 
 namespace OpenglTester
 {
@@ -23,7 +27,7 @@ namespace OpenglTester
 
 		// some list for storing
 		protected List<Particle> Particles;
-		protected Random randnum = new Random();
+		protected static Random randnum = new Random();
 		// the number of particles 
 		public Emitter (int num, float time, float dirh,float dirl)
 		{

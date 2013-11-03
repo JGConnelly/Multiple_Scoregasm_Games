@@ -1,4 +1,6 @@
-using System;using Microsoft.Xna.Framework;
+using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
@@ -8,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 /// Input handler.
 /// Tash
 /// Tuesday 29 October 2013
-/// use InputHandler.leftPressed, InputHandler.rightPressed, InputHandler.downPressed, InputHandler.upPressed, InputHandler.confirmPressed, InputHandler.escPressed
+/// use InputHandler.leftPressed, InputHandler.rightPressed, InputHandler.confirmPressed, etc
 /// individual keyboard and xbox buttons are also usable
 /// </summary>
 
@@ -25,7 +27,6 @@ namespace OpenglTester
 		public static bool escPressed = false; //user has pressed esc or start
 		public static bool sprintPressed = false; // shift or B
 		public static bool punchPressed = false; // right ctrl or e or X
-		//public static bool backPressed = false; // user has pressed B or ???
 
 		//individual xbox buttons
 		public static bool btnA = false;
@@ -74,6 +75,10 @@ namespace OpenglTester
 
 		}
 
+		/// <summary>
+		/// This function is called every loop (from Game1.cs)
+		/// It calls the UpdateController() and UpdateKeyboard() function, and sets leftPressed, confirmPressed, punchPressed, etc.
+		/// </summary>
 		public void Update()
 		{
 			UpdateController();
