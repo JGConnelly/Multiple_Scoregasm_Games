@@ -52,6 +52,7 @@ namespace OpenglTester
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
+			v2_Scale = new Vector2(1,1);
 		}
 		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , float timeToComplete)
 		{
@@ -77,6 +78,7 @@ namespace OpenglTester
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
+			v2_Scale = new Vector2(1,1);
 
 		}
 
@@ -107,6 +109,7 @@ namespace OpenglTester
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
+			v2_Scale = new Vector2(1,1);
 
 
 		}
