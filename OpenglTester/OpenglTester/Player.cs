@@ -11,8 +11,8 @@ namespace OpenglTester
 	{
 		public int Start;
 		public int Frames;
-		public int TimeForCompletion;
-		public AnimationInfo (int a, int b, int c)
+		public float TimeForCompletion;
+		public AnimationInfo (int a, int b, float c)
 		{
 			Start = a; Frames = b; TimeForCompletion = c;
 		}
@@ -28,14 +28,17 @@ namespace OpenglTester
 			crouch,
 			sneak,
 			jump,
-			punch
+			punch,
+			shiv
 		};
 		
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
-					   Run = new AnimationInfo(1,16,4), Punch = new AnimationInfo(23,6,2),
-						Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1);
+					   Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
+						Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1),
+						Shiv = new AnimationInfo(36,5,0.5f);
 		AnimationInfo CurrentAnimation = new AnimationInfo(0,1,1);
-		
+		bool ShivEquipped = false;
+		bool ShivFound = true;
 		Action CurrentAction = Action.idle;
 		Action LastAction = Action.idle;
 #endregion
@@ -111,7 +114,17 @@ namespace OpenglTester
 			}
 			else if(InputHandler.punchPressed)
 			{
-				CurrentAction = Action.punch;
+				if(ShivEquipped)
+					CurrentAction = Action.shiv;
+				else 
+					CurrentAction = Action.punch;
+			}
+			else if (InputHandler.switchPressed && ShivFound)
+			{
+				if(ShivEquipped)
+					ShivEquipped = false;
+				else 
+					ShivEquipped = true;
 			}
 			/*//Work out if jumping
 			//Also need to work out if grounded
@@ -119,7 +132,7 @@ namespace OpenglTester
 			{
 				//if right key or left key is also down, move in that direction midair
 			}*/
-				else
+			else
 			{
 				CurrentAction = Action.idle;
 			}
@@ -142,6 +155,9 @@ namespace OpenglTester
 				break;
 			case Action.punch:
 				CurrentAnimation = Punch;
+				break;
+			case Action.shiv:
+				CurrentAnimation = Shiv;
 				break;
 			default:
 				CurrentAnimation = Idle;
