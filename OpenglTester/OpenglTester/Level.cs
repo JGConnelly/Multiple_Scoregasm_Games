@@ -5,7 +5,8 @@ namespace OpenglTester
 	public class Level
 	{
 
-		// contains a few objects(sprites ) for interaction
+		// contains a few objects(sprites ) for interaction ?
+
 		private int i_NumberOfExits;
 		private String[] str_Exits;
 

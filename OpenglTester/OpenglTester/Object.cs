@@ -24,6 +24,7 @@ namespace OpenglTester
 		protected Vector2 v2_Position;
 		protected Vector2 v2_Size;
 		protected Vector2 v2_Origin;
+		protected Vector2 v2_Scale;
 		protected float f_Rotation;
 
 		protected bool b_IsAnimated;
@@ -126,6 +127,10 @@ namespace OpenglTester
 		{
 			set {f_Rotation=value;if(f_Rotation>359)f_Rotation = 0; if(f_Rotation<0)f_Rotation = 359; }
 			get {return f_Rotation;}
+		}
+		public Vector2 Scale {
+			set { v2_Scale = value;}
+			get { return v2_Scale;}
 		}
 		public void SetCenter()
 		{
@@ -241,18 +246,18 @@ namespace OpenglTester
 				                                         (int)f_FrameSize.X, tex_Image.Height);
 				if(b_FlipImage)
 					spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
-				           	f_Rotation, new Vector2(0,0), 1, SpriteEffects.FlipHorizontally, 0f);
+					                 f_Rotation, new Vector2(0,0), v2_Scale, SpriteEffects.FlipHorizontally, 0f);
 				else
 					spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
-					                 f_Rotation, new Vector2(0,0), 1, SpriteEffects.None, 0f);
+					                 f_Rotation, new Vector2(0,0), v2_Scale, SpriteEffects.None, 0f);
 
 			} 
 			else 
 			{
 				if(b_FlipImage)
-					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1, SpriteEffects.FlipHorizontally, 0f);
+					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, v2_Scale, SpriteEffects.FlipHorizontally, 0f);
 				else
-					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1, SpriteEffects.None, 0f);
+					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, v2_Scale, SpriteEffects.None, 0f);
 			}
 
 		}
