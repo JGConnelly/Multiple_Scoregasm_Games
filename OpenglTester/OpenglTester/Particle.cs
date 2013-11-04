@@ -21,7 +21,7 @@ namespace OpenglTester
 
 
 
-		public Particle (string imagePath ):base ( imagePath )
+		public Particle (string imagePath):base ( imagePath)
 		{
 			b_NeverDies = false;
 			GenerateAlpha();

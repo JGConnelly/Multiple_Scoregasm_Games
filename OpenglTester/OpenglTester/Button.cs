@@ -12,6 +12,7 @@ namespace OpenglTester
 	public class Button : Object
 	{
 		public Button(string imagePath ):base ( imagePath )
+
 		{
 
 		}
