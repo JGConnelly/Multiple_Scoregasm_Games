@@ -7,8 +7,8 @@ namespace OpenglTester
 
 		// contains a few objects(sprites ) for interaction ?
 		Object obj_ThisObject;
-		private int i_NumberOfExits;
-		private String[] str_Exits;
+
+		private List<String> str_Exits;
 
 
 		private List<Object> obj_InteractableObjects;
@@ -17,20 +17,28 @@ namespace OpenglTester
 		{
 			obj_InteractableObjects = new List<Object>{};
 		}
-		public Level (int numExits,String[] strExits , List<Object> intObjects)
+		public Level ( List<String> Exits , List<Object> intObjects)
 		{
-			i_NumberOfExits = numExits;
-			str_Exits = strExits;
+
+			str_Exits = Exits;
 
 			obj_InteractableObjects = intObjects;
 		}
 		public void SetImage(string src)
 		{
 			obj_ThisObject = new Object(src);
+			obj_ThisObject.GenerateAlpha();
 		}
 		public void AddObject(Object intObj)
 		{
 			obj_InteractableObjects.Add(intObj);
+
+		}
+		public void AddExit(Object intObj, string exit)
+		{
+			obj_InteractableObjects.Add(intObj);
+			str_Exits.Add(exit);
+			
 
 		}
 
