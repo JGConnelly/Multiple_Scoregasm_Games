@@ -11,7 +11,8 @@ namespace OpenglTester
 {
 	public class Button : Object
 	{
-		public Button(string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager):base ( imagePath , gdevman, contentManager)
+		public Button(string imagePath ):base ( imagePath )
+
 		{
 
 		}
@@ -22,7 +23,7 @@ namespace OpenglTester
 		}
 		void Draw(SpriteBatch spriteBatch)
 		{
-			base.Draw(spriteBatch);
+			base.Draw();
 		}
 	}
 }

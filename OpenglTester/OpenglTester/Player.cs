@@ -51,7 +51,7 @@ namespace OpenglTester
 		readonly Vector2 gravity = new Vector2(0,9.8f);
 		Vector2 velocity;
 
-		public Player(string imagePath , GraphicsDeviceManager gdevman , ContentManager contentManager,int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath , gdevman, contentManager, numberOfFrames ,  timeToComplete, frameSize)
+		public Player(string imagePath , int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath , numberOfFrames ,  timeToComplete, frameSize)
 		{
 			b_IsAnimated = true;
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
@@ -221,7 +221,7 @@ namespace OpenglTester
 				SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
 			}
 			
-			
+
 			base.Update(Elapsed);
 		}		
 	}

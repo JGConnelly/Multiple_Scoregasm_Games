@@ -5,22 +5,82 @@ namespace OpenglTester
 	public class Level
 	{
 
-		// contains a few objects(sprites ) for interaction
+		// contains a few objects(sprites ) for interaction ?
+		Object obj_ThisObject;
+
+		private List<String> str_Exits;
 
 
-		private int i_NumberOfExits;
-		private String[] str_Exits;
-
-		private int i_NumberOfIntObjects;
 		private List<Object> obj_InteractableObjects;
 
-		public Level (int numExits,String[] strExits ,int numObjects, List<Object> intObjects)
+		public Level ()
 		{
-			i_NumberOfExits = numExits;
-			str_Exits = strExits;
-			i_NumberOfIntObjects = numObjects;
+			obj_InteractableObjects = new List<Object>{};
+			str_Exits = new List<string>{};
+		}
+		public Level ( List<String> Exits , List<Object> intObjects)
+		{
+
+			str_Exits = Exits;
+
 			obj_InteractableObjects = intObjects;
 		}
+		public void SetImage(string src)
+		{
+			obj_ThisObject = new Object(src);
+			obj_ThisObject.GenerateAlpha();
+		}
+		public void AddObject(Object intObj)
+		{
+			obj_InteractableObjects.Add(intObj);
+
+		}
+		public void AddExit(Object intObj, string exit)
+		{
+			obj_InteractableObjects.Add(intObj);
+			str_Exits.Add(exit);
+			
+
+		}
+
+		public void Update(float DeltaT)
+		{
+			obj_ThisObject.Update(DeltaT);
+
+			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
+			{
+				obj_InteractableObjects[obj].Update(DeltaT);
+			}
+		}
+		public void Draw()
+		{
+			obj_ThisObject.Draw();
+			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
+			{
+				obj_InteractableObjects[obj].Draw();
+			}
+		}
+
+		/// <summary>
+		/// Checks the can interact with a
+		/// </summary>
+		/// <param name='check'>
+		/// Check that whatever you pass through if its close enough to interact
+		/// basically check if it collides
+		/// </param>
+		public void CheckCanInteract(Object check)
+		{
+			
+			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
+			{
+				if(check.CheckCollision(obj_InteractableObjects[obj]))
+				{
+
+				}
+			}
+
+		}
+
 	}
 }
 
