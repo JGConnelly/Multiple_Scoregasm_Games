@@ -28,6 +28,7 @@ namespace OpenglTester
 			crouch,
 			sneak,
 			jump,
+			jumpland,
 			punch,
 			shiv
 		};
@@ -35,14 +36,21 @@ namespace OpenglTester
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
 					   Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
 						Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1),
-						Shiv = new AnimationInfo(36,5,0.5f);
+						 Shiv = new AnimationInfo(36,5,0.5f),JumpLand = new AnimationInfo(41,0,2),
+						  Jumping = new AnimationInfo(42,5,1);
 		AnimationInfo CurrentAnimation = new AnimationInfo(0,1,1);
 		bool ShivEquipped = false;
-		bool ShivFound = true;
+		public bool ShivFound = true;
+		bool isJumping;
+		float Mass = 250;
+		float GroundWhileJumping;
 		Action CurrentAction = Action.idle;
 		Action LastAction = Action.idle;
-#endregion
-		
+		#endregion
+
+		readonly Vector2 gravity = new Vector2(0,9.8f);
+		Vector2 velocity;
+
 		public Player(string imagePath , int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath , numberOfFrames ,  timeToComplete, frameSize)
 		{
 			b_IsAnimated = true;
@@ -55,9 +63,46 @@ namespace OpenglTester
 		{
 			// CurrentAction - Work it out based on input
 			LastAction = CurrentAction;
-			
-			//determine facing, as well as whether running or not.
-			if (InputHandler.downPressed) 
+			if (InputHandler.upPressed && !isJumping) 
+			{
+				isJumping = true;
+				GroundWhileJumping = v2_Position.Y;
+				velocity.Y = -8;
+				v2_Position.Y -=5;
+
+				CurrentAction = Action.jumpland;
+			}
+			else if (isJumping)
+			{
+				float time = (float) Elapsed;
+				Vector2 Acceleration;
+				Acceleration = ((velocity)/Mass + gravity);
+				//velocity+= gravity*time;
+				velocity += Acceleration * Elapsed;
+				v2_Position.Y+=velocity.Y;//*time;
+				CurrentAction = Action.jump;
+				if(InputHandler.rightPressed)
+				{
+					b_FlipImage = false;
+					v2_Position.X+=100*Elapsed;
+
+				}
+				else if (InputHandler.leftPressed)
+				{
+					b_FlipImage = true;
+
+					v2_Position.X-=100*Elapsed;
+
+				}
+				if(v2_Position.Y >= GroundWhileJumping-5)
+				{
+					v2_Position.Y = GroundWhileJumping;
+					velocity = Vector2.Zero;
+					isJumping = false;
+					CurrentAction = Action.jumpland;
+				}
+			}
+			else if (InputHandler.downPressed) 
 			{
 				CurrentAction = Action.crouch;
 				if(InputHandler.leftPressed || InputHandler.rightPressed)
@@ -77,6 +122,7 @@ namespace OpenglTester
 					}
 				}
 			}
+			//determine facing, as well as whether running or not.
 			else if (InputHandler.leftPressed || InputHandler.rightPressed)
 			{
 				CurrentAction = Action.walk;
@@ -159,6 +205,12 @@ namespace OpenglTester
 			case Action.shiv:
 				CurrentAnimation = Shiv;
 				break;
+			case Action.jump:
+				CurrentAnimation = Jumping;
+				break;
+			case Action.jumpland:
+				CurrentAnimation = JumpLand;
+				break;
 			default:
 				CurrentAnimation = Idle;
 				break;
@@ -171,32 +223,7 @@ namespace OpenglTester
 			
 
 			base.Update(Elapsed);
-		}
-		public void Draw ()
-		{
-			/*if (b_IsAnimated) {
-				// only using horizontal animation right now 
-				/// if someone really needs vertical i can change it
-				
-				// anyway.. this creates the rectangle that the animation will use
-				Rectangle AnimSourceRect = new Rectangle((int)((f_FrameWidth * i_CurrentFrame)+i_StartFrame*f_FrameWidth), 0,
-				                                         (int)f_FrameWidth, tex_Image.Height);
-				
-				spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
-				                 f_Rotation, new Vector2(0,0), 1, SpriteEffects.None, 0f);
-				Console.WriteLine("Current Animation State: " + CurrentAction.ToString());
-				
-			} 
-			else 
-			{
-				spriteBatch.Draw (tex_Image, v2_Position, null, Color.White, f_Rotation, new Vector2 (0, 0), 1f, SpriteEffects.None, 0f);
-			}
-			*/
-			base.Draw();
-		}
-		
-		
-		
+		}		
 	}
 }
 
