@@ -11,7 +11,7 @@ namespace OpenglTester
 {
 	public class AI : Object
 	{
-		public AI(string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager):base ( imagePath , gdevman, contentManager)
+		public AI(string imagePath ):base ( imagePath )
 		{
 
 		}
@@ -20,9 +20,9 @@ namespace OpenglTester
 		{
 			base.Update((float)DeltaTime);
 		}
-		void Draw(SpriteBatch spriteBatch)
+		void Draw()
 		{
-			base.Draw(spriteBatch);
+			base.Draw();
 		}
 	}
 }

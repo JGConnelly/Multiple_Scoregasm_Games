@@ -25,7 +25,7 @@ namespace OpenglTester
 		{
 			Console.WriteLine ("MenuState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
-			menuBG = new Object("menu", Game1.graphics, Game1.contentManager);
+			menuBG = new Object("menu");
 		}
 		
 		public override void Cleanup ()
@@ -70,7 +70,7 @@ namespace OpenglTester
 		public override void Draw (StateManager game, float dT)
 		{
 			//draw stuff to the screen
-			menuBG.Draw(Game1.spriteBatch);
+			menuBG.Draw();
 		}
 		
 		public static MenuState GetInstance ()

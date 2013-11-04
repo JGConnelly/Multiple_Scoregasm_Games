@@ -43,7 +43,7 @@ namespace OpenglTester
 		Action LastAction = Action.idle;
 #endregion
 		
-		public Player(string imagePath , GraphicsDeviceManager gdevman , ContentManager contentManager,int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath , gdevman, contentManager, numberOfFrames ,  timeToComplete, frameSize)
+		public Player(string imagePath ,int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath ,  numberOfFrames ,  timeToComplete, frameSize)
 		{
 			b_IsAnimated = true;
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
@@ -172,7 +172,7 @@ namespace OpenglTester
 			
 			base.Update(Elapsed);
 		}
-		public void Draw (SpriteBatch spriteBatch)
+		public void Draw ()
 		{
 			/*if (b_IsAnimated) {
 				// only using horizontal animation right now 
@@ -192,7 +192,7 @@ namespace OpenglTester
 				spriteBatch.Draw (tex_Image, v2_Position, null, Color.White, f_Rotation, new Vector2 (0, 0), 1f, SpriteEffects.None, 0f);
 			}
 			*/
-			base.Draw(spriteBatch);
+			base.Draw();
 		}
 		
 		
