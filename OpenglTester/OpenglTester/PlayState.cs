@@ -39,7 +39,7 @@ namespace OpenglTester
 			// seting up the new player
 			player = new Player("Assn7MainCharacterSpritesheet",65,20,32f);
 			player.Position = new Vector2(64,850);
-			SnowFall = new SnowEmitter(0,1500,1200,1000,10);
+			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
 			SnowFall.Initialise(0,0);
 
 			string thisLevel = fileManager.LoadPlayer();
