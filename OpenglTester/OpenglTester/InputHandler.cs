@@ -28,7 +28,7 @@ namespace OpenglTester
 		public static bool sprintPressed = false; // shift or B
 		public static bool punchPressed = false; // right ctrl or e or X
 
-		public static bool switchPressed = false;//'r' or Num0
+		public static bool switchPressed = false;//'r' or Num0 or Y
 
 		//individual xbox buttons
 		public static bool btnA = false;
@@ -137,7 +137,7 @@ namespace OpenglTester
 			else
 				punchPressed = false;
 			//
-			if (keyR || keyNum0) 
+			if (keyR || keyNum0 || btnY) 
 				switchPressed = true; 
 			else
 				switchPressed = false;
@@ -262,7 +262,7 @@ namespace OpenglTester
 			if (kb.IsKeyDown(Keys.Up))
 				keyUp = true;
 			else
-				keyDown = false;
+				keyUp = false;
 			//down arrow
 			if (kb.IsKeyDown(Keys.Down))
 				keyDown = true;
