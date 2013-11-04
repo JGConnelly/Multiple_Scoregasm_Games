@@ -1,13 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\MenuState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Player.cs">
     <Files>
       <File FileName="OpenglTester\Program.cs" Line="14" Column="3" />
       <File FileName="OpenglTester\Game1.cs" Line="45" Column="4" />
       <File FileName="OpenglTester\Object.cs" Line="45" Column="20" />
       <File FileName="OpenglTester\Button.cs" Line="35" Column="4" />
-      <File FileName="OpenglTester\MenuState.cs" Line="105" Column="20" />
+      <File FileName="OpenglTester\MenuState.cs" Line="108" Column="5" />
       <File FileName="OpenglTester\InputHandler.cs" Line="259" Column="8" />
+      <File FileName="OpenglTester\PlayState.cs" Line="40" Column="38" />
+      <File FileName="OpenglTester\Content\Data\Levels\Intro.txt" Line="6" Column="12" />
+      <File FileName="OpenglTester\Player.cs" Line="173" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
