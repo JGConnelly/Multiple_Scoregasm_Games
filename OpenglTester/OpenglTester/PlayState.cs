@@ -25,6 +25,8 @@ namespace OpenglTester
 		Player player;
 		SnowEmitter SnowFall;
 
+		FileHandler fileManager = new FileHandler();
+		Level CurrentLevel;
 
 		public override void Init()
 		{
@@ -38,8 +40,8 @@ namespace OpenglTester
 			player.Position = new Vector2(64,850);
 			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
 			SnowFall.Initialise(0,0);
-
-
+			string thisLevel = fileManager.LoadPlayer();
+			CurrentLevel = fileManager.LoadLevel(thisLevel);
 
 		}
 		
@@ -103,6 +105,7 @@ namespace OpenglTester
 			player.Update(dT);
 			playBG.Update(dT);
 			SnowFall.Update(dT);
+			CurrentLevel.Update(dT);
 
 		}
 		
@@ -111,6 +114,7 @@ namespace OpenglTester
 			//draw stuff to the screen
 			playBG.Draw();
 			//so draw your objects etc
+			CurrentLevel.Draw ();
 			player.Draw();
 			SnowFall.Draw();
 

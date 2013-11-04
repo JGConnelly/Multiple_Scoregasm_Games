@@ -1,29 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Level.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Button.cs">
     <Files>
-      <File FileName="OpenglTester\Program.cs" Line="14" Column="3" />
-      <File FileName="OpenglTester\Game1.cs" Line="45" Column="3" />
-      <File FileName="OpenglTester\Object.cs" Line="45" Column="20" />
-      <File FileName="OpenglTester\AI.cs" Line="25" Column="14" />
-      <File FileName="OpenglTester\Particle.cs" Line="24" Column="56" />
-      <File FileName="OpenglTester\Emitters\Emitter.cs" Line="87" Column="24" />
-      <File FileName="OpenglTester\Emitters\SnowEmitter.cs" Line="30" Column="14" />
-      <File FileName="OpenglTester\FileHandler.cs" Line="74" Column="26" />
-      <File FileName="OpenglTester\AbstractState.cs" Line="32" Column="3" />
-      <File FileName="OpenglTester\Level.cs" Line="67" Column="26" />
-      <File FileName="OpenglTester\PlayState.cs" Line="126" Column="41" />
-      <File FileName="c:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\MenuState.cs" Line="39" Column="4" />
-      <File FileName="OpenglTester\Player.cs" Line="158" Column="21" />
-      <File FileName="c:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\SplashState.cs" Line="71" Column="18" />
-      <File FileName="c:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\Button.cs" Line="20" Column="4" />
+      <File FileName="OpenglTester\Player.cs" Line="206" Column="29" />
+      <File FileName="OpenglTester\Level.cs" Line="50" Column="57" />
+      <File FileName="OpenglTester\PlayState.cs" Line="100" Column="10" />
+      <File FileName="OpenglTester\FileHandler.cs" Line="32" Column="2" />
+      <File FileName="OpenglTester\Content\Data\Levels\Intro.txt" Line="3" Column="5" />
+      <File FileName="OpenglTester\MenuState.cs" Line="142" Column="1" />
+      <File FileName="OpenglTester\Button.cs" Line="27" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="OpenglTester\PlayState.cs" line="46" offsetX="555" offsetY="624" expression="thisLevel" liveUpdate="False" />
-    <Watch file="OpenglTester\Level.cs" line="33" offsetX="459" offsetY="512" expression="intObj" liveUpdate="False" />
-  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
