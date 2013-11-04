@@ -35,9 +35,9 @@ namespace OpenglTester
 
 			buttons = new List<Button>();
 
-			Button btnNewGame = new Button(760, 500, "newGameButton", "newGameButtonSelected");
-			Button btnLoadGame = new Button(760, 650, "loadGameButton", "loadGameButtonSelected");
-			Button btnQuit = new Button(760, 800, "quitButton", "quitButtonSelected");
+			btnNewGame = new Button(760, 500, "newGameButton", "newGameButtonSelected");
+			btnLoadGame = new Button(760, 650, "loadGameButton", "loadGameButtonSelected");
+			btnQuit = new Button(760, 800, "quitButton", "quitButtonSelected");
 
 			buttons.Add(btnNewGame);
 			buttons.Add(btnLoadGame);
@@ -65,7 +65,7 @@ namespace OpenglTester
 			//load the content for the menustate
 		}
 
-		public override void HandleEvents(StateManager game, float dT)
+		public override void HandleEvents(StateManager gameManager, float dT)
 		{
 			//press space to change to PlayState
 			if(InputHandler.confirmPressed && (!StateManager.spaceIsDown))
@@ -73,11 +73,11 @@ namespace OpenglTester
 				StateManager.spaceIsDown = true;
 				if (btnNewGame.IsSelected())
 				{
-					ChangeState(game, PlayState.GetInstance());
+					ChangeState(gameManager, PlayState.GetInstance());
 				}
 				if (btnQuit.IsSelected())
 				{
-					//wuit the game
+					//quit the game
 				}
 			}
 			if(!InputHandler.confirmPressed && StateManager.spaceIsDown)
