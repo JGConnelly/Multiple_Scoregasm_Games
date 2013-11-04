@@ -25,21 +25,25 @@ namespace OpenglTester
 		Player player;
 		SnowEmitter SnowFall;
 
+		// now this is the Filemaneger it will make sure you can load levels etc
+		FileHandler fileManager = new FileHandler();
+		Level CurrentLevel;
 
 		public override void Init()
 		{
 			Console.WriteLine ("PlayState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
-			playBG = new Object("game", Game1.graphics, Game1.contentManager);
+			playBG = new Object("game");
 
 
 			// seting up the new player
-			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,20,32f);
+			player = new Player("Assn7MainCharacterSpritesheet",65,20,32f);
 			player.Position = new Vector2(64,850);
 			SnowFall = new SnowEmitter(0,1500,1200,1000,10);
-			SnowFall.Initialise(0,0,Game1.graphics,Game1.contentManager);
+			SnowFall.Initialise(0,0);
 
-
+			string thisLevel = fileManager.LoadPlayer();
+			CurrentLevel = fileManager.LoadLevel(thisLevel);
 
 		}
 		
@@ -103,16 +107,19 @@ namespace OpenglTester
 			player.Update(dT);
 			playBG.Update(dT);
 			SnowFall.Update(dT);
+			CurrentLevel.Update(dT);
 
 		}
 		
 		public override void Draw (StateManager game, float dT)
 		{
 			//draw stuff to the screen
-			playBG.Draw(Game1.spriteBatch);
+			playBG.Draw();
+			// drawing the loaded level
+			CurrentLevel.Draw();
 			//so draw your objects etc
-			player.Draw(Game1.spriteBatch);
-			SnowFall.Draw(Game1.spriteBatch);
+			player.Draw();
+			SnowFall.Draw();
 
 		}
 		

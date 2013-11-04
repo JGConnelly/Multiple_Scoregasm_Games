@@ -32,12 +32,12 @@ namespace OpenglTester
 			i_GroundHeight = ground;
 		}
 
-		public override void Initialise (int posx , int posy, GraphicsDeviceManager gdm, ContentManager cm)
+		public override void Initialise (int posx , int posy)
 		{
 			for (int i =0; i < i_ParticleNumber; i ++) 
 			{
 				int snowran = randnum.Next(1,4);
-				Particles.Add(new Particle("Snow"+snowran,gdm,cm));
+				Particles.Add(new Particle("Snow"+snowran));
 			
 				int pos_x = randnum.Next(0,i_SkyWidth);
 				Particles[i].Position=new Vector2(pos_x,i_SkyHeight);
