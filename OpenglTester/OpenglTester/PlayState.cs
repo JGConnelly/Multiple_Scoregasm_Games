@@ -25,9 +25,6 @@ namespace OpenglTester
 		Player player;
 		SnowEmitter SnowFall;
 
-		// now this is the Filemaneger it will make sure you can load levels etc
-		FileHandler fileManager = new FileHandler();
-		Level CurrentLevel;
 
 		public override void Init()
 		{
@@ -42,8 +39,7 @@ namespace OpenglTester
 			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
 			SnowFall.Initialise(0,0);
 
-			string thisLevel = fileManager.LoadPlayer();
-			CurrentLevel = fileManager.LoadLevel(thisLevel);
+
 
 		}
 		
@@ -107,7 +103,6 @@ namespace OpenglTester
 			player.Update(dT);
 			playBG.Update(dT);
 			SnowFall.Update(dT);
-			CurrentLevel.Update(dT);
 
 		}
 		
@@ -115,8 +110,6 @@ namespace OpenglTester
 		{
 			//draw stuff to the screen
 			playBG.Draw();
-			// drawing the loaded level
-			CurrentLevel.Draw();
 			//so draw your objects etc
 			player.Draw();
 			SnowFall.Draw();

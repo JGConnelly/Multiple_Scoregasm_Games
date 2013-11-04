@@ -262,7 +262,7 @@ namespace OpenglTester
 			if (kb.IsKeyDown(Keys.Up))
 				keyUp = true;
 			else
-				keyDown = false;
+				keyUp = false;
 			//down arrow
 			if (kb.IsKeyDown(Keys.Down))
 				keyDown = true;
