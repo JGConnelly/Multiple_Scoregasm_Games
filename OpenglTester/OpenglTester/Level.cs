@@ -16,6 +16,7 @@ namespace OpenglTester
 		public Level ()
 		{
 			obj_InteractableObjects = new List<Object>{};
+			str_Exits = new List<string>{};
 		}
 		public Level ( List<String> Exits , List<Object> intObjects)
 		{
@@ -59,6 +60,27 @@ namespace OpenglTester
 				obj_InteractableObjects[obj].Draw();
 			}
 		}
+
+		/// <summary>
+		/// Checks the can interact with a
+		/// </summary>
+		/// <param name='check'>
+		/// Check that whatever you pass through if its close enough to interact
+		/// basically check if it collides
+		/// </param>
+		public void CheckCanInteract(Object check)
+		{
+			
+			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
+			{
+				if(check.CheckCollision(obj_InteractableObjects[obj]))
+				{
+
+				}
+			}
+
+		}
+
 	}
 }
 

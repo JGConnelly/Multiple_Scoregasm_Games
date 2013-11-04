@@ -90,15 +90,22 @@ namespace OpenglTester
 
 						tempObject = new Object(tempFileName);
 						tempObject.Position = tempPosition;
-						ret.AddObject(tempObject);
+
 
 						//if this object is an exit
 						line = file.ReadLine();
 					
 						if(line=="true")
 						{
+							line = file.ReadLine();
+							ret.AddExit(tempObject,line);
 
-
+						}
+						else
+						{
+							ret.AddObject(tempObject);
+							
+							line = file.ReadLine();
 						}
 					}
 				}
