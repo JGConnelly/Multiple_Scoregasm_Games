@@ -21,7 +21,7 @@ namespace OpenglTester
 
 
 
-		public Particle (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager):base ( imagePath , gdevman, contentManager)
+		public Particle (string imagePath):base ( imagePath)
 		{
 			b_NeverDies = false;
 			GenerateAlpha();
@@ -94,10 +94,10 @@ namespace OpenglTester
 			base.Update (Elapsed);
 
 		}
-		public override void Draw (SpriteBatch spriteBatch)
+		public override void Draw ()
 		{
 			if (b_Alive || b_NeverDies)
-				base.Draw (spriteBatch);
+				base.Draw ();
 		}
 
 	}

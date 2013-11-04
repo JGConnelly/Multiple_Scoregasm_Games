@@ -23,7 +23,7 @@ namespace OpenglTester
 		{
 			Console.WriteLine("SplashState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
-			splashBG = new Object("splash", Game1.graphics, Game1.contentManager);
+			splashBG = new Object("splash");
 		}
 		
 		public override void Cleanup()
@@ -68,7 +68,7 @@ namespace OpenglTester
 		public override void Draw(StateManager game, float dT)
 		{
 			//draw stuff to the screen
-			splashBG.Draw(Game1.spriteBatch);
+			splashBG.Draw();
 		}
 		
 		public static SplashState GetInstance()

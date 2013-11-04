@@ -1,20 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Level.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Program.cs">
     <Files>
-      <File FileName="OpenglTester\Program.cs" Line="14" Column="3" />
-      <File FileName="OpenglTester\Game1.cs" Line="25" Column="3" />
-      <File FileName="OpenglTester\Object.cs" Line="233" Column="1" />
-      <File FileName="OpenglTester\AI.cs" Line="12" Column="17" />
-      <File FileName="OpenglTester\StateManager.cs" Line="26" Column="14" />
-      <File FileName="OpenglTester\Player.cs" Line="72" Column="1" />
-      <File FileName="OpenglTester\PlayState.cs" Line="38" Column="40" />
-      <File FileName="OpenglTester\Particle.cs" Line="28" Column="4" />
-      <File FileName="OpenglTester\Emitters\Emitter.cs" Line="11" Column="94" />
-      <File FileName="OpenglTester\Emitters\SnowEmitter.cs" Line="80" Column="44" />
-      <File FileName="OpenglTester\FileHandler.cs" Line="18" Column="28" />
-      <File FileName="OpenglTester\AbstractState.cs" Line="16" Column="32" />
-      <File FileName="OpenglTester\Level.cs" Line="12" Column="36" />
+      <File FileName="OpenglTester\Program.cs" Line="8" Column="23" />
+      <File FileName="OpenglTester\Game1.cs" Line="35" Column="4" />
+      <File FileName="OpenglTester\Button.cs" Line="45" Column="3" />
+      <File FileName="OpenglTester\InputHandler.cs" Line="262" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

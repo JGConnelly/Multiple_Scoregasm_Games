@@ -30,7 +30,7 @@ namespace OpenglTester
 		protected bool b_IsAnimated;
 		protected bool b_Paused;
 		protected bool b_FlipImage;
-
+		
 		// create a non animated object
 		public Object (string imagePath )
 		{
@@ -181,6 +181,18 @@ namespace OpenglTester
 
 
 		// set the starting frame 
+		/// <summary>
+		/// Sets the animation start point.
+		/// </summary>
+		/// <param name='startPoint'>
+		/// Start point.
+		/// </param>
+		/// <param name='numberOfFrames'>
+		/// Number of frames.
+		/// </param>
+		/// <param name='timeToComplete'>
+		/// Time to complete.
+		/// </param>
 		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, float timeToComplete)
 		{
 			i_StartFrame = startPoint;

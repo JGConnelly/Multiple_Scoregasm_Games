@@ -28,6 +28,8 @@ namespace OpenglTester
 		public static bool sprintPressed = false; // shift or B
 		public static bool punchPressed = false; // right ctrl or e or X
 
+		public static bool switchPressed = false;//'r' or Num0
+
 		//individual xbox buttons
 		public static bool btnA = false;
 		public static bool btnB = false;
@@ -67,6 +69,9 @@ namespace OpenglTester
 		public static bool keyCtrl = false;
 		public static bool keyShift = false;
 
+		public static bool keyR = false;
+		public static bool keyNum0 = false;
+
 
 
 
@@ -79,10 +84,10 @@ namespace OpenglTester
 		/// This function is called every loop (from Game1.cs)
 		/// It calls the UpdateController() and UpdateKeyboard() function, and sets leftPressed, confirmPressed, punchPressed, etc.
 		/// </summary>
-		public void Update()
+		public void Update ()
 		{
-			UpdateController();
-			UpdateKeyboard();
+			UpdateController ();
+			UpdateKeyboard ();
 
 			//moveLeft is true if the stick or the dPad or a or the left arrow are pressed
 			if (btnDPadLeft || (stickLeftX < 0) || keyA || keyLeft)
@@ -131,6 +136,11 @@ namespace OpenglTester
 				punchPressed = true;
 			else
 				punchPressed = false;
+			//
+			if (keyR || keyNum0) 
+				switchPressed = true; 
+			else
+				switchPressed = false;
 		}
 
 		public void UpdateController()
@@ -252,7 +262,7 @@ namespace OpenglTester
 			if (kb.IsKeyDown(Keys.Up))
 				keyUp = true;
 			else
-				keyDown = false;
+				keyUp = false;
 			//down arrow
 			if (kb.IsKeyDown(Keys.Down))
 				keyDown = true;
@@ -305,6 +315,16 @@ namespace OpenglTester
 				keyCtrl = true;
 			else
 				keyCtrl = false;
+
+			if (kb.IsKeyDown(Keys.R))
+				keyR = true;
+			else 
+				keyR = false;
+
+			if (kb.IsKeyDown(Keys.NumPad0))
+				keyNum0 = true;
+			else 
+				keyNum0 = false;
 
 		}
 	}

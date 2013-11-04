@@ -1,29 +1,46 @@
-
 using System;
-
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-
 namespace OpenglTester
 {
 	public class Button : Object
 	{
-		public Button(string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager):base ( imagePath , gdevman, contentManager)
+		bool isSelected;
+		Texture2D tex_SelectedImage;
+		Texture2D tex_DeselectedImage;
+		
+		public Button(float xPos, float yPos, string deselectedImage, string selectedImage): base(deselectedImage)
 		{
+			v2_Position.X = xPos;
+			v2_Position.Y = yPos;
+			v2_Size.X = 400;
+			v2_Size.Y = 100;
 
+			tex_SelectedImage = Game1.contentManager.Load<Texture2D>(selectedImage);
+			tex_DeselectedImage = Game1.contentManager.Load<Texture2D>(deselectedImage);
+			tex_Image = tex_DeselectedImage;
+
+			isSelected = false;
 		}
 		
-		void Update(double DeltaTime)
+		public void Select()
 		{
-			base.Update((float)DeltaTime);
+			isSelected = true;
+			tex_Image = tex_SelectedImage;
 		}
-		void Draw(SpriteBatch spriteBatch)
+		
+		public void Deselect()
 		{
-			base.Draw(spriteBatch);
+			isSelected = false;
+			tex_Image = tex_DeselectedImage;
+		}
+
+		public bool IsSelected()
+		{
+			return isSelected;
 		}
 	}
 }
-

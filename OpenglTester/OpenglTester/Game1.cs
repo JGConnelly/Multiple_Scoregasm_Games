@@ -28,6 +28,9 @@ namespace OpenglTester
 		int defaultHeight = 1080;
 		Matrix SpriteScale;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="OpenglTester.Game1"/> class.
+		/// </summary>
 		public Game1()
 		{
 			////set the screen resolution
