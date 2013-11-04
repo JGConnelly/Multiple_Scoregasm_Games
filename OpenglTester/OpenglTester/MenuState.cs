@@ -8,6 +8,7 @@
 
 
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
@@ -20,12 +21,27 @@ namespace OpenglTester
 	{
 		static readonly MenuState menuInstance = new MenuState();
 		Object menuBG;
-
+		Button btnNewGame, btnLoadGame, btnQuit;
+		List<Button> buttons;
+		static bool changed = false;
+		static int currentlySelectedButton = 0;
+		
 		public override void Init()
 		{
 			Console.WriteLine ("MenuState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
 			menuBG = new Object("menu");
+			
+			btnNewGame = new Button(760, 500, "newGameButton", "newGameButtonSelected");
+			btnLoadGame = new Button(760, 650, "loadGameButton", "loadGameButtonSelected");
+			btnQuit = new Button(760, 800, "quitButton", "quitButtonSelected");
+			
+			buttons = new List<Button>();
+			buttons.Add(btnNewGame);
+			buttons.Add(btnLoadGame);
+			buttons.Add(btnQuit);
+			
+			buttons[currentlySelectedButton].Select();
 		}
 		
 		public override void Cleanup ()
@@ -46,18 +62,51 @@ namespace OpenglTester
 		{
 			//load the content for the menustate
 		}
-
-		public override void HandleEvents (StateManager game, float dT)
+		
+		public override void HandleEvents(StateManager game, float dT)
 		{
 			//press space to change to PlayState
 			if(InputHandler.confirmPressed && (!StateManager.spaceIsDown))
 			{
 				StateManager.spaceIsDown = true;
-				ChangeState(game, PlayState.GetInstance());
+				if(btnNewGame.isSelected)
+				{
+					ChangeState(game, PlayState.GetInstance());
+				}
+				if(btnQuit.isSelected)
+				{
+					//quit
+				}
 			}
 			if(!InputHandler.confirmPressed && StateManager.spaceIsDown)
 			{
 				StateManager.spaceIsDown = false;
+			}
+
+			//change menu buttons
+			if(InputHandler.downPressed && !changed)
+			{
+				buttons[currentlySelectedButton++].Deselect();
+				if(currentlySelectedButton >= buttons.Count)
+				{
+					currentlySelectedButton = 0;
+				}
+				buttons[currentlySelectedButton].Select();
+				changed = true;
+			}
+			if(InputHandler.upPressed && !changed)
+			{
+				buttons[currentlySelectedButton--].Deselect();
+				if (currentlySelectedButton < 0)
+				{
+					currentlySelectedButton = buttons.Count - 1;
+				}
+				buttons[currentlySelectedButton].Select();
+				changed = true;
+			}
+			if(!InputHandler.downPressed && !InputHandler.upPressed)
+			{
+				changed = false;
 			}
 			//TODO: handle events here
 		}
@@ -67,17 +116,21 @@ namespace OpenglTester
 			menuBG.Update(dT);
 		}
 		
-		public override void Draw (StateManager game, float dT)
+		public override void Draw(StateManager game, float dT)
 		{
 			//draw stuff to the screen
 			menuBG.Draw();
+			foreach(Button btn in buttons)
+			{
+				btn.Draw();
+			}
 		}
 		
 		public static MenuState GetInstance ()
 		{
 			return menuInstance;
 		}
-
+		
 		//private constructor
 		private MenuState ()
 		{
