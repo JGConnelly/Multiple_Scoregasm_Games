@@ -1,6 +1,6 @@
 Level1Background
 1
 Door
-1800,650
+1800,600
 true
 PrisonIntro

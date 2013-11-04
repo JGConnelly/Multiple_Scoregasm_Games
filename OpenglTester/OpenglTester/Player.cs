@@ -30,14 +30,15 @@ namespace OpenglTester
 			jump,
 			jumpland,
 			punch,
-			shiv
+			shiv,
+			block
 		};
 		
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
 					   Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
 						Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1),
 						 Shiv = new AnimationInfo(36,5,0.5f),JumpLand = new AnimationInfo(41,0,2),
-						  Jumping = new AnimationInfo(42,5,1);
+						  Jumping = new AnimationInfo(42,5,1), Block = new AnimationInfo(47,1,1.5f);
 		AnimationInfo CurrentAnimation = new AnimationInfo(0,1,1);
 		bool ShivEquipped = false;
 		public bool ShivFound = true;
