@@ -1,6 +1,7 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\MenuState.cs">
     <Files>
       <File FileName="OpenglTester\Player.cs" Line="146" Column="47" />
       <File FileName="OpenglTester\Object.cs" Line="181" Column="4" />

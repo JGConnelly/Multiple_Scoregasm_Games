@@ -1,4 +1,6 @@
-using System;using Microsoft.Xna.Framework;
+using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
@@ -8,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 /// Input handler.
 /// Tash
 /// Tuesday 29 October 2013
-/// use InputHandler.leftPressed, InputHandler.rightPressed, InputHandler.downPressed, InputHandler.upPressed, InputHandler.confirmPressed, InputHandler.escPressed
+/// use InputHandler.leftPressed, InputHandler.rightPressed, InputHandler.confirmPressed, etc
 /// individual keyboard and xbox buttons are also usable
 /// </summary>
 
@@ -25,7 +27,8 @@ namespace OpenglTester
 		public static bool escPressed = false; //user has pressed esc or start
 		public static bool sprintPressed = false; // shift or B
 		public static bool punchPressed = false; // right ctrl or e or X
-		//public static bool backPressed = false; // user has pressed B or ???
+
+		public static bool switchPressed = false;//'r' or Num0 or Y
 
 		//individual xbox buttons
 		public static bool btnA = false;
@@ -66,6 +69,9 @@ namespace OpenglTester
 		public static bool keyCtrl = false;
 		public static bool keyShift = false;
 
+		public static bool keyR = false;
+		public static bool keyNum0 = false;
+
 
 
 
@@ -74,10 +80,14 @@ namespace OpenglTester
 
 		}
 
-		public void Update()
+		/// <summary>
+		/// This function is called every loop (from Game1.cs)
+		/// It calls the UpdateController() and UpdateKeyboard() function, and sets leftPressed, confirmPressed, punchPressed, etc.
+		/// </summary>
+		public void Update ()
 		{
-			UpdateController();
-			UpdateKeyboard();
+			UpdateController ();
+			UpdateKeyboard ();
 
 			//moveLeft is true if the stick or the dPad or a or the left arrow are pressed
 			if (btnDPadLeft || (stickLeftX < 0) || keyA || keyLeft)
@@ -92,13 +102,13 @@ namespace OpenglTester
 				rightPressed = false;
 
 			//moveUp is true if stick or dpad or w or up arrow are pressed
-			if (btnDPadUp || (stickLeftY < 0) || keyW || keyUp)
+			if (btnDPadUp || (stickLeftY > 0) || keyW || keyUp)
 				upPressed = true;
 			else
 				upPressed = false;
 
 			//moveDown is true if stick or dpad or s or down arrow are pressed
-			if (btnDPadDown || (stickLeftY > 0) || keyS || keyDown)
+			if (btnDPadDown || (stickLeftY < 0) || keyS || keyDown)
 				downPressed = true;
 			else
 				downPressed = false;
@@ -126,6 +136,11 @@ namespace OpenglTester
 				punchPressed = true;
 			else
 				punchPressed = false;
+			//
+			if (keyR || keyNum0 || btnY) 
+				switchPressed = true; 
+			else
+				switchPressed = false;
 		}
 
 		public void UpdateController()
@@ -247,7 +262,7 @@ namespace OpenglTester
 			if (kb.IsKeyDown(Keys.Up))
 				keyUp = true;
 			else
-				keyDown = false;
+				keyUp = false;
 			//down arrow
 			if (kb.IsKeyDown(Keys.Down))
 				keyDown = true;
@@ -300,6 +315,16 @@ namespace OpenglTester
 				keyCtrl = true;
 			else
 				keyCtrl = false;
+
+			if (kb.IsKeyDown(Keys.R))
+				keyR = true;
+			else 
+				keyR = false;
+
+			if (kb.IsKeyDown(Keys.NumPad0))
+				keyNum0 = true;
+			else 
+				keyNum0 = false;
 
 		}
 	}

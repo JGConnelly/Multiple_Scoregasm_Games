@@ -24,16 +24,24 @@ namespace OpenglTester
 		AI AnAI;
 		Player player;
 		SnowEmitter SnowFall;
+
+		FileHandler fileManager = new FileHandler();
+		Level CurrentLevel;
+
 		public override void Init()
 		{
 			Console.WriteLine ("PlayState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
-			playBG = new Object("game", Game1.graphics, Game1.contentManager);
+			playBG = new Object("game");
 
 
 			// seting up the new player
-			player = new Player("Assn7MainCharacterSpritesheet",Game1.graphics,Game1.contentManager,65,3,32f);
-			//SnowFall = new SnowEmitter(0
+			player = new Player("Assn7MainCharacterSpritesheet",65,20,32f);
+			player.Position = new Vector2(64,650);
+			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
+			SnowFall.Initialise(0,0);
+			string thisLevel = fileManager.LoadPlayer();
+			CurrentLevel = fileManager.LoadLevel(thisLevel);
 
 		}
 		
@@ -81,8 +89,10 @@ namespace OpenglTester
 			if(InputHandler.confirmPressed && (!StateManager.spaceIsDown))
 			{
 				StateManager.spaceIsDown = true;
-				ChangeState(game, MenuState.GetInstance());
+				//ChangeState(game, MenuState.GetInstance());
 			}
+			if (InputHandler.btnLeftShoulder)
+				ChangeState(game, SplashState.GetInstance());
 			if(!InputHandler.confirmPressed && StateManager.spaceIsDown)
 			{
 				StateManager.spaceIsDown = false;
@@ -94,14 +104,20 @@ namespace OpenglTester
 		{
 			player.Update(dT);
 			playBG.Update(dT);
+			SnowFall.Update(dT);
+			CurrentLevel.Update(dT);
+
 		}
 		
 		public override void Draw (StateManager game, float dT)
 		{
 			//draw stuff to the screen
-			playBG.Draw(Game1.spriteBatch);
+			playBG.Draw();
 			//so draw your objects etc
-			player.Draw(Game1.spriteBatch);
+			CurrentLevel.Draw ();
+			player.Draw();
+			SnowFall.Draw();
+
 		}
 		
 		public static PlayState GetInstance ()

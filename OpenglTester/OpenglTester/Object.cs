@@ -24,17 +24,18 @@ namespace OpenglTester
 		protected Vector2 v2_Position;
 		protected Vector2 v2_Size;
 		protected Vector2 v2_Origin;
+		protected Vector2 v2_Scale;
 		protected float f_Rotation;
 
 		protected bool b_IsAnimated;
 		protected bool b_Paused;
 		protected bool b_FlipImage;
-
+		
 		// create a non animated object
-		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager)
+		public Object (string imagePath )
 		{
 
-			tex_Image=  contentManager.Load<Texture2D>(imagePath);
+			tex_Image=  Game1.contentManager.Load<Texture2D>(imagePath);
 			v2_Size.Y = tex_Image.Height;
 			v2_Size.X = tex_Image.Width;
 
@@ -51,8 +52,9 @@ namespace OpenglTester
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
+			v2_Scale = new Vector2(1,1);
 		}
-		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int numberOfFrames , float timeToComplete)
+		public Object (string imagePath , int numberOfFrames , float timeToComplete)
 		{
 
 
@@ -63,7 +65,7 @@ namespace OpenglTester
 			f_TimePerFrame = f_TimeToCompleteAnim / numberOfFrames;
 			b_IsAnimated = true;
 
-			tex_Image=  contentManager.Load<Texture2D>(imagePath);
+			tex_Image=  Game1.contentManager.Load<Texture2D>(imagePath);
 
 			v2_Position.X = 0;
 			v2_Position.Y = 0;
@@ -76,10 +78,11 @@ namespace OpenglTester
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
+			v2_Scale = new Vector2(1,1);
 
 		}
 
-		public Object (string imagePath ,GraphicsDeviceManager gdevman,ContentManager contentManager, int TotNumberOfFrames , float timeToComplete,float frameSize)
+		public Object (string imagePath , int TotNumberOfFrames , float timeToComplete,float frameSize)
 		{
 			
 			
@@ -92,7 +95,7 @@ namespace OpenglTester
 			f_TimePerFrame = f_TimeToCompleteAnim / i_TotalFrames;
 			b_IsAnimated = true;
 			f_FrameSize.X = frameSize; // so what the animator thinks the size of the frames are
-			tex_Image=  contentManager.Load<Texture2D>(imagePath);
+			tex_Image=  Game1.contentManager.Load<Texture2D>(imagePath);
 			v2_Size.Y = tex_Image.Height;
 			v2_Size.X = f_FrameSize.X;
 			v2_Position.X = 0;
@@ -106,6 +109,7 @@ namespace OpenglTester
 			i_StartFrame = 0;
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
+			v2_Scale = new Vector2(1,1);
 
 
 		}
@@ -126,6 +130,10 @@ namespace OpenglTester
 		{
 			set {f_Rotation=value;if(f_Rotation>359)f_Rotation = 0; if(f_Rotation<0)f_Rotation = 359; }
 			get {return f_Rotation;}
+		}
+		public Vector2 Scale {
+			set { v2_Scale = value;}
+			get { return v2_Scale;}
 		}
 		public void SetCenter()
 		{
@@ -173,6 +181,18 @@ namespace OpenglTester
 
 
 		// set the starting frame 
+		/// <summary>
+		/// Sets the animation start point.
+		/// </summary>
+		/// <param name='startPoint'>
+		/// Start point.
+		/// </param>
+		/// <param name='numberOfFrames'>
+		/// Number of frames.
+		/// </param>
+		/// <param name='timeToComplete'>
+		/// Time to complete.
+		/// </param>
 		virtual public void SetAnimationStartPoint (int startPoint, int numberOfFrames, float timeToComplete)
 		{
 			i_StartFrame = startPoint;
@@ -227,7 +247,7 @@ namespace OpenglTester
 			}
 		}
 
-		virtual public void Draw (SpriteBatch spriteBatch)
+		virtual public void Draw ()
 		{
 
 
@@ -240,19 +260,19 @@ namespace OpenglTester
 				Rectangle AnimSourceRect = new Rectangle((int)((f_FrameSize.X * i_CurrentFrame)+i_StartFrame*f_FrameSize.X), 0,
 				                                         (int)f_FrameSize.X, tex_Image.Height);
 				if(b_FlipImage)
-					spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
-				           	f_Rotation, new Vector2(0,0), 1, SpriteEffects.FlipHorizontally, 0f);
+					Game1.spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
+					                 f_Rotation, new Vector2(0,0), v2_Scale, SpriteEffects.FlipHorizontally, 0f);
 				else
-					spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
-					                 f_Rotation, new Vector2(0,0), 1, SpriteEffects.None, 0f);
+					Game1.spriteBatch.Draw(tex_Image, v2_Position, AnimSourceRect, Color.White,
+					                 f_Rotation, new Vector2(0,0), v2_Scale, SpriteEffects.None, 0f);
 
 			} 
 			else 
 			{
 				if(b_FlipImage)
-					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1f, SpriteEffects.FlipHorizontally, 0f);
+					Game1.spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, v2_Scale, SpriteEffects.FlipHorizontally, 0f);
 				else
-					spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, 1f, SpriteEffects.None, 0f);
+					Game1.spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, v2_Scale, SpriteEffects.None, 0f);
 			}
 
 		}

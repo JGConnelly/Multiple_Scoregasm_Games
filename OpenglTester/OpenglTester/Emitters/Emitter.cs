@@ -5,7 +5,11 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-
+/// <summary>
+/// Emitter class 
+/// this class is a basis for any particle emmitter system
+/// i highly recommend ovewriting not reusing the funcions as this is practiacally a template
+/// </summary>/////////////////////////
 
 namespace OpenglTester
 {
@@ -23,7 +27,7 @@ namespace OpenglTester
 
 		// some list for storing
 		protected List<Particle> Particles;
-		protected Random randnum = new Random();
+		protected static Random randnum = new Random();
 		// the number of particles 
 		public Emitter (int num, float time, float dirh,float dirl)
 		{
@@ -37,14 +41,14 @@ namespace OpenglTester
 			Particles = new List<Particle>();
 		}
 
-		public virtual void Initialise(int posx, int posy,GraphicsDeviceManager gdm,ContentManager cm)
+		public virtual void Initialise(int posx, int posy)
 		{
 			//Random
 			//srand( time(NULL) );
 			for(int i =0 ; i < i_ParticleNumber; i ++)
 			{
 				// this is mainly fire based stuff
-				Particles.Add(new Particle("par",gdm,cm));
+				Particles.Add(new Particle("par"));
 				Particles[i].Position=new Vector2(posx,posy);
 
 				int randnumx = randnum.Next(-50,50); //what direction on the x plane it will move
@@ -76,11 +80,11 @@ namespace OpenglTester
 			f_TotalTime += fDeltaTime;
 
 		}
-		public virtual void Draw (SpriteBatch spriteBatch)
+		public virtual void Draw ()
 		{
 			for(int i =0 ; i < i_ParticleNumber; i ++)
 				if (i_NumActive > i)
-					Particles[i].Draw(spriteBatch);
+					Particles[i].Draw();
 				else
 					break;
 		}
