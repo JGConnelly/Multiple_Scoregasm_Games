@@ -22,7 +22,8 @@ namespace OpenglTester
 		public static GraphicsDeviceManager graphics;
 		public static ContentManager contentManager;
 		public static SpriteBatch spriteBatch;
-		StateManager gameManager = new StateManager();
+		public static AudioManager gameSound;
+		public static StateManager gameManager = new StateManager();
 		InputHandler input = new InputHandler();
 		float timeDelta;
 		int defaultWidth = 1920;
@@ -39,10 +40,12 @@ namespace OpenglTester
 			graphics.IsFullScreen = true;
 
 			contentManager = new ContentManager(Content.ServiceProvider);
-			contentManager.RootDirectory = "Content";	    
+			contentManager.RootDirectory = "Content";	   
 
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch (GraphicsDevice);
+
+			gameSound = new AudioManager();
 
 			// in this example of the animated object:
 			// 4th arg: using the untitled image i only want to render through 3 of the four frames 
@@ -70,8 +73,6 @@ namespace OpenglTester
 			//initialize the game state manager and set the initial state to the splash screen
 			gameManager.Init();
 			gameManager.ChangeState(SplashState.GetInstance ());
-
-				
 		}
 
 		/// <summary>
