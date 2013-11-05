@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Content;
 namespace OpenglTester
 {
 	/// <summary>
+	/// 
 	/// This is the main type for your game
 	/// </summary>
 	public class Game1 : Game
@@ -156,4 +157,36 @@ namespace OpenglTester
 			SpriteScale = Matrix.CreateScale(screenscale, screenscale, 1);
 		}
 	}
+
+	public class StoryProgress
+	{
+		public int	i_TUNNEL,
+		i_SUICIDE,
+		i_FOODTRUCK,
+		i_RAPE,
+		i_INSANE,
+		i_SLAYER;
+
+		public enum enum_EndingProgress
+		{
+			NONE,
+			TUNNEL,
+			SUICIDE,
+			FOODTRUCK,
+			RAPE,
+			INSANE,
+			SLAYER
+		};
+
+		public StoryProgress()
+		{
+			i_TUNNEL = 0;
+			i_SUICIDE = 0;
+			i_FOODTRUCK=0;
+			i_RAPE=0;
+			i_INSANE =0;
+			i_SLAYER= 0;
+		}
+
+	};
 }

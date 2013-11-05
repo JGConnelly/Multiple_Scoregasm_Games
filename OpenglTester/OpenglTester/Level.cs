@@ -12,11 +12,13 @@ namespace OpenglTester
 
 
 		private List<Object> obj_InteractableObjects;
+		private List<AI> ai_Characters;
 
 		public Level ()
 		{
 			obj_InteractableObjects = new List<Object>{};
 			str_Exits = new List<string>{};
+			ai_Characters = new List<AI>{};
 		}
 		public Level ( List<String> Exits , List<Object> intObjects)
 		{
@@ -39,9 +41,13 @@ namespace OpenglTester
 		{
 			obj_InteractableObjects.Add(intObj);
 			str_Exits.Add(exit);
-			
+		}
+		public void AddCharacter(AI character)
+		{
+			ai_Characters.Add(character);
 
 		}
+
 
 		public void Update(float DeltaT)
 		{
@@ -68,18 +74,20 @@ namespace OpenglTester
 		/// Check that whatever you pass through if its close enough to interact
 		/// basically check if it collides
 		/// </param>
-		public void CheckCanInteract(Object check)
+		public bool CheckCanInteract(Object check)
 		{
 			
 			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
 			{
 				if(check.CheckCollision(obj_InteractableObjects[obj]))
 				{
-
+					return true;
 				}
 			}
+			return false;
 
 		}
+
 
 	}
 }

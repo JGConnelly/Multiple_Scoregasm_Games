@@ -3,4 +3,7 @@ Level1Background
 Door
 1800,600
 true
+1
+Hooker
+1600,610
 PrisonIntro

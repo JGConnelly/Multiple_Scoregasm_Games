@@ -10,7 +10,7 @@ namespace OpenglTester
 {
 	public  class FileHandler
 	{
-		String Directory = "Content/Data/";
+		String BaseDirectory = "Content/Data/";
 		String CharacterDirectory = "Content/Data/Characters/";
 		String LevelDirectory = "Content/Data/Levels/";
 		public  FileHandler ()
@@ -26,7 +26,7 @@ namespace OpenglTester
 
 			// Read the file and display it line by line.
 			System.IO.StreamReader file = 
-				new System.IO.StreamReader(Directory+FileName);
+				new System.IO.StreamReader(BaseDirectory+FileName);
 			while((line = file.ReadLine()) != null)
 			{
 				Console.WriteLine (line);
@@ -59,6 +59,9 @@ namespace OpenglTester
 
 			string ImageSrc;
 			int numberOfObject = 0;
+			int numberOfCharacters = 0;
+
+			bool ObjectsRead = false;
 			// Read the file and display it line by line.
 			System.IO.StreamReader file = 
 				new System.IO.StreamReader(LevelDirectory+Levelname+".txt");
@@ -79,16 +82,18 @@ namespace OpenglTester
 						// temporary data that will be used to add objects to the level
 						string tempFileName;
 						Vector2 tempPosition;
-						Object tempObject;
+						InteractableObject tempObject;
 
+						// reads in data for object position etc
 						tempFileName = file.ReadLine();
-						line = file.ReadLine();
 						NumberOfLines++;
-						string[] Positions = line.Split(',');
+
+						line = file.ReadLine();
+						string[] Positions = line.Split(','); // get postition from file
 						tempPosition = new Vector2(Convert.ToInt32(Positions[0]),Convert.ToInt32(Positions[1]));
 						NumberOfLines++;
 
-						tempObject = new Object(tempFileName);
+						tempObject = new InteractableObject(tempFileName);
 						tempObject.Position = tempPosition;
 
 
@@ -99,15 +104,63 @@ namespace OpenglTester
 						{
 							line = file.ReadLine();
 							ret.AddExit(tempObject,line);
+							NumberOfLines++;
 
 						}
+						// if not load in th action associated
+						// use the enum from the interactable object class
 						else
 						{
-							ret.AddObject(tempObject);
-							
+
 							line = file.ReadLine();
+							NumberOfLines++;
+
+							/// sets the action to corresponding string in the file
+							///  i may actually have to list all of them
+							if( line == InteractableObject.Action.EquipShiv.ToString())
+							{
+								tempObject.act_Action = InteractableObject.Action.EquipShiv; 
+							}
+
+							ret.AddObject(tempObject);
 						}
 					}
+					ObjectsRead = true;
+				}
+				// read in number of characters
+				if (ObjectsRead)
+				{
+					line = file.ReadLine();
+					NumberOfLines++;
+
+				
+					numberOfCharacters = Convert.ToInt32(line);
+					for(int l =0;l<numberOfCharacters; l ++)
+					{
+						string tempCharName;
+						Vector2 tempPosition;
+						AI tempChar;
+
+						// now read in who is in the level
+						line = file.ReadLine();
+						tempCharName = line;
+
+						// read in the position
+						line = file.ReadLine();
+						string[] Positions = line.Split(','); // get postition from file
+						tempPosition = new Vector2(Convert.ToInt32(Positions[0]),Convert.ToInt32(Positions[1]));
+						NumberOfLines++;
+
+
+						// now we use the character file to read in the character data
+						tempChar = LoadCharacter(tempCharName);
+						//tempChar = new AI(tempCharName
+
+						tempChar.Position = tempPosition;
+
+					}
+
+
 				}
 				Console.WriteLine (line);
 				NumberOfLines++;
@@ -126,7 +179,7 @@ namespace OpenglTester
 			
 			// Read the file and display it line by line.
 			System.IO.StreamReader file = 
-				new System.IO.StreamReader(Directory+"Player.txt");
+				new System.IO.StreamReader(BaseDirectory+"Player.txt");
 			while((line = file.ReadLine()) != null)
 			{
 				Console.WriteLine (line);
@@ -153,19 +206,49 @@ namespace OpenglTester
 			int NumberOfLines = 0;
 			string line;
 			AI ret;
+			System.IO.StreamReader file;
 			// Read the file and display it line by line.
-			System.IO.StreamReader file = 
-				new System.IO.StreamReader(Directory+CharacterName);
-			while((line = file.ReadLine()) != null)
+			try
 			{
-				Console.WriteLine (line);
-				NumberOfLines++;
+				file = new System.IO.StreamReader(CharacterDirectory+CharacterName+".save");
 			}
+			catch(Exception e)
+			{
+				file = new System.IO.StreamReader(CharacterDirectory+CharacterName);
+			}
+			// temporary data that will be used to add objects to the level
+				string tempFileName;
+				Vector2 tempPosition;
+				InteractableObject tempObject;
+				
+				// reads in data for object position etc
+				tempFileName = file.ReadLine();
+				NumberOfLines++;
+				
+				line = file.ReadLine();
+				string[] Positions = line.Split(','); // get postition from file
+				tempPosition = new Vector2(Convert.ToInt32(Positions[0]),Convert.ToInt32(Positions[1]));
+				NumberOfLines++;
+
 			
 			// close your file!
 			file.Close();
 			Console.WriteLine("Total number of lines : " + NumberOfLines);
 			return null;
+
+		}
+
+		/// <summary>
+		/// News the game.
+		/// Holy fuck this deletes all the saves so be careful
+		/// </summary>
+		public void NewGame()
+		{
+			string[] SaveList = Directory.GetFiles(BaseDirectory,"*.save");
+			foreach (string f in SaveList)
+			{
+				File.Delete(f);
+			}
 
 		}
 	}
