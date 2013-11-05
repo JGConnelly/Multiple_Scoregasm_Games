@@ -37,7 +37,7 @@ namespace OpenglTester
 
 			// seting up the new player
 			player = new Player("Assn7MainCharacterSpritesheet",65,20,32f);
-			player.Position = new Vector2(64,850);
+			player.Position = new Vector2(64,650);
 			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
 			SnowFall.Initialise(0,0);
 			string thisLevel = fileManager.LoadPlayer();
@@ -89,7 +89,7 @@ namespace OpenglTester
 			if(InputHandler.confirmPressed && (!StateManager.spaceIsDown))
 			{
 				StateManager.spaceIsDown = true;
-				ChangeState(game, MenuState.GetInstance());
+				//ChangeState(game, MenuState.GetInstance());
 			}
 			if (InputHandler.btnLeftShoulder)
 				ChangeState(game, SplashState.GetInstance());

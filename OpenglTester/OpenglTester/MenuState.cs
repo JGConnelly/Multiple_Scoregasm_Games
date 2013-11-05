@@ -82,7 +82,7 @@ namespace OpenglTester
 			{
 				StateManager.spaceIsDown = false;
 			}
-			
+
 			//change menu buttons
 			if(InputHandler.downPressed && !changed)
 			{
