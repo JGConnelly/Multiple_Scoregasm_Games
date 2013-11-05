@@ -60,6 +60,8 @@ namespace OpenglTester
 			GenerateAlpha();
 			Scale = new Vector2 (4,4);
 		}
+		// 
+	
 		/// <summary>
 		/// Update the player class.
 		/// </summary>
