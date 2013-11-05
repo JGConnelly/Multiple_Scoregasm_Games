@@ -30,21 +30,23 @@ namespace OpenglTester
 			jump,
 			jumpland,
 			punch,
-			shiv
+			shiv,
+			block
 		};
 		
-		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
+		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,3), 
 					   Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
 						Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1),
 						 Shiv = new AnimationInfo(36,5,0.5f),JumpLand = new AnimationInfo(41,0,2),
-						  Jumping = new AnimationInfo(42,5,1);
+						  Jumping = new AnimationInfo(42,5,1), Block = new AnimationInfo(47,1,1.5f);
 		AnimationInfo CurrentAnimation = new AnimationInfo(0,1,1);
 		bool ShivEquipped = false;
 		public bool ShivFound = true;
 		bool isJumping;
 		float Mass = 250;
+		public float WalkSpeed = 20, RunSpeed = 250;
 		float GroundWhileJumping;
-		Action CurrentAction = Action.idle;
+		Action CurrentAction = Action.idle;//This will need to be accessed by other classes when in combat
 		Action LastAction = Action.idle;
 		#endregion
 
@@ -58,7 +60,13 @@ namespace OpenglTester
 			GenerateAlpha();
 			Scale = new Vector2 (4,4);
 		}
-		
+		/// <summary>
+		/// Update the player class.
+		/// </summary>
+		/// <param name='Elapsed'>
+		/// Elapsed time since last frame
+		/// </param>
+		/// 
 		public void Update (float Elapsed)
 		{
 			// CurrentAction - Work it out based on input
@@ -105,7 +113,11 @@ namespace OpenglTester
 			else if (InputHandler.downPressed) 
 			{
 				CurrentAction = Action.crouch;
-				if(InputHandler.leftPressed || InputHandler.rightPressed)
+				if(InputHandler.punchPressed)
+				{
+					CurrentAction = Action.block;
+				}
+				else if(InputHandler.leftPressed || InputHandler.rightPressed)
 				{
 					CurrentAction = Action.sneak;
 					if(InputHandler.rightPressed)
@@ -136,11 +148,11 @@ namespace OpenglTester
 					
 					if(CurrentAction == Action.run)
 					{
-						v2_Position.X+=200*Elapsed;
+						v2_Position.X+=RunSpeed*Elapsed;
 					}
 					else
 					{
-						v2_Position.X+=8*Elapsed;
+						v2_Position.X+=WalkSpeed*Elapsed;
 					}
 				}
 				else if (InputHandler.leftPressed)
@@ -149,18 +161,20 @@ namespace OpenglTester
 					
 					if(CurrentAction == Action.run)
 					{
-						v2_Position.X-=200*Elapsed;
+						v2_Position.X-=RunSpeed*Elapsed;
 					}
 					else
 					{
-						v2_Position.X-=8*Elapsed;
+						v2_Position.X-=WalkSpeed*Elapsed;
 					}
 				}
 				
 			}
 			else if(InputHandler.punchPressed)
 			{
-				if(ShivEquipped)
+				if (InputHandler.downPressed)
+					CurrentAction = Action.block;
+				else if(ShivEquipped)
 					CurrentAction = Action.shiv;
 				else 
 					CurrentAction = Action.punch;
@@ -211,6 +225,9 @@ namespace OpenglTester
 			case Action.jumpland:
 				CurrentAnimation = JumpLand;
 				break;
+			case Action.block:
+				CurrentAnimation = Block;
+				break;
 			default:
 				CurrentAnimation = Idle;
 				break;
@@ -220,7 +237,7 @@ namespace OpenglTester
 			{
 				SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
 			}
-			
+
 
 			base.Update(Elapsed);
 		}		
