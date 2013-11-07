@@ -1,43 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\AI.cs">
     <Files>
       <File FileName="OpenglTester\Program.cs" Line="14" Column="3" />
-      <File FileName="OpenglTester\Game1.cs" Line="175" Column="14" />
+      <File FileName="OpenglTester\Game1.cs" Line="171" Column="5" />
       <File FileName="OpenglTester\Object.cs" Line="39" Column="33" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\MenuState.cs">
-    <Files>
-      <File FileName="OpenglTester\Program.cs" Line="14" Column="3" />
-      <File FileName="OpenglTester\Game1.cs" Line="74" Column="56" />
-      <File FileName="OpenglTester\Object.cs" Line="45" Column="20" />
->>>>>>> 984b98799e2a8120b1518c02bd1462e34c66436b
       <File FileName="OpenglTester\Button.cs" Line="35" Column="4" />
-      <File FileName="OpenglTester\InputHandler.cs" Line="4" Column="40" />
+      <File FileName="OpenglTester\MenuState.cs" Line="106" Column="44" />
+      <File FileName="OpenglTester\InputHandler.cs" Line="259" Column="8" />
       <File FileName="OpenglTester\PlayState.cs" Line="40" Column="38" />
-<<<<<<< HEAD
       <File FileName="OpenglTester\Player.cs" Line="174" Column="26" />
-      <File FileName="OpenglTester\Level.cs" Line="48" Column="4" />
+      <File FileName="OpenglTester\Level.cs" Line="48" Column="1" />
       <File FileName="OpenglTester\FileHandler.cs" Line="181" Column="34" />
       <File FileName="OpenglTester\AI.cs" Line="17" Column="43" />
-=======
-      <File FileName="OpenglTester\Content\Data\Levels\Intro.txt" Line="6" Column="12" />
-      <File FileName="OpenglTester\Player.cs" Line="167" Column="35" />
-      <File FileName="OpenglTester\AudioManager.cs" Line="46" Column="40" />
-      <File FileName="c:\Users\natasha.cooper\Desktop\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\FileHandler.cs" Line="155" Column="7" />
-      <File FileName="OpenglTester\MenuState.cs" Line="88" Column="38" />
->>>>>>> 984b98799e2a8120b1518c02bd1462e34c66436b
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="OpenglTester" expanded="True">
-            <Node name="Content" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
