@@ -59,11 +59,8 @@
     <Compile Include="Resolution.cs" />
     <Compile Include="FileHandler.cs" />
     <Compile Include="Level.cs" />
-<<<<<<< HEAD
     <Compile Include="InteractableObject.cs" />
-=======
     <Compile Include="AudioManager.cs" />
->>>>>>> 984b98799e2a8120b1518c02bd1462e34c66436b
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -119,7 +116,6 @@
     <Content Include="Content\Level1Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-<<<<<<< HEAD
     <Content Include="Content\loadGameButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -136,12 +132,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\quitButtonSelected.png">
-=======
-    <Content Include="Content\Audio\Hitman.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Audio\knifeStab.wav">
->>>>>>> 984b98799e2a8120b1518c02bd1462e34c66436b
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

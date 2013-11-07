@@ -43,10 +43,10 @@ namespace OpenglTester
 			
 			buttons[currentlySelectedButton].Select();
 
-			AudioManager.SetMusicVolume(0.5f);
-			AudioManager.PlayMusic("Audio\\Hitman.wav");
+			//AudioManager.SetMusicVolume(0.5f);
+			//AudioManager.PlayMusic("Audio\\Hitman.wav");
 
-			AudioManager.LoadSound("Audio\\knifeStab.wav");
+			//AudioManager.LoadSound("Audio\\knifeStab.wav");
 		}
 		
 		public override void Cleanup ()
@@ -102,7 +102,7 @@ namespace OpenglTester
 			}
 			if(InputHandler.upPressed && !changed)
 			{
-				AudioManager.PlaySound("Audio\\knifeStab.wav");
+				//AudioManager.PlaySound("Audio\\knifeStab.wav");
 				buttons[currentlySelectedButton--].Deselect();
 				if (currentlySelectedButton < 0)
 				{
