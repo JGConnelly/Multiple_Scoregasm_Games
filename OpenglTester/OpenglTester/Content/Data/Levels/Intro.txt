@@ -1,9 +1,5 @@
 Level1Background
-1
-Door
-1800,600
-true
-PrisonIntro
+0
 1
 Hooker
 1600,610

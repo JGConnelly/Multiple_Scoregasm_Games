@@ -17,8 +17,12 @@ namespace OpenglTester
 			public StoryProgress EndProgressPreReq;
 			int i_PlayerPreReq;
 
+			//what the character/ ai says
+			public string Statement;
+
 			// the responses and stats associated
 			// so both lists should be of equal size
+			public List<string> TheResponses;
 			public List<StoryProgress> ResponseEndingProg;
 			public List<int> ResponseEndingPlayerStat;
 

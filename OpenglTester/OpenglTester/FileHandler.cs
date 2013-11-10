@@ -128,7 +128,7 @@ namespace OpenglTester
 					}
 					ObjectsRead = true;
 				}
-
+			
 				// read in number of characters
 				if (ObjectsRead)
 				{
