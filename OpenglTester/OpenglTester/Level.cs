@@ -60,10 +60,18 @@ namespace OpenglTester
 		}
 		public void Draw()
 		{
+			//draw interactable objects
 			obj_ThisObject.Draw();
 			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
 			{
 				obj_InteractableObjects[obj].Draw();
+			}
+
+			// draw ais / characters
+
+			for (int ais = 0; ais < obj_InteractableObjects.Count;ais++)
+			{
+				ai_Characters[ais].Draw();
 			}
 		}
 
