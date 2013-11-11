@@ -231,11 +231,180 @@ namespace OpenglTester
 			ret = new AI(tempFileName, 0, 0, 0);
 
 			// now load in the stats
+			line = file.ReadLine();
+			ret.PlayerDisposision = Convert.ToInt32(line);
+			NumberOfLines++;
 
+			//their hook
+			line = file.ReadLine();
+			NumberOfLines++;
+
+			//if guard 
+			line = file.ReadLine();
+			ret.IsGuard = Convert.ToBoolean(line);
+			NumberOfLines++;
+			
+			//hit points,speed,damage,dodge,block
+			line = file.ReadLine();
+			ret.HitPoints = Convert.ToInt32(line);
+			NumberOfLines++;
+
+			line = file.ReadLine();
+			ret.HitSpeed =Convert.ToInt32(line);
+			NumberOfLines++;
+
+			line = file.ReadLine();
+			ret.HitDamage = Convert.ToInt32(line);
+			NumberOfLines++;
+
+			line = file.ReadLine();
+			ret.DodgeSpeed = Convert.ToInt32(line);
+			NumberOfLines++;
+
+			line = file.ReadLine();
+			ret.BlockSpeed = Convert.ToInt32(line);
+			NumberOfLines++;
+
+			// now all the dialogue
+			line = file.ReadLine();
+			ret.NoDialogueLine = line;
+			NumberOfLines++;
+
+			line = file.ReadLine();
+			int numDialogue = Convert.ToInt32(line );
+			NumberOfLines++;
+
+			for (int d = 0; d < numDialogue; d++)
+			{
+				// the temp dialogue thing
+				AI.Dialogue tempDialogue = new AI.Dialogue();
+				//ret.Dialogues.Add
+
+				// this gets all the data out of the file
+				line=  file.ReadLine();
+				string[] DialogueData = line.Split(';'); 
+				NumberOfLines++;
+
+				// ending modifier
+				if ( StoryProgress.enum_EndingProgress.NONE.ToString() == DialogueData[0])
+				{
+					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.NONE;
+
+				}
+				if ( StoryProgress.enum_EndingProgress.FOODTRUCK.ToString() == DialogueData[0])
+				{
+					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.FOODTRUCK;
+					tempDialogue.EndProgressPreReq.i_FOODTRUCK = Convert.ToInt32(DialogueData[1]);
+				}
+				if ( StoryProgress.enum_EndingProgress.INSANE.ToString() == DialogueData[0])
+				{
+					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.INSANE;
+					tempDialogue.EndProgressPreReq.i_INSANE = Convert.ToInt32(DialogueData[1]);
+				}
+				if ( StoryProgress.enum_EndingProgress.RAPE.ToString() == DialogueData[0])
+				{
+					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.RAPE;
+					tempDialogue.EndProgressPreReq.i_RAPE = Convert.ToInt32(DialogueData[1]);
+				}
+				if ( StoryProgress.enum_EndingProgress.SLAYER.ToString() == DialogueData[0])
+				{
+					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.SLAYER;
+					tempDialogue.EndProgressPreReq.i_SLAYER = Convert.ToInt32(DialogueData[1]);
+				}
+				if ( StoryProgress.enum_EndingProgress.SUICIDE.ToString() == DialogueData[0])
+				{
+					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.SUICIDE;
+					tempDialogue.EndProgressPreReq.i_SUICIDE = Convert.ToInt32(DialogueData[1]);
+				}
+				if ( StoryProgress.enum_EndingProgress.TUNNEL.ToString() == DialogueData[0])
+				{
+					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.TUNNEL;
+					tempDialogue.EndProgressPreReq.i_TUNNEL = Convert.ToInt32(DialogueData[1]);
+				}
+
+				// pre req point
+				tempDialogue.i_PlayerPreReq = Convert.ToInt32(DialogueData[2]);
+
+				// the actual line 
+				tempDialogue.Statement = DialogueData[3];
+
+				// now the responses
+				int numResponses = Convert.ToInt32(DialogueData[4]);
+				line=  file.ReadLine();
+				NumberOfLines++;
+
+				string[] ResponseData = line.Split(','); 
+				for (int r = 0; r < numResponses; r++)
+				{
+					// get the individual response's data 
+					string[] responses  = ResponseData[r].Split(':');
+
+					// the string of response
+					tempDialogue.TheResponses.Add(responses[0]);
+
+					//story prog data
+					if ( StoryProgress.enum_EndingProgress.NONE.ToString() == responses[1])
+					{
+						StoryProgress tempStorydiag = new StoryProgress();
+						tempStorydiag.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.NONE;
+						
+					}
+					if ( StoryProgress.enum_EndingProgress.FOODTRUCK.ToString() ==responses[1])
+					{
+						StoryProgress tempStorydiag = new StoryProgress();
+						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.FOODTRUCK;
+						tempStorydiag.i_FOODTRUCK = 1;
+						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
+					}
+					if ( StoryProgress.enum_EndingProgress.INSANE.ToString() == responses[1])
+					{
+						StoryProgress tempStorydiag = new StoryProgress();
+						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.INSANE;
+						tempStorydiag.i_INSANE = 1;
+						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
+					}
+					if ( StoryProgress.enum_EndingProgress.RAPE.ToString() == responses[1])
+					{
+						StoryProgress tempStorydiag = new StoryProgress();
+						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.RAPE;
+						tempStorydiag.i_RAPE = 1;
+						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
+					}
+					if ( StoryProgress.enum_EndingProgress.SLAYER.ToString() == responses[1])
+					{
+						StoryProgress tempStorydiag = new StoryProgress();
+						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.SLAYER;
+						tempStorydiag.i_SLAYER = 1;
+						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
+					}
+					if ( StoryProgress.enum_EndingProgress.SUICIDE.ToString() == responses[1])
+					{
+						StoryProgress tempStorydiag = new StoryProgress();
+						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.SUICIDE;
+						tempStorydiag.i_SUICIDE = 1;
+						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
+					}
+					if ( StoryProgress.enum_EndingProgress.TUNNEL.ToString() == responses[1])
+					{
+						StoryProgress tempStorydiag = new StoryProgress();
+						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.TUNNEL;
+						tempStorydiag.i_TUNNEL = 1;
+						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
+					}
+
+					//player stat
+					tempDialogue.ResponseEndingPlayerStat.Add(Convert.ToInt32(responses[2]));
+
+				}
+				ret.Dialogues.Add(tempDialogue);
+			}
+
+			//string[] Positions = line.Split(','); // get postition from file
 			// close your file!
 			file.Close();
 			Console.WriteLine("Total number of lines : " + NumberOfLines);
 			return ret;
+
 
 		}
 

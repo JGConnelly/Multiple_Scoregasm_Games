@@ -37,12 +37,16 @@ namespace OpenglTester
 		private float f_BlockSpeed;
 		private Action currentAction;
 
+<<<<<<< HEAD
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
 						Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
 							Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1),
 								Shiv = new AnimationInfo(36,5,0.5f),JumpLand = new AnimationInfo(41,0,2),
 									Jumping = new AnimationInfo(42,5,1), Block = new AnimationInfo(47,1,1.5f);
 		AnimationInfo CurrentAnimation;
+=======
+		private string str_NoDialogueLine;
+>>>>>>> JacobSwagStation
 
 		public AI(string imagePath , int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath , numberOfFrames ,  timeToComplete, frameSize)
 		{
@@ -53,11 +57,11 @@ namespace OpenglTester
 			Scale = new Vector2 (4,4);
 		}
 
-		private class Dialogue
+		public class Dialogue
 		{
 			// the pre req for each dialogue options
 			public StoryProgress EndProgressPreReq;
-			int i_PlayerPreReq;
+			public int i_PlayerPreReq;
 
 			//what the character/ ai says
 			public string Statement;
@@ -68,11 +72,35 @@ namespace OpenglTester
 			public List<StoryProgress> ResponseEndingProg;
 			public List<int> ResponseEndingPlayerStat;
 
+<<<<<<< HEAD
+=======
+			public Dialogue()
+			{
+				EndProgressPreReq= new StoryProgress();
+				TheResponses = new List<string>();
+				ResponseEndingProg = new List<StoryProgress>();
+				ResponseEndingPlayerStat = new List<int>();
+			}
+
+
+		};
+		public List<Dialogue> Dialogues;
+		public AI(string imagePath ):base ( imagePath )
+		{
+			Dialogues = new List<Dialogue>();
+			str_NoDialogueLine = "Go away";
+
+>>>>>>> JacobSwagStation
 		}
 
 
 		//accessors and mutators
+<<<<<<< HEAD
 		public int PlayerDisposition
+=======
+
+		public int PlayerDisposision
+>>>>>>> JacobSwagStation
 		{
 			set {i_PlayerDisposition=value; }
 			get {return i_PlayerDisposition;}
@@ -106,6 +134,12 @@ namespace OpenglTester
 		{
 			set {f_BlockSpeed=value; }
 			get {return f_BlockSpeed;}
+		}
+		public string NoDialogueLine
+		{
+			set {str_NoDialogueLine=value; }
+			get {return str_NoDialogueLine;}
+
 		}
 		//end of accesors and mutators
 
