@@ -194,7 +194,7 @@ namespace OpenglTester
 			{
 				//if right key or left key is also down, move in that direction midair
 			}*/
-			else
+				else
 			{
 				CurrentAction = Action.idle;
 			}

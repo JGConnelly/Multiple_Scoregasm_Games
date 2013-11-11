@@ -1,0 +1,12 @@
+Door
+60
+NULL
+false
+100
+50
+50
+50
+50
+You made your choice baby.
+NONE;0;PLAYER;55;Hey baby, Looking for a fun time?
+no thanks:PLAYER+5,Fuck off!:PLAYER-10,*SMACK*:PLAYER-20
