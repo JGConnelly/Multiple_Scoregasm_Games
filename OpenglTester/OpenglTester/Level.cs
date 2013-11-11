@@ -69,7 +69,7 @@ namespace OpenglTester
 
 			// draw ais / characters
 
-			for (int ais = 0; ais < obj_InteractableObjects.Count;ais++)
+			for (int ais = 0; ais < ai_Characters.Count;ais++)
 			{
 				ai_Characters[ais].Draw();
 			}
