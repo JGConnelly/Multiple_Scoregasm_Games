@@ -19,13 +19,14 @@ namespace OpenglTester
 		private float f_DodgeSpeed;
 		private float f_BlockSpeed;
 
+		private string str_NoDialogueLine;
 
 
-		private class Dialogue
+		public class Dialogue
 		{
 			// the pre req for each dialogue options
 			public StoryProgress EndProgressPreReq;
-			int i_PlayerPreReq;
+			public int i_PlayerPreReq;
 
 			//what the character/ ai says
 			public string Statement;
@@ -36,14 +37,27 @@ namespace OpenglTester
 			public List<StoryProgress> ResponseEndingProg;
 			public List<int> ResponseEndingPlayerStat;
 
-		}
+			public Dialogue()
+			{
+				EndProgressPreReq= new StoryProgress();
+				TheResponses = new List<string>();
+				ResponseEndingProg = new List<StoryProgress>();
+				ResponseEndingPlayerStat = new List<int>();
+			}
+
+
+		};
+		public List<Dialogue> Dialogues;
 		public AI(string imagePath ):base ( imagePath )
 		{
+			Dialogues = new List<Dialogue>();
+			str_NoDialogueLine = "Go away";
 
 		}
 
 
 		//accessors and mutators
+
 		public int PlayerDisposision
 		{
 			set {i_PlayerDisposision=value; }
@@ -78,6 +92,12 @@ namespace OpenglTester
 		{
 			set {f_BlockSpeed=value; }
 			get {return f_BlockSpeed;}
+		}
+		public string NoDialogueLine
+		{
+			set {str_NoDialogueLine=value; }
+			get {return str_NoDialogueLine;}
+
 		}
 		//end of accesors and mutators
 
