@@ -94,14 +94,28 @@ namespace OpenglTester
 				if(InputHandler.rightPressed)
 				{
 					b_FlipImage = false;
-					v2_Position.X+=100*Elapsed;
+					if(InputHandler.sprintPressed)
+					{
+						v2_Position.X+=RunSpeed*Elapsed;
+					}
+					else
+					{
+						v2_Position.X+=WalkSpeed*Elapsed;
+					}
 
 				}
 				else if (InputHandler.leftPressed)
 				{
 					b_FlipImage = true;
 
-					v2_Position.X-=100*Elapsed;
+					if(InputHandler.sprintPressed)
+					{
+						v2_Position.X-=RunSpeed*Elapsed;
+					}
+					else
+					{
+						v2_Position.X-=WalkSpeed*Elapsed;
+					}
 
 				}
 				if(v2_Position.Y >= GroundWhileJumping-5)
