@@ -229,12 +229,9 @@ namespace OpenglTester
 			tempFileName = file.ReadLine();
 			NumberOfLines++;
 			ret = new AI(tempFileName);
-			line = file.ReadLine();
-			string[] Positions = line.Split(','); // get postition from file
-			tempPosition = new Vector2(Convert.ToInt32(Positions[0]),Convert.ToInt32(Positions[1]));
-			NumberOfLines++;
 
-			ret.Position = tempPosition;
+			// now load in the stats
+
 			// close your file!
 			file.Close();
 			Console.WriteLine("Total number of lines : " + NumberOfLines);
