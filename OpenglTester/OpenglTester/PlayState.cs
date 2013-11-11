@@ -38,6 +38,8 @@ namespace OpenglTester
 			// seting up the new player
 			player = new Player("Assn7MainCharacterSpritesheet",65,20,32f);
 			player.Position = new Vector2(64,650);
+			AnAI = new AI("Token", 65, 20, 32f);
+			AnAI.Position = new Vector2(500, 650);
 			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
 			SnowFall.Initialise(0,0);
 			string thisLevel = fileManager.LoadPlayer();
@@ -104,9 +106,9 @@ namespace OpenglTester
 		{
 			player.Update(dT);
 			playBG.Update(dT);
+			AnAI.Update(dT);
 			SnowFall.Update(dT);
 			CurrentLevel.Update(dT);
-
 		}
 		
 		public override void Draw (StateManager game, float dT)
@@ -115,6 +117,7 @@ namespace OpenglTester
 			playBG.Draw();
 			//so draw your objects etc
 			CurrentLevel.Draw ();
+			AnAI.Draw();
 			player.Draw();
 			SnowFall.Draw();
 

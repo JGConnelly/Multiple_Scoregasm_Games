@@ -228,7 +228,7 @@ namespace OpenglTester
 			// reads in data for object position etc
 			tempFileName = file.ReadLine();
 			NumberOfLines++;
-			ret = new AI(tempFileName);
+			ret = new AI(tempFileName, 0, 0, 0);
 
 			// now load in the stats
 
