@@ -2,8 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\AI.cs">
     <Files>
-      <File FileName="OpenglTester\AbstractState.cs" Line="41" Column="1" />
-      <File FileName="OpenglTester\AI.cs" Line="32" Column="4" />
+      <File FileName="OpenglTester\AbstractState.cs" Line="35" Column="4" />
+      <File FileName="OpenglTester\AI.cs" Line="80" Column="30" />
+      <File FileName="OpenglTester\Level.cs" Line="19" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
