@@ -12,9 +12,9 @@ namespace OpenglTester
 		public int Start;
 		public int Frames;
 		public float TimeForCompletion;
-		public AnimationInfo (int a, int b, float c)
+		public AnimationInfo (int NewStart, int NewFrames, float NewTimeForCompletion)
 		{
-			Start = a; Frames = b; TimeForCompletion = c;
+			Start = NewStart; Frames = NewFrames; TimeForCompletion = NewTimeForCompletion;
 		}
 	};
 	public class Player : Object
@@ -44,6 +44,7 @@ namespace OpenglTester
 		public bool ShivFound = true;
 		bool isJumping;
 		bool isPunching = false;
+		bool wasSwap;
 		float PunchTiming = 1f;
 		float Mass = 250;
 		public float WalkSpeed = 40, RunSpeed = 250;
@@ -71,9 +72,19 @@ namespace OpenglTester
 		/// Elapsed time since last frame
 		/// </param>
 		/// 
-		public void Update (float Elapsed)
+		public override void Update (float Elapsed)
 		{
 			// CurrentAction - Work it out based on input
+			if (InputHandler.switchPressed && ShivFound &&!wasSwap)
+			{
+				if(ShivEquipped)
+					ShivEquipped = false;
+				else 
+					ShivEquipped = true;
+
+				wasSwap = true;
+			}
+			wasSwap = InputHandler.switchPressed;
 			LastAction = CurrentAction;
 			if (InputHandler.upPressed && !isJumping) 
 			{
@@ -153,13 +164,7 @@ namespace OpenglTester
 				}
 				PunchTiming = CurrentAnimation.TimeForCompletion;
 			}
-			else if (InputHandler.switchPressed && ShivFound)
-			{
-				if(ShivEquipped)
-					ShivEquipped = false;
-				else 
-					ShivEquipped = true;
-			}
+
 			else if (InputHandler.downPressed) 
 			{
 				CurrentAction = Action.crouch;

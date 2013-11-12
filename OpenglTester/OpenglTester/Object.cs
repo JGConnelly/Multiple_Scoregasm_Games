@@ -199,6 +199,7 @@ namespace OpenglTester
 			i_NumOfFramesToAnim = numberOfFrames;
 			f_TimeToCompleteAnim = timeToComplete;
 			f_TimePerFrame = f_TimeToCompleteAnim / i_NumOfFramesToAnim;
+			i_CurrentFrame = 0;
 
 		}
 
