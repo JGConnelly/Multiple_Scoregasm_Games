@@ -45,7 +45,6 @@ namespace OpenglTester
 		public void AddCharacter(AI character)
 		{
 			ai_Characters.Add(character);
-
 		}
 
 
@@ -61,6 +60,7 @@ namespace OpenglTester
 		public void Draw()
 		{
 			//draw interactable objects
+			//draws the levels background first
 			obj_ThisObject.Draw();
 			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
 			{
@@ -95,6 +95,7 @@ namespace OpenglTester
 			return false;
 
 		}
+
 
 
 	}
