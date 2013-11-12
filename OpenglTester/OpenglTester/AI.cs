@@ -37,16 +37,16 @@ namespace OpenglTester
 		private float f_BlockSpeed;
 		private Action currentAction;
 
-<<<<<<< HEAD
+
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
 						Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
 							Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1),
 								Shiv = new AnimationInfo(36,5,0.5f),JumpLand = new AnimationInfo(41,0,2),
 									Jumping = new AnimationInfo(42,5,1), Block = new AnimationInfo(47,1,1.5f);
 		AnimationInfo CurrentAnimation;
-=======
+
 		private string str_NoDialogueLine;
->>>>>>> JacobSwagStation
+
 
 		public AI(string imagePath , int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath , numberOfFrames ,  timeToComplete, frameSize)
 		{
@@ -72,8 +72,8 @@ namespace OpenglTester
 			public List<StoryProgress> ResponseEndingProg;
 			public List<int> ResponseEndingPlayerStat;
 
-<<<<<<< HEAD
-=======
+
+
 			public Dialogue()
 			{
 				EndProgressPreReq= new StoryProgress();
@@ -90,17 +90,17 @@ namespace OpenglTester
 			Dialogues = new List<Dialogue>();
 			str_NoDialogueLine = "Go away";
 
->>>>>>> JacobSwagStation
+
 		}
 
 
 		//accessors and mutators
-<<<<<<< HEAD
-		public int PlayerDisposition
-=======
+
+	
+
 
 		public int PlayerDisposision
->>>>>>> JacobSwagStation
+
 		{
 			set {i_PlayerDisposition=value; }
 			get {return i_PlayerDisposition;}
