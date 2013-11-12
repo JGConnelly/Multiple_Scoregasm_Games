@@ -43,8 +43,10 @@ namespace OpenglTester
 		bool ShivEquipped = false;
 		public bool ShivFound = true;
 		bool isJumping;
+		bool isPunching = false;
+		float PunchTiming = 1f;
 		float Mass = 250;
-		public float WalkSpeed = 20, RunSpeed = 250;
+		public float WalkSpeed = 40, RunSpeed = 250;
 		float GroundWhileJumping;
 		Action CurrentAction = Action.idle;//This will need to be accessed by other classes when in combat
 		Action LastAction = Action.idle;
@@ -76,6 +78,7 @@ namespace OpenglTester
 			if (InputHandler.upPressed && !isJumping) 
 			{
 				isJumping = true;
+				isPunching = false;
 				GroundWhileJumping = v2_Position.Y;
 				velocity.Y = -8;
 				v2_Position.Y -=5;
@@ -125,6 +128,37 @@ namespace OpenglTester
 					isJumping = false;
 					CurrentAction = Action.jumpland;
 				}
+			}
+			else if (isPunching)
+			{
+				PunchTiming-=Elapsed;
+				if(PunchTiming <=0)
+				{
+					isPunching = false;
+				}
+			}
+			else if(InputHandler.punchPressed&&!isPunching)
+			{
+				if (InputHandler.downPressed)
+					CurrentAction = Action.block;
+				else if(ShivEquipped)
+				{
+					CurrentAction = Action.shiv;CurrentAnimation = Shiv;
+					isPunching = true;
+				}
+				else 
+				{
+					CurrentAction = Action.punch;CurrentAnimation = Punch;
+					isPunching = true;
+				}
+				PunchTiming = CurrentAnimation.TimeForCompletion;
+			}
+			else if (InputHandler.switchPressed && ShivFound)
+			{
+				if(ShivEquipped)
+					ShivEquipped = false;
+				else 
+					ShivEquipped = true;
 			}
 			else if (InputHandler.downPressed) 
 			{
@@ -186,29 +220,14 @@ namespace OpenglTester
 				}
 				
 			}
-			else if(InputHandler.punchPressed)
-			{
-				if (InputHandler.downPressed)
-					CurrentAction = Action.block;
-				else if(ShivEquipped)
-					CurrentAction = Action.shiv;
-				else 
-					CurrentAction = Action.punch;
-			}
-			else if (InputHandler.switchPressed && ShivFound)
-			{
-				if(ShivEquipped)
-					ShivEquipped = false;
-				else 
-					ShivEquipped = true;
-			}
+		
 			/*//Work out if jumping
 			//Also need to work out if grounded
 			else if()
 			{
 				//if right key or left key is also down, move in that direction midair
 			}*/
-				else
+			else
 			{
 				CurrentAction = Action.idle;
 			}
