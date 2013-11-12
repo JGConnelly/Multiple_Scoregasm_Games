@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\PlayState.cs">
     <Files>
-      <File FileName="OpenglTester\PlayState.cs" Line="35" Column="59" />
+      <File FileName="OpenglTester\PlayState.cs" Line="41" Column="42" />
       <File FileName="OpenglTester\AI.cs" Line="68" Column="22" />
       <File FileName="c:\Users\natasha.cooper\Desktop\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\FileHandler.cs" Line="239" Column="27" />
       <File FileName="OpenglTester\Object.cs" Line="146" Column="3" />
