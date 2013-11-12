@@ -57,8 +57,8 @@ namespace OpenglTester
 		{
 			b_IsAnimated = true;
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
-			GenerateAlpha();
-			Scale = new Vector2 (4,4);
+			//GenerateAlpha();
+			//Scale = new Vector2 (4,4);
 		}
 		// 
 	

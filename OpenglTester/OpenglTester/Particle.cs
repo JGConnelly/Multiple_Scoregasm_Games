@@ -24,7 +24,7 @@ namespace OpenglTester
 		public Particle (string imagePath):base ( imagePath)
 		{
 			b_NeverDies = false;
-			GenerateAlpha();
+			//GenerateAlpha();
 		}
 
 		// mutators and accesors 

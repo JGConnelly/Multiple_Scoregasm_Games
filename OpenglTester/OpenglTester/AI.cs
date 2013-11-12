@@ -65,7 +65,7 @@ namespace OpenglTester
 			CurrentAction = Action.idle;
 			DetermineAnimation(CurrentAction);
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
-			GenerateAlpha();
+			//GenerateAlpha();
 			Scale = new Vector2 (4,4);
 		}
 
