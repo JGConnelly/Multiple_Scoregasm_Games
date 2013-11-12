@@ -119,14 +119,14 @@ namespace OpenglTester
 		public override void Draw (StateManager game, float dT)
 		{
 			//draw stuff to the screen
-			playBG.Draw();
+			CurrentLevel.Draw();
+			//playBG.Draw();
 			//so draw your objects etc
 			//CurrentLevel.Draw ();
 			AnAI.Draw();
 			hooker.Draw();
 			player.Draw();
 			SnowFall.Draw();
-
 		}
 		
 		public static PlayState GetInstance ()
