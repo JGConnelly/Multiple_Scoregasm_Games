@@ -22,6 +22,7 @@ namespace OpenglTester
 		Object playBG;
 		
 		AI AnAI;
+		AI hooker;
 		Player player;
 		SnowEmitter SnowFall;
 
@@ -40,6 +41,9 @@ namespace OpenglTester
 			player.Position = new Vector2(64,630);
 			AnAI = new AI("Token", 65, 20, 32f);
 			AnAI.Position = new Vector2(500, 650);
+			hooker = new AI("Hooker", 11, 0, 32f, true);
+			hooker.Position = new Vector2(1000, 630);
+			hooker.IsHooker = true;
 			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
 			SnowFall.Initialise(0,0);
 			string thisLevel = fileManager.LoadPlayer();
@@ -107,6 +111,7 @@ namespace OpenglTester
 			player.Update(dT);
 			playBG.Update(dT);
 			AnAI.Update(dT);
+			hooker.Update(dT);
 			SnowFall.Update(dT);
 			CurrentLevel.Update(dT);
 		}
@@ -118,6 +123,7 @@ namespace OpenglTester
 			//so draw your objects etc
 			CurrentLevel.Draw ();
 			AnAI.Draw();
+			hooker.Draw();
 			player.Draw();
 			SnowFall.Draw();
 

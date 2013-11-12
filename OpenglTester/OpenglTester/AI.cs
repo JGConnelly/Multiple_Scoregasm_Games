@@ -24,6 +24,8 @@ namespace OpenglTester
 			punch,
 			shiv,
 			block,
+			fall,
+			fallen
 			//talk,
 			//die
 		};
@@ -35,7 +37,9 @@ namespace OpenglTester
 		private float f_HitDamage;
 		private float f_DodgeSpeed;
 		private float f_BlockSpeed;
-		private Action currentAction;
+		private Action CurrentAction;
+		private Action LastAction;
+		private bool b_IsHooker;
 
 
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
@@ -43,15 +47,23 @@ namespace OpenglTester
 							Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1),
 								Shiv = new AnimationInfo(36,5,0.5f),JumpLand = new AnimationInfo(41,0,2),
 									Jumping = new AnimationInfo(42,5,1), Block = new AnimationInfo(47,1,1.5f);
+
+		//the following animationInfos are only used for the prostitute, as she has different actions to the other npcs.
+		AnimationInfo pFall = new AnimationInfo(10, 1, 1), pIdle = new AnimationInfo(1, 4, 4), 
+						pStand = new AnimationInfo(0, 1, 1), pTalk = new AnimationInfo(5, 3, 3), 
+							pFallen = new AnimationInfo(10, 1, 1);
+
 		AnimationInfo CurrentAnimation;
 
 		private string str_NoDialogueLine;
 
 
-		public AI(string imagePath , int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath , numberOfFrames ,  timeToComplete, frameSize)
+		public AI(string imagePath , int numberOfFrames , int timeToComplete,float frameSize, bool a_isHooker = false):base ( imagePath , numberOfFrames ,  timeToComplete, frameSize)
 		{
+			b_IsHooker = a_isHooker;
 			b_IsAnimated = true;
-			CurrentAnimation = Idle;
+			CurrentAction = Action.idle;
+			DetermineAnimation(CurrentAction);
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
 			GenerateAlpha();
 			Scale = new Vector2 (4,4);
@@ -99,8 +111,7 @@ namespace OpenglTester
 	
 
 
-		public int PlayerDisposision
-
+		public int PlayerDisposition
 		{
 			set {i_PlayerDisposition=value; }
 			get {return i_PlayerDisposition;}
@@ -141,16 +152,86 @@ namespace OpenglTester
 			get {return str_NoDialogueLine;}
 
 		}
+		public bool IsHooker 
+		{
+			set { b_IsHooker = value;}
+			get { return b_IsHooker;}
+		}
 		//end of accesors and mutators
 
 
 		void Update(double DeltaTime)
 		{
+
+			DetermineAnimation(CurrentAction);
+			
 			base.Update((float)DeltaTime);
 		}
 		void Draw()
 		{
 			base.Draw();
+		}
+
+		AnimationInfo DetermineAnimation(Action a_currentAction)
+		{
+			LastAction = a_currentAction;
+			
+			switch (a_currentAction)
+			{
+			case Action.idle:
+				if (b_IsHooker)
+				{
+					CurrentAnimation = pIdle;
+				}
+				else
+				{
+					CurrentAnimation = Idle;
+				}
+				break;
+			case Action.walk:
+				CurrentAnimation = Walk;
+				break;
+			case Action.run:
+				CurrentAnimation = Run;
+				break;
+			case Action.crouch:
+				CurrentAnimation = Crouch;
+				break;
+			case Action.sneak:
+				CurrentAnimation = Sneak;
+				break;
+			case Action.punch:
+				CurrentAnimation = Punch;
+				break;
+			case Action.shiv:
+				CurrentAnimation = Shiv;
+				break;
+			case Action.jump:
+				CurrentAnimation = Jumping;
+				break;
+			case Action.jumpland:
+				CurrentAnimation = JumpLand;
+				break;
+			case Action.block:
+				CurrentAnimation = Block;
+				break;
+			default:
+				if (b_IsHooker)
+				{
+					CurrentAnimation = pIdle;
+				}
+				else
+				{
+					CurrentAnimation = Idle;
+				}
+				break;
+			}
+			//Update the current animation. if the animation is different from the last animation, change the animation
+			if(LastAction != a_currentAction)
+			{
+				SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
+			}
+			return CurrentAnimation;
 		}
 	}
 }
