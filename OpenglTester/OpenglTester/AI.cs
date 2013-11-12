@@ -25,7 +25,8 @@ namespace OpenglTester
 			shiv,
 			block,
 			fall,
-			fallen
+			fallen,
+			talk
 			//talk,
 			//die
 		};
@@ -49,8 +50,8 @@ namespace OpenglTester
 									Jumping = new AnimationInfo(42,5,1), Block = new AnimationInfo(47,1,1.5f);
 
 		//the following animationInfos are only used for the prostitute, as she has different actions to the other npcs.
-		AnimationInfo pFall = new AnimationInfo(10, 1, 1), pIdle = new AnimationInfo(1, 4, 4), 
-						pStand = new AnimationInfo(0, 1, 1), pTalk = new AnimationInfo(5, 3, 3), 
+		AnimationInfo pFall = new AnimationInfo(8, 3, 1), pIdle = new AnimationInfo(1, 4, 4), 
+						pStand = new AnimationInfo(0, 1, 1), pTalk = new AnimationInfo(5, 3, 2), 
 							pFallen = new AnimationInfo(10, 1, 1);
 
 		AnimationInfo CurrentAnimation;
@@ -63,7 +64,7 @@ namespace OpenglTester
 			b_IsHooker = a_isHooker;
 			b_IsAnimated = true;
 			CurrentAction = Action.idle;
-			DetermineAnimation(CurrentAction);
+			DetermineAnimation();
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
 			//GenerateAlpha();
 			//Scale = new Vector2 (4,4);
@@ -160,23 +161,24 @@ namespace OpenglTester
 		//end of accesors and mutators
 
 
-		void Update(double DeltaTime)
+		public override void Update(float DeltaTime)
 		{
-
-			DetermineAnimation(CurrentAction);
+			DetermineAction(DeltaTime);
+			DetermineAnimation();
 			
-			base.Update((float)DeltaTime);
+			base.Update(DeltaTime);
 		}
-		void Draw()
+
+		public override void Draw()
 		{
 			base.Draw();
 		}
 
-		AnimationInfo DetermineAnimation(Action a_currentAction)
+		void DetermineAnimation()
 		{
-			LastAction = a_currentAction;
+
 			
-			switch (a_currentAction)
+			switch (CurrentAction)
 			{
 			case Action.idle:
 				if (b_IsHooker)
@@ -215,6 +217,12 @@ namespace OpenglTester
 			case Action.block:
 				CurrentAnimation = Block;
 				break;
+			case Action.talk:
+				if (b_IsHooker)
+					CurrentAnimation = pFall;
+				else
+					CurrentAnimation = Crouch;
+				break;
 			default:
 				if (b_IsHooker)
 				{
@@ -227,11 +235,22 @@ namespace OpenglTester
 				break;
 			}
 			//Update the current animation. if the animation is different from the last animation, change the animation
-			if(LastAction != a_currentAction)
+			if(LastAction != CurrentAction)
 			{
 				SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
 			}
-			return CurrentAnimation;
+		}
+
+		void DetermineAction(float dT)
+		{
+			LastAction = CurrentAction;
+
+			if (CheckCollision(PlayState.player))//(PlayState.player.Position.X - Position.X < 100) || (Position.X - PlayState.player.Position.X < 100))//player is standing close to AI
+			{
+				CurrentAction = Action.talk;
+			}
+			else
+				CurrentAction = Action.idle;
 		}
 	}
 }

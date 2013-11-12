@@ -23,7 +23,7 @@ namespace OpenglTester
 		
 		AI AnAI;
 		AI hooker;
-		Player player;
+		public static Player player;
 		SnowEmitter SnowFall;
 
 		FileHandler fileManager = new FileHandler();
@@ -121,7 +121,7 @@ namespace OpenglTester
 			//draw stuff to the screen
 			playBG.Draw();
 			//so draw your objects etc
-			CurrentLevel.Draw ();
+			//CurrentLevel.Draw ();
 			AnAI.Draw();
 			hooker.Draw();
 			player.Draw();
