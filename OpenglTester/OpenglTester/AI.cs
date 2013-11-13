@@ -66,7 +66,7 @@ namespace OpenglTester
 			DetermineAnimation(CurrentAction);
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
 			//GenerateAlpha();
-			Scale = new Vector2 (4,4);
+			//Scale = new Vector2 (4,4);
 		}
 
 		public class Dialogue

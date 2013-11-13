@@ -15,7 +15,7 @@ namespace OpenglTester
 		String LevelDirectory = "Content/Data/Levels/";
 		public  FileHandler ()
 		{
-			
+
 		}
 		// Generic load file blah
 		// just serves as an example
@@ -23,7 +23,7 @@ namespace OpenglTester
 		{
 			int NumberOfLines = 0;
 			string line;
-			
+
 			// Read the file and display it line by line.
 			System.IO.StreamReader file = 
 				new System.IO.StreamReader(BaseDirectory+FileName);
@@ -32,14 +32,14 @@ namespace OpenglTester
 				Console.WriteLine (line);
 				NumberOfLines++;
 			}
-			
+
 			// close your file!
 			file.Close();
 			Console.WriteLine("Total number of lines : " + NumberOfLines);
 			return true;
 		}
-		
-		
+
+
 		/// <summary>
 		/// Loads the level.
 		/// </summary>
@@ -53,19 +53,19 @@ namespace OpenglTester
 		{
 			// the actual level that will be returned
 			Level ret;
-			
+
 			int NumberOfLines = 0;
 			string line;
-			
+
 			string ImageSrc;
 			int numberOfObject = 0;
 			int numberOfCharacters = 0;
-			
+
 			bool ObjectsRead = false;
 			// Read the file and display it line by line.
 			System.IO.StreamReader file = 
 				new System.IO.StreamReader(LevelDirectory+Levelname+".txt");
-			
+
 			ret = new Level();
 			while((line = file.ReadLine()) != null)
 			{
@@ -83,88 +83,88 @@ namespace OpenglTester
 						string tempFileName;
 						Vector2 tempPosition;
 						InteractableObject tempObject;
-						
+
 						// reads in data for object position etc
 						tempFileName = file.ReadLine();
 						NumberOfLines++;
-						
+
 						line = file.ReadLine();
 						string[] Positions = line.Split(','); // get postition from file
 						tempPosition = new Vector2(Convert.ToInt32(Positions[0]),Convert.ToInt32(Positions[1]));
 						NumberOfLines++;
-						
+
 						tempObject = new InteractableObject(tempFileName);
 						tempObject.Position = tempPosition;
-						
-						
+
+
 						//if this object is an exit
 						line = file.ReadLine();
-						
+					
 						if(line=="true")
 						{
 							//read in what it exits to (file)
 							line = file.ReadLine();
 							ret.AddExit(tempObject,line);
 							NumberOfLines++;
-							
+
 						}
 						// if not load in th action associated
 						// use the enum from the interactable object class
 						else
 						{
-							
+
 							line = file.ReadLine();
 							NumberOfLines++;
-							
+
 							/// sets the action to corresponding string in the file
 							///  i may actually have to list all of them
 							if( line == InteractableObject.Action.EquipShiv.ToString())
 							{
 								tempObject.act_Action = InteractableObject.Action.EquipShiv; 
 							}
-							
+
 							ret.AddObject(tempObject);
 						}
 					}
 					ObjectsRead = true;
 				}
-				
+			
 				// read in number of characters
 				if (ObjectsRead)
 				{
 					line = file.ReadLine();
 					NumberOfLines++;
-					
-					
+
+				
 					numberOfCharacters = Convert.ToInt32(line);
 					for(int l =0;l<numberOfCharacters; l ++)
 					{
 						string tempCharName;
 						Vector2 tempPosition;
 						AI tempChar;
-						
+
 						// now read in who is in the level
 						line = file.ReadLine();
 						tempCharName = line;
-						
+
 						// read in the position
 						line = file.ReadLine();
 						string[] Positions = line.Split(','); // get postition from file
 						tempPosition = new Vector2(Convert.ToInt32(Positions[0]),Convert.ToInt32(Positions[1]));
 						NumberOfLines++;
-						
-						
+
+
 						// now we use the character file to read in the character data
 						tempChar = LoadCharacter(tempCharName);
 						//tempChar = new AI(tempCharName
-						
+
 						tempChar.Position = tempPosition;
-						
+
 						ret.AddCharacter(tempChar);
-						
+
 					}
-					
-					
+
+
 				}
 				Console.WriteLine (line);
 				NumberOfLines++;
@@ -209,7 +209,7 @@ namespace OpenglTester
 		{
 			int NumberOfLines = 0;
 			string line;
-			AI ret;
+			AI ReturnedCharacter;
 			System.IO.StreamReader file;
 			// Read the file and display it line by line.
 			try
@@ -223,73 +223,73 @@ namespace OpenglTester
 			// temporary data that will be used to add objects to the level
 			string tempFileName;
 			Vector2 tempPosition;
-			
-			
+				
+				
 			// reads in data for object position etc
 			tempFileName = file.ReadLine();
 			NumberOfLines++;
-			ret = new AI(tempFileName);
-			
+			ReturnedCharacter = new AI(tempFileName);
+
 			// now load in the stats
 			line = file.ReadLine();
-			ret.PlayerDisposition = Convert.ToInt32(line);
+			ReturnedCharacter.PlayerDisposition = Convert.ToInt32(line);
 			NumberOfLines++;
-			
+
 			//their hook
 			line = file.ReadLine();
 			NumberOfLines++;
-			
+
 			//if guard 
 			line = file.ReadLine();
-			ret.IsGuard = Convert.ToBoolean(line);
+			ReturnedCharacter.IsGuard = Convert.ToBoolean(line);
 			NumberOfLines++;
 			
 			//hit points,speed,damage,dodge,block
 			line = file.ReadLine();
-			ret.HitPoints = Convert.ToInt32(line);
+			ReturnedCharacter.HitPoints = Convert.ToInt32(line);
 			NumberOfLines++;
-			
+
 			line = file.ReadLine();
-			ret.HitSpeed =Convert.ToInt32(line);
+			ReturnedCharacter.HitSpeed =Convert.ToInt32(line);
 			NumberOfLines++;
-			
+
 			line = file.ReadLine();
-			ret.HitDamage = Convert.ToInt32(line);
+			ReturnedCharacter.HitDamage = Convert.ToInt32(line);
 			NumberOfLines++;
-			
+
 			line = file.ReadLine();
-			ret.DodgeSpeed = Convert.ToInt32(line);
+			ReturnedCharacter.DodgeSpeed = Convert.ToInt32(line);
 			NumberOfLines++;
-			
+
 			line = file.ReadLine();
-			ret.BlockSpeed = Convert.ToInt32(line);
+			ReturnedCharacter.BlockSpeed = Convert.ToInt32(line);
 			NumberOfLines++;
-			
+
 			// now all the dialogue
 			line = file.ReadLine();
-			ret.NoDialogueLine = line;
+			ReturnedCharacter.NoDialogueLine = line;
 			NumberOfLines++;
-			
+
 			line = file.ReadLine();
 			int numDialogue = Convert.ToInt32(line );
 			NumberOfLines++;
-			
+
 			for (int d = 0; d < numDialogue; d++)
 			{
 				// the temp dialogue thing
 				AI.Dialogue tempDialogue = new AI.Dialogue();
 				//ret.Dialogues.Add
-				
+
 				// this gets all the data out of the file
 				line=  file.ReadLine();
 				string[] DialogueData = line.Split(';'); 
 				NumberOfLines++;
-				
+
 				// ending modifier
 				if ( StoryProgress.enum_EndingProgress.NONE.ToString() == DialogueData[0])
 				{
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.NONE;
-					
+
 				}
 				if ( StoryProgress.enum_EndingProgress.FOODTRUCK.ToString() == DialogueData[0])
 				{
@@ -321,27 +321,27 @@ namespace OpenglTester
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.TUNNEL;
 					tempDialogue.EndProgressPreReq.i_TUNNEL = Convert.ToInt32(DialogueData[1]);
 				}
-				
+
 				// pre req point
 				tempDialogue.i_PlayerPreReq = Convert.ToInt32(DialogueData[2]);
-				
+
 				// the actual line 
 				tempDialogue.Statement = DialogueData[3];
-				
+
 				// now the responses
 				int numResponses = Convert.ToInt32(DialogueData[4]);
 				line=  file.ReadLine();
 				NumberOfLines++;
-				
+
 				string[] ResponseData = line.Split(','); 
 				for (int r = 0; r < numResponses; r++)
 				{
 					// get the individual response's data 
 					string[] responses  = ResponseData[r].Split(':');
-					
+
 					// the string of response
 					tempDialogue.TheResponses.Add(responses[0]);
-					
+
 					//story prog data
 					if ( StoryProgress.enum_EndingProgress.NONE.ToString() == responses[1])
 					{
@@ -391,23 +391,23 @@ namespace OpenglTester
 						tempStorydiag.i_TUNNEL = 1;
 						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
-					
+
 					//player stat
 					tempDialogue.ResponseEndingPlayerStat.Add(Convert.ToInt32(responses[2]));
-					
+
 				}
-				ret.Dialogues.Add(tempDialogue);
+				ReturnedCharacter.Dialogues.Add(tempDialogue);
 			}
-			
+
 			//string[] Positions = line.Split(','); // get postition from file
 			// close your file!
 			file.Close();
 			Console.WriteLine("Total number of lines : " + NumberOfLines);
-			return ret;
-			
-			
+			return ReturnedCharacter;
+
+
 		}
-		
+
 		/// <summary>
 		/// News the game.
 		/// Holy fuck this deletes all the saves so be careful
@@ -419,7 +419,7 @@ namespace OpenglTester
 			{
 				File.Delete(f);
 			}
-			
+
 		}
 	}
 }

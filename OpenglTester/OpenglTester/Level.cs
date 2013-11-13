@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 namespace OpenglTester
 {
 	public class Level
@@ -14,11 +17,16 @@ namespace OpenglTester
 		private List<Object> obj_InteractableObjects;
 		private List<AI> ai_Characters;
 
+		private SpriteFont TheFont;
+		private const string FontUsed = "FontyFony";
+
 		public Level ()
 		{
 			obj_InteractableObjects = new List<Object>{};
 			str_Exits = new List<string>{};
 			ai_Characters = new List<AI>{};
+
+			TheFont = Game1.contentManager.Load<SpriteFont>(FontUsed);
 		}
 		public Level ( List<String> Exits , List<Object> intObjects)
 		{
@@ -26,6 +34,7 @@ namespace OpenglTester
 			str_Exits = Exits;
 
 			obj_InteractableObjects = intObjects;
+			TheFont = Game1.contentManager.Load<SpriteFont>(FontUsed);
 		}
 		public void SetImage(string src)
 		{
@@ -74,7 +83,10 @@ namespace OpenglTester
 				ai_Characters[ais].Draw();
 			}
 		}
-
+		public void DrawText(String wuds,Vector2 pos)
+		{
+			Game1.spriteBatch.DrawString(TheFont,wuds,pos,Color.White);
+		}
 		/// <summary>
 		/// Checks the can interact with a
 		/// </summary>
@@ -95,8 +107,6 @@ namespace OpenglTester
 			return false;
 
 		}
-
-
 
 	}
 }

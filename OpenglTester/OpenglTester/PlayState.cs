@@ -39,9 +39,9 @@ namespace OpenglTester
 			// seting up the new player
 			player = new Player("Assn7MainCharacterSpritesheet4",65,20,32f * 4);
 			player.Position = new Vector2(64,630);
-			AnAI = new AI("Token", 65, 20, 32f);
+			AnAI = new AI("Token4", 65, 20, 32f * 4);
 			AnAI.Position = new Vector2(500, 650);
-			hooker = new AI("Hooker", 11, 0, 32f, true);
+			hooker = new AI("Hooker4", 11, 0, 32f * 4, true);
 			hooker.Position = new Vector2(1000, 630);
 			hooker.IsHooker = true;
 			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
