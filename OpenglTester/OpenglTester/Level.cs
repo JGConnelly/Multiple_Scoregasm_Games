@@ -102,7 +102,7 @@ namespace OpenglTester
 			
 			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
 			{
-				if(check.CheckCollision(obj_InteractableObjects[obj]))
+				if(check.CheckNearCollision(obj_InteractableObjects[obj]))
 				{
 					return true;
 				}

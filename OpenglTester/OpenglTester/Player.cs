@@ -32,7 +32,7 @@ namespace OpenglTester
 	public class Player : Object
 	{
 		#region Class Members
-		enum Action
+		public enum Action
 		{
 			idle,
 			walk,
@@ -75,8 +75,7 @@ namespace OpenglTester
 			//GenerateAlpha();
 			//Scale = new Vector2 (4,4);
 		}
-		// 
-	
+
 		/// <summary>
 		/// Update the player class.
 		/// </summary>
@@ -290,9 +289,13 @@ namespace OpenglTester
 				SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
 			}
 
-
 			base.Update(Elapsed);
 		}		
+
+		public Action GetCurrentAction()
+		{
+			return CurrentAction;
+		}
 	}
 }
 
