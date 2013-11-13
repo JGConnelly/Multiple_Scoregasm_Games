@@ -30,6 +30,9 @@ namespace OpenglTester
 		protected bool b_IsAnimated;
 		protected bool b_Paused;
 		protected bool b_FlipImage;
+
+		//The font
+
 		
 		// create a non animated object
 		public Object (string imagePath )
@@ -53,6 +56,8 @@ namespace OpenglTester
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
 			v2_Scale = new Vector2(1,1);
+
+
 		}
 		public Object (string imagePath , int numberOfFrames , float timeToComplete)
 		{
@@ -79,6 +84,7 @@ namespace OpenglTester
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
 			v2_Scale = new Vector2(1,1);
+
 
 		}
 
@@ -110,6 +116,8 @@ namespace OpenglTester
 			v2_Origin = new Vector2(0,0);
 			b_FlipImage = false;
 			v2_Scale = new Vector2(1,1);
+
+
 
 
 		}
@@ -199,7 +207,7 @@ namespace OpenglTester
 			i_NumOfFramesToAnim = numberOfFrames;
 			f_TimeToCompleteAnim = timeToComplete;
 			f_TimePerFrame = f_TimeToCompleteAnim / i_NumOfFramesToAnim;
-			i_CurrentFrame = 0;
+			i_CurrentFrame= 0;
 
 		}
 
@@ -275,6 +283,7 @@ namespace OpenglTester
 				else
 					Game1.spriteBatch.Draw (tex_Image, v2_Position,null, Color.White, f_Rotation, v2_Origin, v2_Scale, SpriteEffects.None, 0f);
 			}
+
 
 		}
 		
