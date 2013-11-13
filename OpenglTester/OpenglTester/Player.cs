@@ -12,6 +12,18 @@ namespace OpenglTester
 		public int Start;
 		public int Frames;
 		public float TimeForCompletion;
+		/// <summary>
+		/// Initializes a new instance of the <see cref="OpenglTester.AnimationInfo"/> struct.
+		/// </summary>
+		/// <param name='NewStart'>
+		/// New start.
+		/// </param>
+		/// <param name='NewFrames'>
+		/// New frames.
+		/// </param>
+		/// <param name='NewTimeForCompletion'>
+		/// New time for completion.
+		/// </param>
 		public AnimationInfo (int NewStart, int NewFrames, float NewTimeForCompletion)
 		{
 			Start = NewStart; Frames = NewFrames; TimeForCompletion = NewTimeForCompletion;
