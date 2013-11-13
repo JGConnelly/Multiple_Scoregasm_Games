@@ -82,6 +82,9 @@ namespace OpenglTester
 			{
 				ai_Characters[ais].Draw();
 			}
+
+			/// TEXT
+			DrawText("lel lel",new Vector2(1000,750));
 		}
 		public void DrawText(String wuds,Vector2 pos)
 		{
