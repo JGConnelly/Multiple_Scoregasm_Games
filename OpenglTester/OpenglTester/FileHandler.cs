@@ -232,7 +232,7 @@ namespace OpenglTester
 
 			// now load in the stats
 			line = file.ReadLine();
-			ReturnedCharacter.PlayerDisposision = Convert.ToInt32(line);
+			ReturnedCharacter.PlayerDisposition = Convert.ToInt32(line);
 			NumberOfLines++;
 
 			//their hook
