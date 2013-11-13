@@ -1,12 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\PlayState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\FileHandler.cs">
     <Files>
-      <File FileName="OpenglTester\PlayState.cs" Line="56" Column="23" />
-      <File FileName="OpenglTester\AI.cs" Line="58" Column="37" />
-      <File FileName="OpenglTester\Object.cs" Line="272" Column="8" />
-      <File FileName="OpenglTester\Content\Data\Characters\Hooker.txt" Line="4" Column="1" />
-      <File FileName="OpenglTester\Player.cs" Line="21" Column="3" />
+      <File FileName="OpenglTester\Level.cs" Line="67" Column="5" />
+      <File FileName="c:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\FileHandler.cs" Line="228" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
