@@ -266,6 +266,10 @@ namespace OpenglTester
 			if(CheckNearCollision(PlayState.player))
 			{
 				CurrentAction = Action.talk;
+				if (PlayState.player.Position.X < Position.X)
+					b_FlipImage = true;
+				else
+					b_FlipImage = false;
 			}
 			else
 				CurrentAction = Action.idle;
