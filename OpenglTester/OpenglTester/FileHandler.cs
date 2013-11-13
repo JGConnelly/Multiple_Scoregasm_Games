@@ -209,7 +209,7 @@ namespace OpenglTester
 		{
 			int NumberOfLines = 0;
 			string line;
-			AI ret;
+			AI ReturnedCharacter;
 			System.IO.StreamReader file;
 			// Read the file and display it line by line.
 			try
@@ -228,11 +228,11 @@ namespace OpenglTester
 			// reads in data for object position etc
 			tempFileName = file.ReadLine();
 			NumberOfLines++;
-			ret = new AI(tempFileName);
+			ReturnedCharacter = new AI(tempFileName);
 
 			// now load in the stats
 			line = file.ReadLine();
-			ret.PlayerDisposision = Convert.ToInt32(line);
+			ReturnedCharacter.PlayerDisposision = Convert.ToInt32(line);
 			NumberOfLines++;
 
 			//their hook
@@ -241,33 +241,33 @@ namespace OpenglTester
 
 			//if guard 
 			line = file.ReadLine();
-			ret.IsGuard = Convert.ToBoolean(line);
+			ReturnedCharacter.IsGuard = Convert.ToBoolean(line);
 			NumberOfLines++;
 			
 			//hit points,speed,damage,dodge,block
 			line = file.ReadLine();
-			ret.HitPoints = Convert.ToInt32(line);
+			ReturnedCharacter.HitPoints = Convert.ToInt32(line);
 			NumberOfLines++;
 
 			line = file.ReadLine();
-			ret.HitSpeed =Convert.ToInt32(line);
+			ReturnedCharacter.HitSpeed =Convert.ToInt32(line);
 			NumberOfLines++;
 
 			line = file.ReadLine();
-			ret.HitDamage = Convert.ToInt32(line);
+			ReturnedCharacter.HitDamage = Convert.ToInt32(line);
 			NumberOfLines++;
 
 			line = file.ReadLine();
-			ret.DodgeSpeed = Convert.ToInt32(line);
+			ReturnedCharacter.DodgeSpeed = Convert.ToInt32(line);
 			NumberOfLines++;
 
 			line = file.ReadLine();
-			ret.BlockSpeed = Convert.ToInt32(line);
+			ReturnedCharacter.BlockSpeed = Convert.ToInt32(line);
 			NumberOfLines++;
 
 			// now all the dialogue
 			line = file.ReadLine();
-			ret.NoDialogueLine = line;
+			ReturnedCharacter.NoDialogueLine = line;
 			NumberOfLines++;
 
 			line = file.ReadLine();
@@ -396,14 +396,14 @@ namespace OpenglTester
 					tempDialogue.ResponseEndingPlayerStat.Add(Convert.ToInt32(responses[2]));
 
 				}
-				ret.Dialogues.Add(tempDialogue);
+				ReturnedCharacter.Dialogues.Add(tempDialogue);
 			}
 
 			//string[] Positions = line.Split(','); // get postition from file
 			// close your file!
 			file.Close();
 			Console.WriteLine("Total number of lines : " + NumberOfLines);
-			return ret;
+			return ReturnedCharacter;
 
 
 		}
