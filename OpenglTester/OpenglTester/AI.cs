@@ -220,6 +220,14 @@ namespace OpenglTester
 			case Action.talk:
 				if (b_IsHooker)
 				{
+					CurrentAnimation = pTalk;
+				}
+				else
+					CurrentAnimation = Crouch;
+				break;
+			case Action.fall:
+				if (b_IsHooker)
+				{
 					CurrentAnimation = pFall;
 					if (PlayState.player.Position.X < Position.X)
 					{
@@ -231,7 +239,7 @@ namespace OpenglTester
 					}
 				}
 				else
-					CurrentAnimation = Crouch;
+					CurrentAnimation = Block;
 				break;
 			default:
 				if (b_IsHooker)
@@ -255,12 +263,22 @@ namespace OpenglTester
 		{
 			LastAction = CurrentAction;
 
-			if (CheckCollision(PlayState.player) && (PlayState.player.GetCurrentAction() == Player.Action.punch))//(PlayState.player.Position.X - Position.X < 100) || (Position.X - PlayState.player.Position.X < 100))//player is standing close to AI
+			if(CheckNearCollision(PlayState.player))
 			{
 				CurrentAction = Action.talk;
 			}
 			else
 				CurrentAction = Action.idle;
+
+			if (CanPunch(PlayState.player) && ((PlayState.player.GetCurrentAction() == Player.Action.punch) || (PlayState.player.GetCurrentAction() == Player.Action.shiv)))
+			{
+				if (b_IsHooker)
+					CurrentAction = Action.fall;
+				else
+					CurrentAction = Action.block;
+			}
+
+	
 		}
 	}
 }

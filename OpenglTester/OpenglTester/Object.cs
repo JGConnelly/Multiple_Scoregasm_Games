@@ -203,17 +203,73 @@ namespace OpenglTester
 		}
 
 
-
-		virtual public bool CheckCollision (Object other)
+		/// <summary>
+		/// Checks if the objects are "close" to each other.
+		/// </summary>
+		/// <returns>
+		/// <c>true</c>, if close was checked, <c>false</c> otherwise.
+		/// </returns>
+		/// <param name='other'>
+		/// Other object.
+		/// </param>
+		virtual public bool CheckNearCollision (Object other)
 		{
-			Rectangle thisObjectRect = new Rectangle((int)v2_Position.X,(int)v2_Position.Y,(int)v2_Size.X,(int)v2_Size.Y);
-			Rectangle otherRect = new Rectangle((int)other.Position.X,(int)other.Position.Y,(int)other.Size.X,(int)other.Size.Y);
+			Rectangle thisObjectRect = new Rectangle((int)v2_Position.X,(int)v2_Position.Y,(int)v2_Size.X + 10,(int)v2_Size.Y);
+			Rectangle otherRect = new Rectangle((int)other.Position.X,(int)other.Position.Y,(int)other.Size.X + 10,(int)other.Size.Y);
 
 			if(thisObjectRect.Intersects(otherRect) || otherRect.Intersects(thisObjectRect))
 				return true;
 			else 
 				return false;
+		}
 
+		/// <summary>
+		/// Checks the exact collision, ie. the objects appear to actually be touching.
+		/// </summary>
+		/// <returns>
+		/// <c>true</c>, if exact collision was checked, <c>false</c> otherwise.
+		/// </returns>
+		/// <param name='other'>
+		/// Other.
+		/// </param>
+		virtual public bool CheckExactCollision(Object other)
+		{
+			Rectangle thisObjectRect = new Rectangle((int)v2_Position.X,(int)v2_Position.Y,(int)v2_Size.X - 60,(int)v2_Size.Y);
+			Rectangle otherRect = new Rectangle((int)other.Position.X,(int)other.Position.Y,(int)other.Size.X - 60,(int)other.Size.Y);
+			
+			if(thisObjectRect.Intersects(otherRect) || otherRect.Intersects(thisObjectRect))
+				return true;
+			else 
+				return false;
+		}
+
+		/// <summary>
+		/// Determines whether this instance can punch the specified other.
+		/// Player must be facing the object, but the object doesn't have to be facing the player
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> the player is facing the other obejct; otherwise, <c>false</c>.
+		/// </returns>
+		/// <param name='other'>
+		/// Other.
+		/// </param>
+		virtual public bool CanPunch(Object other)
+		{
+			bool isFacing = false;
+			if(CheckExactCollision(other))
+			{
+				if(!other.b_FlipImage) //if player is facing right
+				{
+					if(Position.X > other.Position.X) //and object is on the right of the player
+						isFacing = true;
+				}
+				else //if player is facing left
+				{
+					if(Position.X < other.Position.X) //and object is on the left of the player
+						isFacing = true;
+				}
+			}
+			return isFacing;
 		}
 
 
@@ -222,12 +278,9 @@ namespace OpenglTester
 
 		virtual public void Update(float Elapsed)
 		{
-
-
 			// if the sprite is animated 
 			if (b_IsAnimated) 
 			{
-
 				if (b_Paused)
 					return;
 				f_ElapsedGameTime += Elapsed;
