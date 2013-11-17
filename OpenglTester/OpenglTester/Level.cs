@@ -65,6 +65,12 @@ namespace OpenglTester
 			{
 				obj_InteractableObjects[obj].Update(DeltaT);
 			}
+
+			
+			for (int ais = 0; ais < ai_Characters.Count;ais++)
+			{
+				ai_Characters[ais].Update(DeltaT);
+			}
 		}
 		public void Draw()
 		{

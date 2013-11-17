@@ -65,6 +65,8 @@ namespace OpenglTester
 			CurrentAction = Action.idle;
 			DetermineAnimation(CurrentAction);
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
+			Dialogues = new List<Dialogue>();
+			str_NoDialogueLine = "Go away";
 			//GenerateAlpha();
 			//Scale = new Vector2 (4,4);
 		}
