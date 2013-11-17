@@ -82,6 +82,10 @@ namespace OpenglTester
 			{
 				ai_Characters[ais].Draw();
 			}
+
+			/// TEXT
+			DrawText("lel lel",new Vector2(1000,750));
+
 		}
 		public void DrawText(String wuds,Vector2 pos)
 		{
@@ -99,7 +103,7 @@ namespace OpenglTester
 			
 			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
 			{
-				if(check.CheckCollision(obj_InteractableObjects[obj]))
+				if(check.CheckNearCollision(obj_InteractableObjects[obj]))
 				{
 					return true;
 				}
