@@ -241,6 +241,12 @@ namespace OpenglTester
 				else
 					CurrentAnimation = Block;
 				break;
+			case Action.fallen:
+				if (b_IsHooker)
+				{
+					CurrentAnimation = pFallen;
+				}
+				break;
 			default:
 				if (b_IsHooker)
 				{
@@ -263,10 +269,10 @@ namespace OpenglTester
 		{
 			LastAction = CurrentAction;
 
-			if(CheckNearCollision(PlayState.player))
+			if(CheckNearCollision(PlayState.player) && (CurrentAction != Action.fallen))
 			{
 				CurrentAction = Action.talk;
-				if (PlayState.player.Position.X < Position.X)
+				if(PlayState.player.Position.X < Position.X )
 					b_FlipImage = true;
 				else
 					b_FlipImage = false;
@@ -274,12 +280,22 @@ namespace OpenglTester
 			else
 				CurrentAction = Action.idle;
 
-			if (CanPunch(PlayState.player) && ((PlayState.player.GetCurrentAction() == Player.Action.punch) || (PlayState.player.GetCurrentAction() == Player.Action.shiv)))
+			if(CanPunch(PlayState.player) && ((PlayState.player.GetCurrentAction() == Player.Action.punch) || (PlayState.player.GetCurrentAction() == Player.Action.shiv)))
 			{
-				if (b_IsHooker)
+				if(b_IsHooker)
 					CurrentAction = Action.fall;
 				else
 					CurrentAction = Action.block;
+			}
+
+			if(LastAction == Action.fall && !CheckExactCollision(PlayState.player))
+			{
+				CurrentAction = Action.fallen;
+			}
+			if (LastAction == Action.fallen)
+			{
+				CurrentAction = Action.fallen;
+				v2_Position.Y = 660;
 			}
 
 	
