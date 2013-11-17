@@ -205,43 +205,57 @@ namespace OpenglTester
 		/// <param name='CharacterName'>
 		/// Character name.
 		/// </param>
-		public AI LoadCharacter(String CharacterName)
+		public AI LoadCharacter (String CharacterName)
 		{
 			int NumberOfLines = 0;
 			string line;
 			AI ReturnedCharacter;
 			System.IO.StreamReader file;
 			// Read the file and display it line by line.
-			try
-			{
-				file = new System.IO.StreamReader(CharacterDirectory+CharacterName+".save");
-			}
-			catch(Exception e)
-			{
-				file = new System.IO.StreamReader(CharacterDirectory+CharacterName+".txt");
+			try {
+				file = new System.IO.StreamReader (CharacterDirectory + CharacterName + ".save");
+			} catch (Exception e) {
+				file = new System.IO.StreamReader (CharacterDirectory + CharacterName + ".txt");
 			}
 			// temporary data that will be used to add objects to the level
 			string tempFileName;
 			Vector2 tempPosition;
-				
+			int tempDisposision;
+			bool tempIsGuard = false;
+			bool tempIsHooker = false;
 				
 			// reads in data for object position etc
-			tempFileName = file.ReadLine();
+			tempFileName = file.ReadLine ();
 			NumberOfLines++;
-			ReturnedCharacter = new AI(tempFileName);
+			ReturnedCharacter = new AI (tempFileName);
 
 			// now load in the stats
-			line = file.ReadLine();
-			ReturnedCharacter.PlayerDisposition = Convert.ToInt32(line);
+			line = file.ReadLine ();
+
+			tempDisposision = Convert.ToInt32 (line);
+			ReturnedCharacter.PlayerDisposition = tempDisposision;
 			NumberOfLines++;
 
 			//their hook
-			line = file.ReadLine();
+			line = file.ReadLine ();
 			NumberOfLines++;
 
 			//if guard 
-			line = file.ReadLine();
-			ReturnedCharacter.IsGuard = Convert.ToBoolean(line);
+			line = file.ReadLine ();
+			tempIsGuard = Convert.ToBoolean (line);
+			ReturnedCharacter.IsGuard = tempIsGuard;
+			NumberOfLines++;
+
+			//if hooker
+			line = file.ReadLine ();
+			tempIsHooker = Convert.ToBoolean (line);
+			if (tempIsHooker) 
+			{
+				ReturnedCharacter = new AI(tempFileName,11,2,128f,true);
+				ReturnedCharacter.PlayerDisposition = tempDisposision;
+				ReturnedCharacter.IsGuard = tempIsGuard;
+			}
+			ReturnedCharacter.IsHooker = tempIsHooker;
 			NumberOfLines++;
 			
 			//hit points,speed,damage,dodge,block

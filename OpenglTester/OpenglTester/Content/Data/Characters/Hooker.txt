@@ -1,7 +1,8 @@
-Hooker
+Hooker4
 60
 NULL
 false
+true
 100
 50
 50
