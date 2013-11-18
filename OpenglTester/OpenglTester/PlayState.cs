@@ -27,7 +27,7 @@ namespace OpenglTester
 		SnowEmitter SnowFall;
 
 		FileHandler fileManager = new FileHandler();
-		Level CurrentLevel;
+		public static Level CurrentLevel;
 
 		public override void Init()
 		{
