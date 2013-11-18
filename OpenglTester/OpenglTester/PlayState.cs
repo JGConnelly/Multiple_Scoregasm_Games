@@ -27,7 +27,7 @@ namespace OpenglTester
 		SnowEmitter SnowFall;
 
 		FileHandler fileManager = new FileHandler();
-		public static Level CurrentLevel;
+		Level CurrentLevel;
 
 		public override void Init()
 		{
@@ -50,7 +50,10 @@ namespace OpenglTester
 			CurrentLevel = fileManager.LoadLevel(thisLevel);
 
 		}
-		
+		public Level GetCurrentLevel ()
+		{
+			return CurrentLevel;
+		}
 		public override void Cleanup ()
 		{
 			Console.WriteLine ("Playstate cleaned up");

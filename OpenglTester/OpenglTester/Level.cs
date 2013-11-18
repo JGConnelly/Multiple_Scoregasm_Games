@@ -90,12 +90,17 @@ namespace OpenglTester
 			}
 
 			/// TEXT
-			DrawText("lel lel",new Vector2(1000,750));
+			DrawText("lel lel",new Vector2(1000,750),Color.White);
 		}
-		public void DrawText(String wuds,Vector2 pos)
+		public void DrawText (String words, Vector2 pos, Color col)
 		{
-			Game1.spriteBatch.DrawString(TheFont,wuds,pos,Color.White);
+			try {
+				Game1.spriteBatch.DrawString (TheFont, words, pos, col);
+			} catch (Exception e) {
+				Console.WriteLine(e);
+			}
 		}
+
 		/// <summary>
 		/// Checks the can interact with a
 		/// </summary>

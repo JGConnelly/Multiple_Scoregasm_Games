@@ -42,6 +42,11 @@ namespace OpenglTester
 		private Action LastAction;
 		private bool b_IsHooker;
 
+		// text stahhhff
+		bool b_CanDrawText;
+		string str_TextToDraw;
+		string str_ResponsesToDraw;
+
 
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
 						Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
@@ -63,6 +68,9 @@ namespace OpenglTester
 		{
 			b_IsHooker = a_isHooker;
 			b_IsAnimated = true;
+			b_CanDrawText = false;
+			str_TextToDraw = "";
+			str_ResponsesToDraw = "";
 			CurrentAction = Action.idle;
 			DetermineAnimation();
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
@@ -171,9 +179,14 @@ namespace OpenglTester
 			base.Update(DeltaTime);
 		}
 
-		public override void Draw()
+		public override void Draw ()
 		{
-			base.Draw();
+			base.Draw ();
+			if (b_CanDrawText) {
+				PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White);
+				PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255));
+				b_CanDrawText = false;
+			}
 		}
 
 		void DetermineAnimation()
@@ -270,7 +283,7 @@ namespace OpenglTester
 		void DetermineAction(float dT)
 		{
 			LastAction = CurrentAction;
-
+			//is the ai near the player?
 			if(CheckNearCollision(PlayState.player) && (CurrentAction != Action.fallen))
 			{
 				CurrentAction = Action.talk;
@@ -278,6 +291,19 @@ namespace OpenglTester
 					b_FlipImage = true;
 				else
 					b_FlipImage = false;
+
+				// do text and shiz
+				if(Dialogues.Count >0)
+				{
+					b_CanDrawText = true;
+					str_TextToDraw = Dialogues[0].Statement;
+					str_ResponsesToDraw = null;
+					for(int r = 0; r < Dialogues[0].TheResponses.Count; r++)
+					{
+						str_ResponsesToDraw += Convert.ToString(r+1)+". "+ Dialogues[0].TheResponses[r]+"\n";
+					}
+				}
+
 			}
 			else
 				CurrentAction = Action.idle;
