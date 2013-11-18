@@ -20,6 +20,9 @@ namespace OpenglTester
 		private SpriteFont TheFont;
 		private const string FontUsed = "FontyFony";
 
+
+		// progression stats
+		//private int i_
 		public Level ()
 		{
 			obj_InteractableObjects = new List<Object>{};
