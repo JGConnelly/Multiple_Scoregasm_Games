@@ -23,7 +23,7 @@ namespace OpenglTester
 		public static bool rightPressed = false; //etc
 		public static bool downPressed = false; //user has pressed 's' or down arrow, or left stick
 		public static bool upPressed = false;
-		public static bool confirmPressed = false; //user has pressed enter or space or A
+		public static bool confirmPressed = false; //user has pressed space or A
 		public static bool escPressed = false; //user has pressed esc or start
 		public static bool sprintPressed = false; // shift or B
 		public static bool punchPressed = false; // right ctrl or e or X
