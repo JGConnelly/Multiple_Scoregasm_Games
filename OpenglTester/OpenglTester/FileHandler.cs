@@ -62,9 +62,15 @@ namespace OpenglTester
 			int numberOfCharacters = 0;
 
 			bool ObjectsRead = false;
+			System.IO.StreamReader file= null ;
 			// Read the file and display it line by line.
-			System.IO.StreamReader file = 
-				new System.IO.StreamReader(LevelDirectory+Levelname+".txt");
+			try{
+			 file = new System.IO.StreamReader(LevelDirectory+Levelname+".txt");
+			}
+			catch ( Exception e)
+			{
+				Console.Out.WriteLine(e);
+			};
 
 			ret = new Level();
 			while((line = file.ReadLine()) != null)
@@ -172,6 +178,7 @@ namespace OpenglTester
 			
 			// close your file!
 			file.Close();
+			file = null;
 			Console.WriteLine("Total number of lines : " + NumberOfLines);
 			return ret;
 		}
