@@ -21,13 +21,12 @@ namespace OpenglTester
 		static readonly PlayState playInstance = new PlayState();
 		Object playBG;
 		
-		AI AnAI;
-		AI hooker;
+
 		public static Player player;
 		SnowEmitter SnowFall;
 
-		FileHandler fileManager = new FileHandler();
-		Level CurrentLevel;
+		public FileHandler fileManager = new FileHandler();
+		public Level CurrentLevel;
 
 		public override void Init()
 		{
@@ -39,11 +38,7 @@ namespace OpenglTester
 			// seting up the new player
 			player = new Player("Assn7MainCharacterSpritesheet4",65,20,32f * 4);
 			player.Position = new Vector2(64,630);
-			AnAI = new AI("Token4", 65, 20, 32f * 4);
-			AnAI.Position = new Vector2(500, 650);
-			hooker = new AI("Hooker4", 11, 0, 32f * 4, true);
-			hooker.Position = new Vector2(1000, 630);
-			hooker.IsHooker = true;
+
 			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
 			SnowFall.Initialise(0,0);
 			string thisLevel = fileManager.LoadPlayer();
@@ -115,8 +110,6 @@ namespace OpenglTester
 
 			player.Update(dT);
 			playBG.Update(dT);
-			AnAI.Update(dT);
-			hooker.Update(dT);
 			SnowFall.Update(dT);
 
 		}
@@ -128,8 +121,7 @@ namespace OpenglTester
 			//playBG.Draw();
 			//so draw your objects etc
 			//CurrentLevel.Draw ();
-			AnAI.Draw();
-			hooker.Draw();
+
 			player.Draw();
 			SnowFall.Draw();
 		}

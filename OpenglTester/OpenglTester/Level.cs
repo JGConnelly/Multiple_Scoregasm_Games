@@ -14,7 +14,7 @@ namespace OpenglTester
 		private List<String> str_Exits;
 
 
-		private List<Object> obj_InteractableObjects;
+		private List<InteractableObject> obj_InteractableObjects;
 		private List<AI> ai_Characters;
 
 		private SpriteFont TheFont;
@@ -49,13 +49,13 @@ namespace OpenglTester
 		//private int i_
 		public Level ()
 		{
-			obj_InteractableObjects = new List<Object>{};
+			obj_InteractableObjects = new List<InteractableObject>{};
 			str_Exits = new List<string>{};
 			ai_Characters = new List<AI>{};
 			OnScreenWords = new List<TextToScreen>();
 			TheFont = Game1.contentManager.Load<SpriteFont>(FontUsed);
 		}
-		public Level ( List<String> Exits , List<Object> intObjects)
+		public Level ( List<String> Exits , List<InteractableObject> intObjects)
 		{
 
 			str_Exits = Exits;
@@ -68,13 +68,14 @@ namespace OpenglTester
 			obj_ThisObject = new Object(src);
 			//obj_ThisObject.GenerateAlpha();
 		}
-		public void AddObject(Object intObj)
+		public void AddObject(InteractableObject intObj)
 		{
 			obj_InteractableObjects.Add(intObj);
 
 		}
-		public void AddExit(Object intObj, string exit)
+		public void AddExit(InteractableObject intObj, string exit)
 		{
+			intObj.SetIsExit(true,exit);
 			obj_InteractableObjects.Add(intObj);
 			str_Exits.Add(exit);
 		}
