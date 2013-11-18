@@ -11,6 +11,7 @@
       <File FileName="OpenglTester\Level.cs" Line="64" Column="30" />
       <File FileName="OpenglTester\InputHandler.cs" Line="36" Column="3" />
       <File FileName="OpenglTester\FileHandler.cs" Line="23" Column="4" />
+      <File FileName="OpenglTester\InputHandler.cs" Line="33" Column="74" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
