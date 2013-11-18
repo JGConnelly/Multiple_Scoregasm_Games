@@ -91,6 +91,7 @@ namespace OpenglTester
 
 			/// TEXT
 			DrawText("lel lel",new Vector2(1000,750),Color.White);
+
 		}
 		public void DrawText (String words, Vector2 pos, Color col)
 		{
