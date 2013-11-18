@@ -37,10 +37,12 @@ namespace OpenglTester
 
 
 			// seting up the new player
-			player = new Player("Assn7MainCharacterSpritesheet4",65,20,32f * 4);
+			player = new Player("Assn7MainCharacterSpritesheet",65,20,32f);
 			player.Position = new Vector2(64,630);
-			AnAI = new AI("Token4", 65, 20, 32f * 4);
+			player.Scale = new Vector2(4, 4);
+			AnAI = new AI("Token", 65, 20, 32f);
 			AnAI.Position = new Vector2(500, 650);
+			AnAI.Scale = new Vector2(4, 4);
 			hooker = new AI("Hooker4", 11, 0, 32f * 4, true);
 			hooker.Position = new Vector2(1000, 630);
 			hooker.IsHooker = true;

@@ -222,8 +222,8 @@ namespace OpenglTester
 		/// </param>
 		virtual public bool CheckNearCollision (Object other)
 		{
-			Rectangle thisObjectRect = new Rectangle((int)v2_Position.X,(int)v2_Position.Y,(int)v2_Size.X + 10,(int)v2_Size.Y);
-			Rectangle otherRect = new Rectangle((int)other.Position.X,(int)other.Position.Y,(int)other.Size.X + 10,(int)other.Size.Y);
+			Rectangle thisObjectRect = new Rectangle((int)v2_Position.X,(int)v2_Position.Y,(int)(v2_Size.X * v2_Scale.X) + 10,(int)(v2_Size.Y * v2_Scale.Y));
+			Rectangle otherRect = new Rectangle((int)other.Position.X,(int)other.Position.Y,(int)(other.Size.X * other.v2_Scale.X) + 10,(int)(other.Size.Y * other.v2_Scale.Y));
 
 			if(thisObjectRect.Intersects(otherRect) || otherRect.Intersects(thisObjectRect))
 				return true;
@@ -242,8 +242,8 @@ namespace OpenglTester
 		/// </param>
 		virtual public bool CheckExactCollision(Object other)
 		{
-			Rectangle thisObjectRect = new Rectangle((int)v2_Position.X,(int)v2_Position.Y,(int)v2_Size.X - 50,(int)v2_Size.Y);
-			Rectangle otherRect = new Rectangle((int)other.Position.X,(int)other.Position.Y,(int)other.Size.X - 50,(int)other.Size.Y);
+			Rectangle thisObjectRect = new Rectangle((int)v2_Position.X,(int)v2_Position.Y,(int)(v2_Size.X * v2_Scale.X)- 50,(int)(v2_Size.Y* v2_Scale.Y));
+			Rectangle otherRect = new Rectangle((int)other.Position.X,(int)other.Position.Y,(int)(other.Size.X * v2_Scale.X) - 50,(int)(other.Size.Y* other.v2_Scale.Y));
 			
 			if(thisObjectRect.Intersects(otherRect) || otherRect.Intersects(thisObjectRect))
 				return true;
