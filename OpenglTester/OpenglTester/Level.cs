@@ -39,7 +39,7 @@ namespace OpenglTester
 		public void SetImage(string src)
 		{
 			obj_ThisObject = new Object(src);
-			obj_ThisObject.GenerateAlpha();
+			//obj_ThisObject.GenerateAlpha();
 		}
 		public void AddObject(Object intObj)
 		{

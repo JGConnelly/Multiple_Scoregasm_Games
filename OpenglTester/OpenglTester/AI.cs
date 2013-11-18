@@ -238,7 +238,7 @@ namespace OpenglTester
 					CurrentAnimation = pTalk;
 				}
 				else
-					CurrentAnimation = Crouch;
+					CurrentAnimation = JumpLand;
 				break;
 			case Action.fall:
 				if (b_IsHooker)
