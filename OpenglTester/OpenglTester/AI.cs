@@ -182,11 +182,7 @@ namespace OpenglTester
 		public override void Draw ()
 		{
 			base.Draw ();
-			if (b_CanDrawText) {
-				PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White);
-				PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255));
-				b_CanDrawText = false;
-			}
+
 		}
 
 		void DetermineAnimation()
@@ -302,6 +298,31 @@ namespace OpenglTester
 					{
 						str_ResponsesToDraw += Convert.ToString(r+1)+". "+ Dialogues[0].TheResponses[r]+"\n";
 					}
+
+					// if the player selects an option
+					if(InputHandler.dlg1Pressed && Dialogues[0].TheResponses.Count>0)
+					{
+						str_TextToDraw = Dialogues[0].TheResponses[0];
+						Dialogues.RemoveAt(0);
+					}
+					else if(InputHandler.dlg2Pressed&& Dialogues[0].TheResponses.Count>1){
+						str_TextToDraw =  Dialogues[0].TheResponses[1];
+						Dialogues.RemoveAt(0);
+					}
+					else if(InputHandler.dlg3Pressed&& Dialogues[0].TheResponses.Count>2){
+						str_TextToDraw = Dialogues[0].TheResponses[2];
+						Dialogues.RemoveAt(0);
+					}
+					else if(InputHandler.dlg4Pressed&& Dialogues[0].TheResponses.Count>3){
+						str_TextToDraw = Dialogues[0].TheResponses[3];
+						Dialogues.RemoveAt(0);
+					}
+				}
+				//actually add text to the list
+				if (b_CanDrawText) {
+					PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White);
+					PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255));
+					b_CanDrawText = false;
 				}
 
 			}

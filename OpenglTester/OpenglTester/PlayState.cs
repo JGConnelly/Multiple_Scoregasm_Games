@@ -111,12 +111,14 @@ namespace OpenglTester
 
 		public override void Update (StateManager game, float dT)
 		{
+			CurrentLevel.Update(dT);
+
 			player.Update(dT);
 			playBG.Update(dT);
 			AnAI.Update(dT);
 			hooker.Update(dT);
 			SnowFall.Update(dT);
-			CurrentLevel.Update(dT);
+
 		}
 		
 		public override void Draw (StateManager game, float dT)

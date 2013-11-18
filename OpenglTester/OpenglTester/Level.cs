@@ -20,7 +20,31 @@ namespace OpenglTester
 		private SpriteFont TheFont;
 		private const string FontUsed = "FontyFony";
 
-
+		private class TextToScreen
+		{
+			public string theText;
+			public float StartTime;
+			public float TimeOnScreen;
+			public Color theColor;
+			public Vector2 Position;
+			public TextToScreen()
+			{
+				theText = "";
+				StartTime = 0;
+				TimeOnScreen = 0;
+				theColor = Color.White;
+				Position = new Vector2 (0,0);
+			}
+			public TextToScreen(string text, float time, Vector2 pos, Color col)
+			{
+				theText = text;
+				StartTime = time;
+				TimeOnScreen = time;
+				theColor = col;
+				Position = pos;
+			}
+		}
+		private List<TextToScreen> OnScreenWords;
 		// progression stats
 		//private int i_
 		public Level ()
@@ -28,14 +52,14 @@ namespace OpenglTester
 			obj_InteractableObjects = new List<Object>{};
 			str_Exits = new List<string>{};
 			ai_Characters = new List<AI>{};
-
+			OnScreenWords = new List<TextToScreen>();
 			TheFont = Game1.contentManager.Load<SpriteFont>(FontUsed);
 		}
 		public Level ( List<String> Exits , List<Object> intObjects)
 		{
 
 			str_Exits = Exits;
-
+			OnScreenWords = new List<TextToScreen>();
 			obj_InteractableObjects = intObjects;
 			TheFont = Game1.contentManager.Load<SpriteFont>(FontUsed);
 		}
@@ -60,49 +84,77 @@ namespace OpenglTester
 		}
 
 
-		public void Update(float DeltaT)
+		public void Update (float DeltaT)
 		{
-			obj_ThisObject.Update(DeltaT);
+			obj_ThisObject.Update (DeltaT);
 
-			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
-			{
-				obj_InteractableObjects[obj].Update(DeltaT);
+			for (int obj = 0; obj < obj_InteractableObjects.Count; obj++) {
+				obj_InteractableObjects [obj].Update (DeltaT);
 			}
 
-			
-			for (int ais = 0; ais < ai_Characters.Count;ais++)
+			//ai
+			for (int ais = 0; ais < ai_Characters.Count; ais++) {
+				ai_Characters [ais].Update (DeltaT);
+			}
+
+			//text
+			for (int t = 0; t < OnScreenWords.Count; t++) 
 			{
-				ai_Characters[ais].Update(DeltaT);
+				OnScreenWords[t].TimeOnScreen -= DeltaT;
 			}
 		}
-		public void Draw()
+		public void Draw ()
 		{
+
 			//draw interactable objects
 			//draws the levels background first
-			obj_ThisObject.Draw();
-			for (int obj = 0; obj < obj_InteractableObjects.Count;obj++)
-			{
-				obj_InteractableObjects[obj].Draw();
+			obj_ThisObject.Draw ();
+
+			/// TEXT
+			//DrawText("lel lel",new Vector2(1000,750),Color.White);
+			for (int t = 0; t < OnScreenWords.Count; t++) {
+				if (OnScreenWords [t].TimeOnScreen < 0)
+					OnScreenWords.RemoveAt (t);
+				else {
+					Game1.spriteBatch.DrawString (TheFont, OnScreenWords [t].theText, OnScreenWords [t].Position, OnScreenWords [t].theColor);
+					
+				}
+				
+			}
+			if (OnScreenWords.Count == 0) {
+				int derp = 5;
+				derp++;
+			}
+
+			for (int obj = 0; obj < obj_InteractableObjects.Count; obj++) {
+				obj_InteractableObjects [obj].Draw ();
 			}
 
 			// draw ais / characters
 
-			for (int ais = 0; ais < ai_Characters.Count;ais++)
-			{
-				ai_Characters[ais].Draw();
+			for (int ais = 0; ais < ai_Characters.Count; ais++) {
+				ai_Characters [ais].Draw ();
 			}
 
-			/// TEXT
-			DrawText("lel lel",new Vector2(1000,750),Color.White);
+
 
 		}
-		public void DrawText (String words, Vector2 pos, Color col)
+		public void DrawText (String words, Vector2 pos, Color col , float time = 2f)
 		{
-			try {
-				Game1.spriteBatch.DrawString (TheFont, words, pos, col);
-			} catch (Exception e) {
-				Console.WriteLine(e);
+			bool canAdd = true;
+			TextToScreen temp = new TextToScreen(words,time,pos,col);
+
+			// ensure there are no doubles
+			for (int t = 0; t < OnScreenWords.Count; t++) 
+			{
+				if(temp.Position==OnScreenWords[t].Position&&temp.theText==OnScreenWords[t].theText )
+				{
+					OnScreenWords[t].TimeOnScreen = OnScreenWords[t].StartTime;
+					canAdd = false;
+				}
 			}
+			if(canAdd)
+				OnScreenWords.Add(new TextToScreen(words,time,pos,col));	
 		}
 
 		/// <summary>
