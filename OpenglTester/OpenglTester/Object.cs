@@ -31,8 +31,6 @@ namespace OpenglTester
 		protected bool b_Paused;
 		protected bool b_FlipImage;
 
-
-			
 		// create a non animated object
 		public Object (string imagePath )
 		{

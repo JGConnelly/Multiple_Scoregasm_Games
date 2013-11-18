@@ -42,7 +42,7 @@ namespace OpenglTester
 		public void SetImage(string src)
 		{
 			obj_ThisObject = new Object(src);
-			obj_ThisObject.GenerateAlpha();
+			//obj_ThisObject.GenerateAlpha();
 		}
 		public void AddObject(Object intObj)
 		{
@@ -94,6 +94,7 @@ namespace OpenglTester
 
 			/// TEXT
 			DrawText("lel lel",new Vector2(1000,750),Color.White);
+
 		}
 		public void DrawText (String words, Vector2 pos, Color col)
 		{
