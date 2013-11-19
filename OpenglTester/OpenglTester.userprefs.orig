@@ -1,5 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Content\Data\Levels\Intro.txt">
+    <Files>
+      <File FileName="c:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\FileHandler.cs" Line="76" Column="1" />
+      <File FileName="OpenglTester\InputHandler.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\Object.cs" Line="38" Column="16" />
+      <File FileName="OpenglTester\Player.cs" Line="67" Column="28" />
+      <File FileName="OpenglTester\PlayState.cs" Line="39" Column="34" />
+      <File FileName="OpenglTester\Content\Data\Levels\PrisonIntro.txt" Line="1" Column="1" />
+      <File FileName="OpenglTester\Content\Data\Levels\Intro.txt" Line="17" Column="8" />
+      <File FileName="OpenglTester\Content\Data\Characters\Hooker.txt" Line="1" Column="1" />
+=======
   <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Emitters\CoinEmitter.cs">
     <Files>
       <File FileName="OpenglTester\PlayState.cs" Line="42" Column="4" />
@@ -19,6 +31,7 @@
       <File FileName="OpenglTester\MenuState.cs" Line="81" Column="27" />
       <File FileName="OpenglTester\Game1.cs" Line="145" Column="4" />
       <File FileName="OpenglTester\Program.cs" Line="12" Column="28" />
+>>>>>>> master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

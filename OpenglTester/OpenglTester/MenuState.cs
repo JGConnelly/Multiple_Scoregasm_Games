@@ -80,7 +80,7 @@ namespace OpenglTester
 				}
 				if(btnQuit.isSelected)
 				{
-					//quit
+					Program.game.Quit();
 				}
 			}
 			if(!InputHandler.confirmPressed && StateManager.spaceIsDown)

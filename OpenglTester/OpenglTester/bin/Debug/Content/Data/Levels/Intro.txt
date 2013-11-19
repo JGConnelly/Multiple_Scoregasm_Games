@@ -4,8 +4,7 @@ Door
 1800,650
 true
 PrisonIntro
-1000,1000
-1
+4
 Hooker
 1600,610
 Hooker
@@ -14,5 +13,3 @@ Hooker
 1200,610
 Hooker
 1000,610
-Token
-100,610

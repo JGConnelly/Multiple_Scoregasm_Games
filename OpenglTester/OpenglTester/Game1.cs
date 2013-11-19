@@ -148,6 +148,12 @@ namespace OpenglTester
 
 		}
 
+		
+		public void Quit()
+		{
+			this.Exit();
+		}
+
 		void GraphicsDevice_DeviceReset(object sender, EventArgs e)
 		{
 			//scale sprites up or down based on current viewport
@@ -191,6 +197,7 @@ namespace OpenglTester
 			enum_EndingProgressThis = new enum_EndingProgress();
 
 		}
+
 
 	};
 }

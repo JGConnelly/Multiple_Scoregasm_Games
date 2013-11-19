@@ -13,6 +13,8 @@ namespace OpenglTester
 	{
 		private bool b_isExit;
 		private string str_Exit; // the actual file that is the exit
+
+		private Vector2 v2_NewLevelPosition; // when the player goes into the next level this is where they will start off
 		public enum Action
 		{
 			Nothing,
@@ -32,10 +34,11 @@ namespace OpenglTester
 		}
 
 
-		public void SetIsExit(bool exit, string ex = "")
+		public void SetIsExit(bool exit, Vector2 exitPostion ,string ex = "" )
 		{
 			str_Exit = ex;
 			b_isExit = exit;
+			v2_NewLevelPosition =exitPostion ;
 		}
 
 		public override void Update (float DeltaTime)
@@ -46,6 +49,7 @@ namespace OpenglTester
 				{
 					PlayState.GetInstance().CurrentLevel = null;
 					PlayState.GetInstance().CurrentLevel = PlayState.GetInstance().fileManager.LoadLevel(str_Exit);
+					PlayState.player.Position = v2_NewLevelPosition;
 				}
 			}
 

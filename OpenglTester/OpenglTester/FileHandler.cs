@@ -17,6 +17,7 @@ namespace OpenglTester
 		{
 
 		}
+
 		// Generic load file blah
 		// just serves as an example
 		public bool LoadFile(String FileName)
@@ -79,9 +80,13 @@ namespace OpenglTester
 				{
 					ImageSrc = line;
 					ret.SetImage(ImageSrc);
+
+
+
 				}
 				if(NumberOfLines ==1)
 				{
+					/// number of exits
 					numberOfObject = Convert.ToInt32(line);
 					for(int l =0;l<numberOfObject; l ++)
 					{
@@ -94,6 +99,7 @@ namespace OpenglTester
 						tempFileName = file.ReadLine();
 						NumberOfLines++;
 
+						// position
 						line = file.ReadLine();
 						string[] Positions = line.Split(','); // get postition from file
 						tempPosition = new Vector2(Convert.ToInt32(Positions[0]),Convert.ToInt32(Positions[1]));
@@ -109,9 +115,22 @@ namespace OpenglTester
 						if(line=="true")
 						{
 							//read in what it exits to (file)
-							line = file.ReadLine();
-							ret.AddExit(tempObject,line);
+							string tempExit = file.ReadLine();
 							NumberOfLines++;
+							//where ther position is in the next level when they exit
+							// position
+							line = file.ReadLine();
+							string[] exitsPositionStr = line.Split(','); // get postition from file
+							Vector2 exitPosition = new Vector2(Convert.ToInt32(exitsPositionStr[0]),Convert.ToInt32(exitsPositionStr[1]));
+							NumberOfLines++;
+
+
+							ret.AddExit(tempObject,exitPosition,tempExit);
+
+
+
+
+
 
 						}
 						// if not load in th action associated
@@ -256,9 +275,12 @@ namespace OpenglTester
 			//if hooker
 			line = file.ReadLine ();
 			tempIsHooker = Convert.ToBoolean (line);
-			if (tempIsHooker) 
-			{
-				ReturnedCharacter = new AI(tempFileName,11,2,128f,true);
+			if (tempIsHooker) {
+				ReturnedCharacter = new AI (tempFileName, 11, 2, 128f, true);
+				ReturnedCharacter.PlayerDisposition = tempDisposision;
+				ReturnedCharacter.IsGuard = tempIsGuard;
+			} else {
+				ReturnedCharacter = new AI (tempFileName, 65, 2, 128f, false);
 				ReturnedCharacter.PlayerDisposition = tempDisposision;
 				ReturnedCharacter.IsGuard = tempIsGuard;
 			}
