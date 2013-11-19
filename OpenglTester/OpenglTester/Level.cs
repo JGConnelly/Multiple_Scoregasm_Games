@@ -73,9 +73,21 @@ namespace OpenglTester
 			obj_InteractableObjects.Add(intObj);
 
 		}
-		public void AddExit(InteractableObject intObj, string exit)
+		/// <summary>
+		/// Adds the exit.
+		/// </summary>
+		/// <param name='intObj'>
+		/// Int object.
+		/// </param>
+		/// <param name='exit'>
+		/// Exit.
+		/// </param>
+		/// <param name='newRoomPos'>
+		/// New room position. so the position the player will be in once they enter the new room
+		/// </param>
+		public void AddExit(InteractableObject intObj,Vector2 newRoomPos, string exit)
 		{
-			intObj.SetIsExit(true,exit);
+			intObj.SetIsExit(true,newRoomPos,exit);
 			obj_InteractableObjects.Add(intObj);
 			str_Exits.Add(exit);
 		}

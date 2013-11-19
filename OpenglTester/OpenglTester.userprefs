@@ -1,21 +1,25 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\InputHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\FileHandler.cs">
     <Files>
-      <File FileName="OpenglTester\PlayState.cs" Line="81" Column="14" />
-      <File FileName="OpenglTester\AI.cs" Line="103" Column="6" />
-      <File FileName="OpenglTester\Object.cs" Line="231" Column="1" />
-      <File FileName="OpenglTester\Particle.cs" Line="5" Column="26" />
-      <File FileName="OpenglTester\Player.cs" Line="99" Column="31" />
-      <File FileName="OpenglTester\Content\Data\Characters\Hooker.txt" Line="14" Column="51" />
-      <File FileName="OpenglTester\Level.cs" Line="64" Column="30" />
-      <File FileName="OpenglTester\InputHandler.cs" Line="36" Column="3" />
-      <File FileName="OpenglTester\FileHandler.cs" Line="23" Column="4" />
-      <File FileName="OpenglTester\InputHandler.cs" Line="33" Column="74" />
+      <File FileName="OpenglTester\PlayState.cs" Line="112" Column="22" />
+      <File FileName="OpenglTester\AI.cs" Line="77" Column="19" />
+      <File FileName="OpenglTester\Object.cs" Line="65" Column="27" />
+      <File FileName="OpenglTester\Particle.cs" Line="24" Column="9" />
+      <File FileName="OpenglTester\Player.cs" Line="281" Column="4" />
+      <File FileName="OpenglTester\InteractableObject.cs" Line="37" Column="56" />
+      <File FileName="OpenglTester\Level.cs" Line="97" Column="4" />
+      <File FileName="OpenglTester\FileHandler.cs" Line="122" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\FileHandler.cs" line="123" />
+      <Breakpoint file="C:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\FileHandler.cs" line="122" />
+      <Breakpoint file="C:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\FileHandler.cs" line="121" />
+      <Breakpoint file="C:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\FileHandler.cs" line="117" />
+      <Breakpoint file="C:\Users\jacob.connelly\Desktop\git other\OpenglTester\OpenglTester\FileHandler.cs" line="118" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
