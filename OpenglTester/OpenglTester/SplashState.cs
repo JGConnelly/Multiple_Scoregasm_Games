@@ -18,12 +18,17 @@ namespace OpenglTester
 	{
 		static readonly SplashState splashInstance = new SplashState();
 		Object splashBG;
+
+		CoinEmitter CoinFall;
 		
 		public override void Init()
 		{
 			Console.WriteLine("SplashState initialized");
 			//TODO: load the backgrounds and buttons and stuff here
-			splashBG = new Object("splash");
+			splashBG = new Object("newSplash");
+
+			CoinFall = new CoinEmitter(0,1920,1200,1000,10);
+			CoinFall.Initialise(0,0);
 		}
 		
 		public override void Cleanup()
@@ -63,12 +68,14 @@ namespace OpenglTester
 		public override void Update(StateManager game, float dT)
 		{
 			splashBG.Update(dT);
+			CoinFall.Update(dT);
 		}
 		
 		public override void Draw(StateManager game, float dT)
 		{
 			//draw stuff to the screen
 			splashBG.Draw();
+			CoinFall.Draw();
 		}
 		
 		public static SplashState GetInstance()

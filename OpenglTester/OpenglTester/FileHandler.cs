@@ -17,6 +17,7 @@ namespace OpenglTester
 		{
 
 		}
+
 		// Generic load file blah
 		// just serves as an example
 		public bool LoadFile(String FileName)

@@ -60,6 +60,7 @@
     <Compile Include="Level.cs" />
     <Compile Include="InteractableObject.cs" />
     <Compile Include="AudioManager.cs" />
+    <Compile Include="Emitters\CoinEmitter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -198,6 +199,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\YorkMayCasual4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\newSplash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\coin0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\coin1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\coin2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
