@@ -63,15 +63,20 @@ namespace OpenglTester
 		float GroundWhileJumping;
 		Action CurrentAction = Action.idle;//This will need to be accessed by other classes when in combat
 		Action LastAction = Action.idle;
+		Texture2D Casual, Prison;
+		bool PrisonOutfit = false;
 		#endregion
 
 		readonly Vector2 gravity = new Vector2(0,9.8f);
 		Vector2 velocity;
 
-		public Player(string imagePath , int numberOfFrames , int timeToComplete,float frameSize):base ( imagePath , numberOfFrames ,  timeToComplete, frameSize)
+		public Player(string image1Path,string image2Path , int numberOfFrames , int timeToComplete,float frameSize):base ( image1Path , numberOfFrames ,  timeToComplete, frameSize)
 		{
 			b_IsAnimated = true;
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
+			Casual = Game1.contentManager.Load<Texture2D>(image2Path);
+			Prison = tex_Image;
+
 			//GenerateAlpha();
 			//Scale = new Vector2 (4,4);
 		}
@@ -85,6 +90,13 @@ namespace OpenglTester
 		/// 
 		public override void Update (float Elapsed)
 		{
+			if (PrisonOutfit) {
+				tex_Image = Prison;
+			} 
+			else 
+			{
+				tex_Image = Casual;
+			}
 			// CurrentAction - Work it out based on input
 			if (InputHandler.switchPressed && ShivFound &&!wasSwap)
 			{

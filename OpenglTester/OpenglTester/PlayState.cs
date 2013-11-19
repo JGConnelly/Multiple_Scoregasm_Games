@@ -36,7 +36,7 @@ namespace OpenglTester
 
 
 			// seting up the new player
-			player = new Player("Assn7MainCharacterSpritesheet4",65,20,32f * 4);
+			player = new Player("YorkMay4","YorkMayCasual4",65,20,32f * 4);
 			player.Position = new Vector2(64,630);
 
 			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
