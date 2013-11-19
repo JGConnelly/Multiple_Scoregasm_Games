@@ -122,7 +122,7 @@ namespace OpenglTester
 			else if (isJumping)
 			{
 				float time = (float) Elapsed;
-				Vector2 Acceleration;
+ 				Vector2 Acceleration;
 				Acceleration = ((velocity)/Mass + gravity);
 				//velocity+= gravity*time;
 				velocity += Acceleration * Elapsed;

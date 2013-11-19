@@ -284,12 +284,7 @@ namespace OpenglTester
 				ReturnedCharacter.PlayerDisposition = tempDisposision;
 				ReturnedCharacter.IsGuard = tempIsGuard;
 			}
-			else
-			{
-				ReturnedCharacter = new AI(tempFileName,65,2,128f,false);
-				ReturnedCharacter.PlayerDisposition = tempDisposision;
-				ReturnedCharacter.IsGuard = tempIsGuard;
-			}
+
 			ReturnedCharacter.IsHooker = tempIsHooker;
 			NumberOfLines++;
 			

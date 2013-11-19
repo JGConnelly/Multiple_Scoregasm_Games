@@ -1,24 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Emitters\CoinEmitter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Content\Data\Levels\PrisonIntro.txt">
     <Files>
-      <File FileName="OpenglTester\PlayState.cs" Line="42" Column="4" />
-      <File FileName="OpenglTester\AI.cs" Line="103" Column="6" />
-      <File FileName="OpenglTester\Object.cs" Line="38" Column="1" />
-      <File FileName="OpenglTester\Particle.cs" Line="5" Column="26" />
-      <File FileName="OpenglTester\Player.cs" Line="99" Column="5" />
-      <File FileName="OpenglTester\Content\Data\Characters\Hooker.txt" Line="14" Column="51" />
-      <File FileName="OpenglTester\Level.cs" Line="64" Column="30" />
-      <File FileName="OpenglTester\InputHandler.cs" Line="34" Column="75" />
-      <File FileName="OpenglTester\FileHandler.cs" Line="33" Column="30" />
-      <File FileName="OpenglTester\Content\Data\Levels\Intro.txt" Line="7" Column="2" />
-      <File FileName="OpenglTester\SplashState.cs" Line="78" Column="18" />
-      <File FileName="OpenglTester\Emitters\Emitter.cs" Line="14" Column="23" />
-      <File FileName="OpenglTester\Emitters\SnowEmitter.cs" Line="107" Column="1" />
-      <File FileName="OpenglTester\Emitters\CoinEmitter.cs" Line="39" Column="35" />
-      <File FileName="OpenglTester\MenuState.cs" Line="81" Column="27" />
-      <File FileName="OpenglTester\Game1.cs" Line="145" Column="4" />
-      <File FileName="OpenglTester\Program.cs" Line="12" Column="28" />
+      <File FileName="c:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\FileHandler.cs" Line="164" Column="1" />
+      <File FileName="OpenglTester\InputHandler.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\Object.cs" Line="38" Column="16" />
+      <File FileName="OpenglTester\Player.cs" Line="132" Column="6" />
+      <File FileName="OpenglTester\PlayState.cs" Line="39" Column="34" />
+      <File FileName="OpenglTester\Content\Data\Levels\PrisonIntro.txt" Line="8" Column="2" />
+      <File FileName="OpenglTester\Content\Data\Levels\Intro.txt" Line="7" Column="7" />
+      <File FileName="OpenglTester\Content\Data\Characters\Hooker.txt" Line="5" Column="5" />
+      <File FileName="OpenglTester\Content\Data\Characters\Token.txt" Line="1" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
