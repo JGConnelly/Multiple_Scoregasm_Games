@@ -4,12 +4,7 @@ Door
 1800,650
 true
 PrisonIntro
-4
+1000,1000
+1
 Hooker
 1600,610
-Hooker
-1400,610
-Hooker
-1200,610
-Hooker
-1000,610
