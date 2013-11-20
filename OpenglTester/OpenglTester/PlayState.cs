@@ -44,6 +44,8 @@ namespace OpenglTester
 			string thisLevel = fileManager.LoadPlayer();
 			CurrentLevel = fileManager.LoadLevel(thisLevel);
 
+
+
 		}
 		public Level GetCurrentLevel ()
 		{

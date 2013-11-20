@@ -77,6 +77,9 @@ namespace OpenglTester
 			Casual = Game1.contentManager.Load<Texture2D>(image2Path);
 			Prison = tex_Image;
 
+			AudioManager.LoadSound("Audio\\punch.wav");
+			AudioManager.LoadSound("Audio\\jump.wav");
+
 			//GenerateAlpha();
 			//Scale = new Vector2 (4,4);
 		}
@@ -111,6 +114,7 @@ namespace OpenglTester
 			LastAction = CurrentAction;
 			if (InputHandler.upPressed && !isJumping) 
 			{
+				AudioManager.PlaySound("Audio\\jump.wav");
 				isJumping = true;
 				isPunching = false;
 				GroundWhileJumping = v2_Position.Y;
@@ -122,7 +126,7 @@ namespace OpenglTester
 			else if (isJumping)
 			{
 				float time = (float) Elapsed;
- 				Vector2 Acceleration;
+				Vector2 Acceleration;
 				Acceleration = ((velocity)/Mass + gravity);
 				//velocity+= gravity*time;
 				velocity += Acceleration * Elapsed;
@@ -173,6 +177,7 @@ namespace OpenglTester
 			}
 			else if(InputHandler.punchPressed&&!isPunching)
 			{
+				AudioManager.PlaySound("Audio\\punch.wav");
 				if (InputHandler.downPressed)
 					CurrentAction = Action.block;
 				else if(ShivEquipped)
@@ -246,7 +251,6 @@ namespace OpenglTester
 						v2_Position.X-=WalkSpeed*Elapsed;
 					}
 				}
-				
 			}
 		
 			/*//Work out if jumping

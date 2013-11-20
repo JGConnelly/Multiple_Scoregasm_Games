@@ -43,10 +43,11 @@ namespace OpenglTester
 			
 			buttons[currentlySelectedButton].Select();
 
-			//AudioManager.SetMusicVolume(0.5f);
-			//AudioManager.PlayMusic("Audio\\Hitman.wav");
+			AudioManager.SetMusicVolume(0.3f);
+			AudioManager.PlayMusic("Audio\\Hitman.wav");
 
-			//AudioManager.LoadSound("Audio\\knifeStab.wav");
+			AudioManager.LoadSound("Audio\\select.wav");
+			AudioManager.LoadSound("Audio\\bip.wav");
 		}
 		
 		public override void Cleanup ()
@@ -73,6 +74,7 @@ namespace OpenglTester
 			//press space to change to PlayState
 			if(InputHandler.confirmPressed && (!StateManager.spaceIsDown))
 			{
+				AudioManager.PlaySound ("Audio\\select.wav");
 				StateManager.spaceIsDown = true;
 				if(btnNewGame.isSelected)
 				{
@@ -91,7 +93,7 @@ namespace OpenglTester
 			//change menu buttons
 			if(InputHandler.downPressed && !changed)
 			{
-				//AudioManager.PlaySound("Audio\\knifeStab.wav");
+				AudioManager.PlaySound("Audio\\bip.wav");
 				buttons[currentlySelectedButton++].Deselect();
 				if(currentlySelectedButton >= buttons.Count)
 				{
@@ -102,7 +104,7 @@ namespace OpenglTester
 			}
 			if(InputHandler.upPressed && !changed)
 			{
-				//AudioManager.PlaySound("Audio\\knifeStab.wav");
+				AudioManager.PlaySound("Audio\\bip.wav");
 				buttons[currentlySelectedButton--].Deselect();
 				if (currentlySelectedButton < 0)
 				{
