@@ -81,11 +81,23 @@ namespace OpenglTester
 					ImageSrc = line;
 					ret.SetImage(ImageSrc);
 
-
-
 				}
 				if(NumberOfLines ==1)
 				{
+
+					if(line == "NULL")
+					{
+						ret.BackgroundEmitter = new Emitter(0,0,0,0);
+						ret.BackgroundEmitter.Initialise(0,0);
+					}
+					else if(line == "SNOW")
+					{
+						ret.BackgroundEmitter = new SnowEmitter(0,1920,1200,1000,10);
+						ret.BackgroundEmitter.Initialise(0,0);
+					}
+
+					line = file.ReadLine();
+					NumberOfLines++;
 					/// number of exits
 					numberOfObject = Convert.ToInt32(line);
 					for(int l =0;l<numberOfObject; l ++)

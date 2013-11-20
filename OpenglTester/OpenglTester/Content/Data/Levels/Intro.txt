@@ -1,10 +1,11 @@
 Level1Background
+SNOW
 1
 Door
 1800,650
 true
 PrisonIntro
-1000,1000
+50,630
 1
 Hooker
 1600,610

@@ -20,6 +20,40 @@ namespace OpenglTester
 		private SpriteFont TheFont;
 		private const string FontUsed = "FontyFony";
 
+		// basically the string associated to what type of emmiter will be present in the level
+		public Emitter BackgroundEmitter;
+
+		public class Event
+		{
+			public enum ConditionType
+			{
+				CHARSTAT,
+				PROGSTAT
+			}
+			ConditionType ThisConditionType;
+
+			public enum ReactionType
+			{
+				SPAWN,
+				REMOVE,
+				CHANGEROOM
+			}
+			ReactionType ThisReactionType;
+			string ReactionObject;
+
+			//this is the time between the condition being met and the reaction taking place
+			float f_TimeTillEffect;
+
+			public Event(ConditionType con, ReactionType reacT, string reacObj,float Time)
+			{
+				ThisConditionType = con;
+				ThisReactionType = reacT;
+				ReactionObject = reacObj;
+				f_TimeTillEffect = Time;
+			}
+
+		}
+
 		private class TextToScreen
 		{
 			public string theText;
@@ -49,6 +83,7 @@ namespace OpenglTester
 		//private int i_
 		public Level ()
 		{
+
 			obj_InteractableObjects = new List<InteractableObject>{};
 			str_Exits = new List<string>{};
 			ai_Characters = new List<AI>{};
@@ -115,6 +150,12 @@ namespace OpenglTester
 			{
 				OnScreenWords[t].TimeOnScreen -= DeltaT;
 			}
+
+			//Check all of the events that are queued
+
+
+			// emitter
+			BackgroundEmitter.Update(DeltaT);
 		}
 		public void Draw ()
 		{
@@ -149,7 +190,7 @@ namespace OpenglTester
 				ai_Characters [ais].Draw ();
 			}
 
-
+			BackgroundEmitter.Draw();
 
 		}
 		public void DrawText (String words, Vector2 pos, Color col , float time = 2f)

@@ -1,28 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Emitters\CoinEmitter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\Level.cs">
     <Files>
-      <File FileName="OpenglTester\PlayState.cs" Line="42" Column="4" />
-      <File FileName="OpenglTester\AI.cs" Line="103" Column="6" />
-      <File FileName="OpenglTester\Object.cs" Line="38" Column="1" />
-      <File FileName="OpenglTester\Particle.cs" Line="5" Column="26" />
-      <File FileName="OpenglTester\Player.cs" Line="99" Column="5" />
-      <File FileName="OpenglTester\Content\Data\Characters\Hooker.txt" Line="14" Column="51" />
-      <File FileName="OpenglTester\Level.cs" Line="64" Column="30" />
-      <File FileName="OpenglTester\InputHandler.cs" Line="34" Column="75" />
-      <File FileName="OpenglTester\FileHandler.cs" Line="33" Column="30" />
-      <File FileName="OpenglTester\Content\Data\Levels\Intro.txt" Line="7" Column="2" />
-      <File FileName="OpenglTester\SplashState.cs" Line="78" Column="18" />
-      <File FileName="OpenglTester\Emitters\Emitter.cs" Line="14" Column="23" />
-      <File FileName="OpenglTester\Emitters\SnowEmitter.cs" Line="107" Column="1" />
-      <File FileName="OpenglTester\Emitters\CoinEmitter.cs" Line="39" Column="35" />
-      <File FileName="OpenglTester\MenuState.cs" Line="81" Column="27" />
-      <File FileName="OpenglTester\Game1.cs" Line="145" Column="4" />
-      <File FileName="OpenglTester\Program.cs" Line="12" Column="28" />
+      <File FileName="OpenglTester\PlayState.cs" Line="98" Column="37" />
+      <File FileName="OpenglTester\Object.cs" Line="42" Column="21" />
+      <File FileName="OpenglTester\Particle.cs" Line="24" Column="9" />
+      <File FileName="OpenglTester\Player.cs" Line="63" Column="28" />
+      <File FileName="OpenglTester\InteractableObject.cs" Line="54" Column="5" />
+      <File FileName="OpenglTester\Level.cs" Line="43" Column="4" />
+      <File FileName="OpenglTester\FileHandler.cs" Line="82" Column="14" />
+      <File FileName="OpenglTester\Emitters\Emitter.cs" Line="54" Column="16" />
+      <File FileName="OpenglTester\Game1.cs" Line="168" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="OpenglTester\FileHandler.cs" line="122" offsetX="483" offsetY="1888" expression="file" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
