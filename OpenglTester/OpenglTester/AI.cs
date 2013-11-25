@@ -48,8 +48,9 @@ namespace OpenglTester
 		string str_ResponsesToDraw;
 
 		//AI Movement and such. WORKING ON THIS~!
-		//bool ShouldRun, Reached Destination
-		//vector2 destination
+		bool Moving, ShouldRun;
+		Vector2 Destination;
+		public float WalkSpeed = 40, RunSpeed = 250;
 
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
 						Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
@@ -349,8 +350,54 @@ namespace OpenglTester
 				CurrentAction = Action.fallen;
 				v2_Position.Y = 660;
 			}
-
+			if(Moving)
+				MoveTowardsDestination(dT);
 	
+		}
+		public void SetDestination(bool Running, Vector2 Target)
+		{
+			Moving = true;
+			ShouldRun = Running;
+			Destination = Target;
+		}
+		void MoveTowardsDestination (float Elapsed)
+		{
+			if ((int)Position.X == (int)Destination.X) 
+			{
+				Moving = false;
+				return;
+			}
+			CurrentAction = Action.walk;
+			if (ShouldRun)
+			{
+				CurrentAction = Action.run;
+			}
+			if(Destination.X < Position.X )	//Determine whether the destination is to the left or right
+				b_FlipImage = true;			//Also has the AI flip to face the correct direction
+			else
+				b_FlipImage = false;
+			if(b_FlipImage)
+			{	
+				if(CurrentAction == Action.run)
+				{
+					v2_Position.X+=RunSpeed*Elapsed;
+				}
+				else
+				{
+					v2_Position.X+=WalkSpeed*Elapsed;
+				}
+			}
+			else 
+			{				
+				if(CurrentAction == Action.run)
+				{
+					v2_Position.X-=RunSpeed*Elapsed;
+				}
+				else
+				{
+					v2_Position.X-=WalkSpeed*Elapsed;
+				}
+			}
 		}
 	}
 }
