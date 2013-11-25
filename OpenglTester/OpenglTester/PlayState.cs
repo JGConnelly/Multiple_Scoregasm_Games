@@ -23,10 +23,11 @@ namespace OpenglTester
 		
 
 		public static Player player;
-		SnowEmitter SnowFall;
+
 
 		public FileHandler fileManager = new FileHandler();
 		public Level CurrentLevel;
+		public StoryProgress CurrentProgress;
 
 		public override void Init()
 		{
@@ -39,10 +40,9 @@ namespace OpenglTester
 			player = new Player("YorkMay4","YorkMayCasual4",65,20,32f * 4);
 			player.Position = new Vector2(64,630);
 
-			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
-			SnowFall.Initialise(0,0);
 			string thisLevel = fileManager.LoadPlayer();
 			CurrentLevel = fileManager.LoadLevel(thisLevel);
+			CurrentProgress = new StoryProgress();
 
 
 
@@ -112,7 +112,6 @@ namespace OpenglTester
 
 			player.Update(dT);
 			playBG.Update(dT);
-			SnowFall.Update(dT);
 
 		}
 		
@@ -125,7 +124,7 @@ namespace OpenglTester
 			//CurrentLevel.Draw ();
 
 			player.Draw();
-			SnowFall.Draw();
+
 		}
 		
 		public static PlayState GetInstance ()
