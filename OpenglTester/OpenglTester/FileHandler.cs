@@ -63,6 +63,7 @@ namespace OpenglTester
 			int numberOfCharacters = 0;
 
 			bool ObjectsRead = false;
+			bool CharactersRead = false;
 			System.IO.StreamReader file= null ;
 			// Read the file and display it line by line.
 			try{
@@ -80,24 +81,24 @@ namespace OpenglTester
 				{
 					ImageSrc = line;
 					ret.SetImage(ImageSrc);
+					line = file.ReadLine();
+
+					if(line == "SNOW")
+					{
+						ret.LevelEmitter = new SnowEmitter(0,1920,1200,1000,10);
+						ret.LevelEmitter.Initialise(0,0);
+					}
+					else if(line == "NULL")
+					{
+						ret.LevelEmitter = new Emitter(0,0,0,0);
+						ret.LevelEmitter.Initialise(0,0);
+					}
+
+
 
 				}
 				if(NumberOfLines ==1)
 				{
-
-					if(line == "NULL")
-					{
-						ret.BackgroundEmitter = new Emitter(0,0,0,0);
-						ret.BackgroundEmitter.Initialise(0,0);
-					}
-					else if(line == "SNOW")
-					{
-						ret.BackgroundEmitter = new SnowEmitter(0,1920,1200,1000,10);
-						ret.BackgroundEmitter.Initialise(0,0);
-					}
-
-					line = file.ReadLine();
-					NumberOfLines++;
 					/// number of exits
 					numberOfObject = Convert.ToInt32(line);
 					for(int l =0;l<numberOfObject; l ++)
@@ -196,13 +197,100 @@ namespace OpenglTester
 						//tempChar = new AI(tempCharName
 
 						tempChar.Position = tempPosition;
-
+						tempChar.Name = tempCharName;
 						ret.AddCharacter(tempChar);
 
 					}
 
-
+					CharactersRead = true;
 				}
+				// now read all the actions 
+				if(CharactersRead)
+				{
+					line = file.ReadLine();
+					int numOfAction = Convert.ToInt32(line);
+					for(int num = 0; num < numOfAction; num++)
+					{
+						line = file.ReadLine();
+						Level.Action tempAction; 
+
+						int tempCharStat = 0;
+						int tempGameProg= 0;
+						float tempTime = 0.0f;
+						string tempCharName = "";
+
+						Level.Action.TypeOfCharStat enumTypeCharStat = Level.Action.TypeOfCharStat.NONE;
+						Level.Action.TypeOfGameStat enumTypeGameStat = Level.Action.TypeOfGameStat.NONE;
+
+						//types of action and reaction/affected party
+						Level.Action.TypeOfAction tempTypeOfAction = Level.Action.TypeOfAction.REMOVE;
+						bool tempEqual = false;
+						bool tempGreater= false;
+						bool tempLess= false;
+						string Affected;
+						//CHARSTAT,Hooker,PLAYERDIS,65,>;3.0;CHANGEROOM,PrisonIntro
+						string[] strFullAction = line.Split(';'); 
+						string[] strFirstLine = strFullAction[0].Split(',');
+						string[] strThirdLine = strFullAction[2].Split(',');
+
+						if( strFirstLine[0] == "CHARSTAT")
+						{
+							// who's stat
+							tempCharName = strFirstLine[1];
+
+							// what type of stat
+							if(Level.Action.TypeOfCharStat.NONE.ToString() == strFirstLine[2])
+							{
+								enumTypeCharStat = Level.Action.TypeOfCharStat.NONE;
+								tempCharStat = Convert.ToInt32(strFirstLine[3]);
+							}
+							if(Level.Action.TypeOfCharStat.PLAYERDIS.ToString() == strFirstLine[2])
+							{
+								enumTypeCharStat = Level.Action.TypeOfCharStat.PLAYERDIS;
+								tempCharStat = Convert.ToInt32(strFirstLine[3]);
+							}
+
+						}
+						else if(strFirstLine[0] == "PROGSTAT")
+						{
+							
+						}
+						// the time
+						tempTime =(float)(Convert.ToDouble(strFullAction[1]));
+
+						if(strFirstLine[4] == "<")
+							tempLess = true;
+						else if (strFirstLine[4] == ">")
+							tempGreater=true;
+						else if (strFirstLine[4] == "=")
+							tempEqual = true;
+
+
+						// Action / reaction stuff
+						
+						if(strThirdLine[0] ==Level.Action.TypeOfAction.CHANGEROOM.ToString())
+						{
+							tempTypeOfAction = Level.Action.TypeOfAction.CHANGEROOM;
+						}
+						if(strThirdLine[0] ==Level.Action.TypeOfAction.REMOVE.ToString())
+						{
+							tempTypeOfAction = Level.Action.TypeOfAction.REMOVE;
+						}
+						if(strThirdLine[0] ==Level.Action.TypeOfAction.SPAWN.ToString())
+						{
+							tempTypeOfAction = Level.Action.TypeOfAction.SPAWN;
+						}
+						Affected =strThirdLine[1];
+
+						// set up now using the data
+						tempAction = new Level.Action(tempCharStat,tempGameProg,tempCharName,enumTypeCharStat,enumTypeGameStat);
+						tempAction.SetupAction(tempTypeOfAction,tempEqual,tempLess,tempGreater,tempTime,Affected);
+
+						// add it to the list
+						ret.AddAction(tempAction);
+					}
+				}
+
 				Console.WriteLine (line);
 				NumberOfLines++;
 			}
@@ -261,11 +349,17 @@ namespace OpenglTester
 			int tempDisposision;
 			bool tempIsGuard = false;
 			bool tempIsHooker = false;
-				
+
+
 			// reads in data for object position etc
 			tempFileName = file.ReadLine ();
 			NumberOfLines++;
 			ReturnedCharacter = new AI (tempFileName);
+
+			// reads in the characters name
+			ReturnedCharacter.Name =  ((FileStream) file.BaseStream).Name;
+			ReturnedCharacter.Name = Path.GetFileName(ReturnedCharacter.Name);
+			ReturnedCharacter.Name = ReturnedCharacter.Name.Remove(ReturnedCharacter.Name.Length-4,4);
 
 			// now load in the stats
 			line = file.ReadLine ();
@@ -296,6 +390,7 @@ namespace OpenglTester
 				ReturnedCharacter.PlayerDisposition = tempDisposision;
 				ReturnedCharacter.IsGuard = tempIsGuard;
 			}
+
 			ReturnedCharacter.IsHooker = tempIsHooker;
 			NumberOfLines++;
 			
@@ -346,35 +441,37 @@ namespace OpenglTester
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.NONE;
 
 				}
+
+
 				if ( StoryProgress.enum_EndingProgress.FOODTRUCK.ToString() == DialogueData[0])
 				{
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.FOODTRUCK;
-					tempDialogue.EndProgressPreReq.i_FOODTRUCK = Convert.ToInt32(DialogueData[1]);
+					tempDialogue.EndProgressPreReq.Tunnel = Convert.ToInt32(DialogueData[1]);
 				}
 				if ( StoryProgress.enum_EndingProgress.INSANE.ToString() == DialogueData[0])
 				{
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.INSANE;
-					tempDialogue.EndProgressPreReq.i_INSANE = Convert.ToInt32(DialogueData[1]);
+					tempDialogue.EndProgressPreReq.Insane = Convert.ToInt32(DialogueData[1]);
 				}
 				if ( StoryProgress.enum_EndingProgress.RAPE.ToString() == DialogueData[0])
 				{
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.RAPE;
-					tempDialogue.EndProgressPreReq.i_RAPE = Convert.ToInt32(DialogueData[1]);
+					tempDialogue.EndProgressPreReq.Rape = Convert.ToInt32(DialogueData[1]);
 				}
 				if ( StoryProgress.enum_EndingProgress.SLAYER.ToString() == DialogueData[0])
 				{
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.SLAYER;
-					tempDialogue.EndProgressPreReq.i_SLAYER = Convert.ToInt32(DialogueData[1]);
+					tempDialogue.EndProgressPreReq.Slayer = Convert.ToInt32(DialogueData[1]);
 				}
 				if ( StoryProgress.enum_EndingProgress.SUICIDE.ToString() == DialogueData[0])
 				{
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.SUICIDE;
-					tempDialogue.EndProgressPreReq.i_SUICIDE = Convert.ToInt32(DialogueData[1]);
+					tempDialogue.EndProgressPreReq.Suicide = Convert.ToInt32(DialogueData[1]);
 				}
 				if ( StoryProgress.enum_EndingProgress.TUNNEL.ToString() == DialogueData[0])
 				{
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.TUNNEL;
-					tempDialogue.EndProgressPreReq.i_TUNNEL = Convert.ToInt32(DialogueData[1]);
+					tempDialogue.EndProgressPreReq.Tunnel = Convert.ToInt32(DialogueData[1]);
 				}
 
 				// pre req point
@@ -408,42 +505,42 @@ namespace OpenglTester
 					{
 						StoryProgress tempStorydiag = new StoryProgress();
 						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.FOODTRUCK;
-						tempStorydiag.i_FOODTRUCK = 1;
+						tempStorydiag.Foodtruck = 1;
 						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
 					if ( StoryProgress.enum_EndingProgress.INSANE.ToString() == responses[1])
 					{
 						StoryProgress tempStorydiag = new StoryProgress();
 						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.INSANE;
-						tempStorydiag.i_INSANE = 1;
+						tempStorydiag.Insane = 1;
 						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
 					if ( StoryProgress.enum_EndingProgress.RAPE.ToString() == responses[1])
 					{
 						StoryProgress tempStorydiag = new StoryProgress();
 						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.RAPE;
-						tempStorydiag.i_RAPE = 1;
+						tempStorydiag.Rape = 1;
 						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
 					if ( StoryProgress.enum_EndingProgress.SLAYER.ToString() == responses[1])
 					{
 						StoryProgress tempStorydiag = new StoryProgress();
 						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.SLAYER;
-						tempStorydiag.i_SLAYER = 1;
+						tempStorydiag.Slayer = 1;
 						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
 					if ( StoryProgress.enum_EndingProgress.SUICIDE.ToString() == responses[1])
 					{
 						StoryProgress tempStorydiag = new StoryProgress();
 						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.SUICIDE;
-						tempStorydiag.i_SUICIDE = 1;
+						tempStorydiag.Suicide = 1;
 						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
 					if ( StoryProgress.enum_EndingProgress.TUNNEL.ToString() == responses[1])
 					{
 						StoryProgress tempStorydiag = new StoryProgress();
 						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.TUNNEL;
-						tempStorydiag.i_TUNNEL = 1;
+						tempStorydiag.Tunnel = 1;
 						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
 

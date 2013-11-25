@@ -13,8 +13,9 @@ namespace OpenglTester
 	public class CoinEmitter : Emitter
 	{
 		
-
-
+		private bool b_SwingLeft;
+		private float f_SwingTime;
+		private float f_HorizontalSpeed;
 		private int i_SkyHeight;
 		private int i_SkyWidth;
 		private int i_GroundHeight;
@@ -23,10 +24,11 @@ namespace OpenglTester
 		public CoinEmitter (int Height, int Width,int ground,int num, float time ):base( num,  time,  0, 359)
 		{
 			
-
+			b_SwingLeft = true;
+			f_SwingTime = 2.5f;
 			i_SkyHeight = Height;
 			i_SkyWidth = Width;
-
+			f_HorizontalSpeed = 50;
 			i_GroundHeight = ground;
 		}
 		
@@ -41,7 +43,7 @@ namespace OpenglTester
 				Particles[i].Position=new Vector2(pos_x,i_SkyHeight);
 				
 				Particles[i].Alive= true;
-				float DownSpeed = randnum.Next(-200,-60);
+				float DownSpeed = randnum.Next(-60,-10);
 				Particles [i].SetVelocity(new Vector2(0,DownSpeed));
 			}
 			i_NumActive = 1;
@@ -53,7 +55,10 @@ namespace OpenglTester
 			for (int i =0; i < i_ParticleNumber; i ++) {
 				if (i_NumActive > i) 
 				{
-					Particles [i].SetVelocity(new Vector2(Particles[i].GetVelocity().X,Particles[i].GetVelocity().Y));
+					if(b_SwingLeft)
+						Particles [i].SetVelocity(new Vector2(Particles[i].GetVelocity().X-f_HorizontalSpeed*fDeltaTime,Particles[i].GetVelocity().Y));
+					else
+						Particles [i].SetVelocity(new Vector2(Particles[i].GetVelocity().X+f_HorizontalSpeed*fDeltaTime,Particles[i].GetVelocity().Y));
 					
 					Particles [i].Update (fDeltaTime);
 				} 
@@ -78,8 +83,19 @@ namespace OpenglTester
 				
 			}
 			f_TotalTime += fDeltaTime;
-
-
+			f_SwingTime -= fDeltaTime;
+			
+			// check whether to reset the swing timer.
+			if (f_SwingTime < 0) 
+			{
+				f_SwingTime = 2.5f;
+				
+				// switch the swing
+				if(b_SwingLeft)
+					b_SwingLeft = false;
+				else
+					b_SwingLeft = true;
+			}
 			
 			
 			
