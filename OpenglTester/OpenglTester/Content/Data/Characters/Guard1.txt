@@ -1,0 +1,20 @@
+Guard4
+60
+NULL
+true
+false
+100
+70
+70
+70
+70
+Get going
+4
+NONE;0;10;Welcome to Shawskank Penitentiary. From here on in the state owns you.;1
+...:NONE:5
+NONE;0;10;You will be given your uniform which you will be expected to wear at all times.;1
+...:NONE:5
+NONE;0;10;You are expected to behave in a respectable maner to gaurds.;1
+...:NONE:5
+NONE;0;10;Any questions?;3
+No sir:FOODTRUCK:5,Whatever...:CRIPPLE:5,KAW KAW!!!:CRIPPLE:5

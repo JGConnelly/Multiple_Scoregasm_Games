@@ -456,10 +456,10 @@ namespace OpenglTester
 					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.INSANE;
 					tempDialogue.EndProgressPreReq.Insane = Convert.ToInt32(DialogueData[1]);
 				}
-				if ( StoryProgress.enum_EndingProgress.RAPE.ToString() == DialogueData[0])
+				if ( StoryProgress.enum_EndingProgress.CRIPPLE.ToString() == DialogueData[0])
 				{
-					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.RAPE;
-					tempDialogue.EndProgressPreReq.Rape = Convert.ToInt32(DialogueData[1]);
+					tempDialogue.EndProgressPreReq.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.CRIPPLE;
+					tempDialogue.EndProgressPreReq.Cripple = Convert.ToInt32(DialogueData[1]);
 				}
 				if ( StoryProgress.enum_EndingProgress.SLAYER.ToString() == DialogueData[0])
 				{
@@ -518,11 +518,11 @@ namespace OpenglTester
 						tempStorydiag.Insane = 1;
 						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
-					if ( StoryProgress.enum_EndingProgress.RAPE.ToString() == responses[1])
+					if ( StoryProgress.enum_EndingProgress.CRIPPLE.ToString() == responses[1])
 					{
 						StoryProgress tempStorydiag = new StoryProgress();
-						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.RAPE;
-						tempStorydiag.Rape = 1;
+						tempStorydiag.enum_EndingProgressThis =  StoryProgress.enum_EndingProgress.CRIPPLE;
+						tempStorydiag.Cripple = 1;
 						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
 					if ( StoryProgress.enum_EndingProgress.SLAYER.ToString() == responses[1])

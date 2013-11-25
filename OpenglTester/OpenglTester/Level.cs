@@ -73,7 +73,7 @@ namespace OpenglTester
 				TUNNEL,
 				SUICIDE,
 				FOODTRUCK,
-				RAPE,
+				CRIPPLE,
 				INSANE,
 				SLAYER
 

@@ -6,4 +6,6 @@ Door
 true
 Intro
 1000,600
-0
+1
+Guard1
+1600,610

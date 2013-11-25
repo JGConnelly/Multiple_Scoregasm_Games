@@ -48,6 +48,9 @@ namespace OpenglTester
 		string str_TextToDraw;
 		string str_ResponsesToDraw;
 		private bool PlayerResponded;
+		private bool CanRespond;
+
+
 
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
 						Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
@@ -303,37 +306,49 @@ namespace OpenglTester
 					}
 
 					// if the player selects an option
-					if(InputHandler.dlg1Pressed && Dialogues[0].TheResponses.Count>0)
+					if(InputHandler.dlg1Pressed && Dialogues[0].TheResponses.Count>0&&CanRespond)
 					{
 						str_TextToDraw = Dialogues[0].TheResponses[0];
 						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[0];
 						Dialogues.RemoveAt(0);
 						PlayerResponded = true;
+						CanRespond = false;
 					}
-					else if(InputHandler.dlg2Pressed&& Dialogues[0].TheResponses.Count>1){
+					else if(InputHandler.dlg2Pressed&& Dialogues[0].TheResponses.Count>1&&CanRespond){
 						str_TextToDraw =  Dialogues[0].TheResponses[1];
 						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[1];
 						Dialogues.RemoveAt(0);
 						PlayerResponded = true;
+						CanRespond = false;
 					}
-					else if(InputHandler.dlg3Pressed&& Dialogues[0].TheResponses.Count>2){
+					else if(InputHandler.dlg3Pressed&& Dialogues[0].TheResponses.Count>2&&CanRespond){
 						str_TextToDraw = Dialogues[0].TheResponses[2];
 						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[2];
 						Dialogues.RemoveAt(0);
 						PlayerResponded = true;
+						CanRespond = false;
 					}
-					else if(InputHandler.dlg4Pressed&& Dialogues[0].TheResponses.Count>3){
+					else if(InputHandler.dlg4Pressed&& Dialogues[0].TheResponses.Count>3&&CanRespond){
 						str_TextToDraw = Dialogues[0].TheResponses[3];
 						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[3];
 						Dialogues.RemoveAt(0);
 						PlayerResponded = true;
+						CanRespond = false;
 					}
+					if(!InputHandler.dlg1Pressed&&!InputHandler.dlg2Pressed&&!InputHandler.dlg3Pressed&&!InputHandler.dlg4Pressed)
+					{
+						CanRespond = true;
+					}
+
+
 				}
 				//actually add text to the list
 				if (b_CanDrawText) {
 					if(PlayerResponded)
 					{
+
 						PlayerResponded = false;
+
 						PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White, 2.2f);
 						PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255),2.2f);
 					}

@@ -168,7 +168,7 @@ namespace OpenglTester
 	public class StoryProgress
 	{
 		public const int i_NumberOfEndings = 6;
-		private int	i_TUNNEL,i_SUICIDE,	i_FOODTRUCK,i_RAPE,i_INSANE,i_SLAYER;
+		private int	i_TUNNEL,i_SUICIDE,	i_FOODTRUCK,i_CRIPPLE,i_INSANE,i_SLAYER;
 		public int[] Stats;
 		public enum enum_EndingProgress
 		{
@@ -176,7 +176,7 @@ namespace OpenglTester
 			TUNNEL,
 			SUICIDE,
 			FOODTRUCK,
-			RAPE,
+			CRIPPLE,
 			INSANE,
 			SLAYER
 		};
@@ -203,7 +203,7 @@ namespace OpenglTester
 			set {Stats[2]=value; }
 			get {return Stats[2];}
 		}
-		public int Rape
+		public int Cripple
 		{
 			set {Stats[3]=value; }
 			get {return Stats[3];}
