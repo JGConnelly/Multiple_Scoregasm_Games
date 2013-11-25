@@ -64,6 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
+    <None Include="Content\CellHallway.png" />
+    <None Include="Content\Odds and Ends Workspace.png" />
+    <None Include="Content\PlayersCell.png" />
+    <None Include="Content\PopupShadow.png" />
+    <None Include="Content\TokensCell.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

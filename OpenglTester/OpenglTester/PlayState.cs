@@ -20,7 +20,6 @@ namespace OpenglTester
 	{
 		static readonly PlayState playInstance = new PlayState();
 		Object playBG;
-		AI anAITest;
 
 		public static Player player;
 		SnowEmitter SnowFall;
@@ -38,9 +37,6 @@ namespace OpenglTester
 			// seting up the new player
 			player = new Player("YorkMay4","YorkMayCasual4",65,20,32f * 4);
 			player.Position = new Vector2(64,630);
-
-			anAITest = new AI("YorkMay4",65,2,128,false);
-			anAITest.Position = new Vector2(64,630);
 
 			SnowFall = new SnowEmitter(0,1920,1200,1000,10);
 			SnowFall.Initialise(0,0);
@@ -83,7 +79,7 @@ namespace OpenglTester
 			}
 			if (Keyboard.GetState ().IsKeyDown (Keys.P)) 
 			{
-				anAITest.SetDestination(true,new Vector2(anAITest.Position.X+100,0));
+
 			}
 
 			//press left bumper on the controller to go back to the splash screen
@@ -112,7 +108,7 @@ namespace OpenglTester
 			CurrentLevel.Update(dT);
 
 			player.Update(dT);
-			anAITest.Update(dT);
+
 			playBG.Update(dT);
 			SnowFall.Update(dT);
 
@@ -127,7 +123,7 @@ namespace OpenglTester
 			//CurrentLevel.Draw ();
 
 			player.Draw();
-			anAITest.Draw();
+
 			SnowFall.Draw();
 		}
 		
