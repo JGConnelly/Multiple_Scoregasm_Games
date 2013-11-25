@@ -209,7 +209,7 @@ namespace OpenglTester
 			
 			// Read the file and display it line by line.
 			System.IO.StreamReader file = 
-				new System.IO.StreamReader(BaseDirectory+"Player");
+				new System.IO.StreamReader(BaseDirectory+"Player.txt");
 			while((line = file.ReadLine()) != null)
 			{
 				Console.WriteLine (line);

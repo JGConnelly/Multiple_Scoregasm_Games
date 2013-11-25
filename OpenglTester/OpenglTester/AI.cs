@@ -47,6 +47,9 @@ namespace OpenglTester
 		string str_TextToDraw;
 		string str_ResponsesToDraw;
 
+		//AI Movement and such. WORKING ON THIS~!
+		//bool ShouldRun, Reached Destination
+		//vector2 destination
 
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
 						Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
