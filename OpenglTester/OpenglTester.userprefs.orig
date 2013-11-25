@@ -13,7 +13,7 @@
       <File FileName="OpenglTester\MenuState.cs" Line="30" Column="4" />
       <File FileName="OpenglTester\Level.cs" Line="56" Column="62" />
       <File FileName="OpenglTester\FileHandler.cs" Line="31" Column="28" />
-      <File FileName="OpenglTester\InteractableObject.cs" Line="20" Column="12" />
+      <File FileName="OpenglTester\InteractableObject.cs" Line="11" Column="2" />
 =======
   <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\FileHandler.cs">
     <Files>

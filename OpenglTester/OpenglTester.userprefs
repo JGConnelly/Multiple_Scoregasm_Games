@@ -2,23 +2,22 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="OpenglTester\FileHandler.cs">
     <Files>
-      <File FileName="OpenglTester\InputHandler.cs" Line="1" Column="1" />
-      <File FileName="OpenglTester\Player.cs" Line="1" Column="1" />
-      <File FileName="OpenglTester\PlayState.cs" Line="1" Column="1" />
-      <File FileName="OpenglTester\Level.cs" Line="1" Column="1" />
-      <File FileName="OpenglTester\AI.cs" Line="1" Column="1" />
-      <File FileName="OpenglTester\FileHandler.cs" Line="344" Column="1" />
-      <File FileName="OpenglTester\Game1.cs" Line="1" Column="1" />
-      <File FileName="OpenglTester\Content\Data\Levels\Intro.txt" Line="1" Column="1" />
-      <File FileName="OpenglTester\Content\Data\Characters\Hooker.txt" Line="1" Column="1" />
-      <File FileName="OpenglTester\Content\Data\Levels\PrisonIntro.txt" Line="1" Column="1" />
-      <File FileName="c:\Users\natasha.cooper\Desktop\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\AudioManager.cs" Line="1" Column="1" />
-      <File FileName="OpenglTester\MenuState.cs" Line="1" Column="1" />
-      <File FileName="OpenglTester\InteractableObject.cs" Line="1" Column="1" />
+      <File FileName="OpenglTester\InputHandler.cs" Line="27" Column="43" />
+      <File FileName="OpenglTester\Player.cs" Line="132" Column="6" />
+      <File FileName="OpenglTester\PlayState.cs" Line="125" Column="4" />
+      <File FileName="OpenglTester\Level.cs" Line="126" Column="1" />
+      <File FileName="OpenglTester\AI.cs" Line="14" Column="14" />
+      <File FileName="OpenglTester\FileHandler.cs" Line="200" Column="1" />
+      <File FileName="OpenglTester\Game1.cs" Line="171" Column="10" />
+      <File FileName="OpenglTester\Content\Data\Levels\Intro.txt" Line="9" Column="29" />
+      <File FileName="OpenglTester\Content\Data\Characters\Hooker.txt" Line="14" Column="53" />
+      <File FileName="OpenglTester\Content\Data\Levels\PrisonIntro.txt" Line="2" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="OpenglTester\FileHandler.cs" line="199" offsetX="534" offsetY="2232" expression="tempChar.Name" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
