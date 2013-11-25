@@ -218,7 +218,7 @@ namespace OpenglTester
 						int tempGameProg= 0;
 						float tempTime = 0.0f;
 						string tempCharName = "";
-
+						Vector2 tempPosition=new Vector2(0,0);
 						Level.Action.TypeOfCharStat enumTypeCharStat = Level.Action.TypeOfCharStat.NONE;
 						Level.Action.TypeOfGameStat enumTypeGameStat = Level.Action.TypeOfGameStat.NONE;
 
@@ -232,6 +232,7 @@ namespace OpenglTester
 						string[] strFullAction = line.Split(';'); 
 						string[] strFirstLine = strFullAction[0].Split(',');
 						string[] strThirdLine = strFullAction[2].Split(',');
+						string[] strForthLine = strFullAction[3].Split(',');
 
 						if( strFirstLine[0] == "CHARSTAT")
 						{
@@ -282,9 +283,11 @@ namespace OpenglTester
 						}
 						Affected =strThirdLine[1];
 
+						// the new given position
+						tempPosition = new Vector2(Convert.ToInt32( strForthLine[0]),Convert.ToInt32( strForthLine[1]));
 						// set up now using the data
 						tempAction = new Level.Action(tempCharStat,tempGameProg,tempCharName,enumTypeCharStat,enumTypeGameStat);
-						tempAction.SetupAction(tempTypeOfAction,tempEqual,tempLess,tempGreater,tempTime,Affected);
+						tempAction.SetupAction(tempTypeOfAction,tempEqual,tempLess,tempGreater,tempTime,Affected,tempPosition);
 
 						// add it to the list
 						ret.AddAction(tempAction);
