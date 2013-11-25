@@ -1,13 +1,9 @@
 Level1BackgroundUpdate
 SNOW
-1
-Door
-1800,650
-true
-PrisonIntro
-1000,600
+0
 1
 Hooker
 1600,610
-1
-CHARSTAT,Hooker,PLAYERDIS,64,>;3.0;CHANGEROOM,PrisonIntro
+2
+CHARSTAT,Hooker,PLAYERDIS,64,>;10.0;CHANGEROOM,PrisonIntro
+CHARSTAT,Hooker,PLAYERDIS,64,>;3.0;SPAWN,Cop

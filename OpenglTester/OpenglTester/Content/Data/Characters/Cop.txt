@@ -1,0 +1,12 @@
+Guard4
+60
+NULL
+true
+false
+100
+50
+50
+50
+50
+Your coming with me
+0
