@@ -1,6 +1,6 @@
 #region Using Statements
 using System;
-
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.GamerServices;
@@ -168,13 +168,8 @@ namespace OpenglTester
 	public class StoryProgress
 	{
 		public const int i_NumberOfEndings = 6;
-		public int	i_TUNNEL,
-		i_SUICIDE,
-		i_FOODTRUCK,
-		i_RAPE,
-		i_INSANE,
-		i_SLAYER;
-
+		private int	i_TUNNEL,i_SUICIDE,	i_FOODTRUCK,i_RAPE,i_INSANE,i_SLAYER;
+		public int[] Stats;
 		public enum enum_EndingProgress
 		{
 			NONE,
@@ -188,14 +183,40 @@ namespace OpenglTester
 		public enum_EndingProgress enum_EndingProgressThis;
 		public StoryProgress()
 		{
-			i_TUNNEL = 0;
-			i_SUICIDE = 0;
-			i_FOODTRUCK=0;
-			i_RAPE=0;
-			i_INSANE =0;
-			i_SLAYER= 0;
-			enum_EndingProgressThis = new enum_EndingProgress();
 
+			enum_EndingProgressThis = new enum_EndingProgress();
+			Stats = new int[i_NumberOfEndings];
+		}
+
+		public int Tunnel
+		{
+			set {Stats[0]=value; }
+			get {return Stats[0];}
+		}
+		public int Suicide
+		{
+			set {Stats[1]=value; }
+			get {return Stats[1];}
+		}
+		public int Foodtruck
+		{
+			set {Stats[2]=value; }
+			get {return Stats[2];}
+		}
+		public int Rape
+		{
+			set {Stats[3]=value; }
+			get {return Stats[3];}
+		}
+		public int Insane
+		{
+			set {Stats[4]=value; }
+			get {return Stats[4];}
+		}
+		public int Slayer
+		{
+			set {Stats[5]=value; }
+			get {return Stats[5];}
 		}
 
 

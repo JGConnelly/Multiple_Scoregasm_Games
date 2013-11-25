@@ -33,6 +33,7 @@ namespace OpenglTester
 			talk
 		};
 
+		private string str_Name;
 		private int i_PlayerDisposition;
 		private bool b_IsGuard;
 		private int i_HitPoints;
@@ -48,6 +49,7 @@ namespace OpenglTester
 		bool b_CanDrawText;
 		string str_TextToDraw;
 		string str_ResponsesToDraw;
+		private bool PlayerResponded;
 
 		//animation parameters for the AIs
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
@@ -120,6 +122,7 @@ namespace OpenglTester
 
 
 
+
 			public Dialogue()
 			{
 				EndProgressPreReq= new StoryProgress();
@@ -136,10 +139,17 @@ namespace OpenglTester
 		{
 			Dialogues = new List<Dialogue>();
 			str_NoDialogueLine = "Go away";
+			PlayerResponded = false;
 		}
 
 
 		//accessors and mutators
+
+		public string Name
+		{
+			set {str_Name=value; }
+			get {return str_Name;}
+		}
 		public int PlayerDisposition
 		{
 			set {i_PlayerDisposition=value; }
@@ -473,26 +483,43 @@ namespace OpenglTester
 					if(InputHandler.dlg1Pressed && Dialogues[0].TheResponses.Count>0)
 					{
 						str_TextToDraw = Dialogues[0].TheResponses[0];
+						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[0];
 						Dialogues.RemoveAt(0);
+						PlayerResponded = true;
 					}
 					else if(InputHandler.dlg2Pressed&& Dialogues[0].TheResponses.Count>1){
 						str_TextToDraw =  Dialogues[0].TheResponses[1];
+						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[1];
 						Dialogues.RemoveAt(0);
+						PlayerResponded = true;
 					}
 					else if(InputHandler.dlg3Pressed&& Dialogues[0].TheResponses.Count>2){
 						str_TextToDraw = Dialogues[0].TheResponses[2];
+						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[2];
 						Dialogues.RemoveAt(0);
+						PlayerResponded = true;
 					}
 					else if(InputHandler.dlg4Pressed&& Dialogues[0].TheResponses.Count>3){
 						str_TextToDraw = Dialogues[0].TheResponses[3];
+						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[3];
 						Dialogues.RemoveAt(0);
+						PlayerResponded = true;
 					}
 				}
 				//actually add text to the list
 				if (b_CanDrawText) {
-					PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White);
-					PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255));
-					b_CanDrawText = false;
+					if(PlayerResponded)
+					{
+						PlayerResponded = false;
+						PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White, 2.2f);
+						PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255),2.2f);
+					}
+					else
+					{
+						PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White, 0.2f);
+						PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255),0.2f);
+						b_CanDrawText = false;
+					}
 				}
 			}
 			else

@@ -10,12 +10,15 @@ namespace OpenglTester
 
 		// contains a few objects(sprites ) for interaction ?
 		Object obj_ThisObject;
-
+		public Emitter LevelEmitter;
+		
+		//SnowFall = new SnowEmitter(0,1920,1200,1000,10);
+		//SnowFall.Initialise(0,0);
 		private List<String> str_Exits;
 
 
 		private List<InteractableObject> obj_InteractableObjects;
-		private List<AI> ai_Characters;
+		public List<AI> ai_Characters;
 
 		private SpriteFont TheFont;
 		private const string FontUsed = "FontyFony";
@@ -45,8 +48,147 @@ namespace OpenglTester
 			}
 		}
 		private List<TextToScreen> OnScreenWords;
+
+		// the ingame actions in the game that take place
+		// which are read in the FileHandler class
+		public class Action
+		{
+			int CharStat; // a characters stat check
+			int ProgStat;// a game progress stat check
+
+
+			string Character; // Which character
+
+			public enum TypeOfCharStat
+			{
+				NONE,
+				PLAYERDIS
+
+			}
+			public TypeOfCharStat e_TypeOfCharStat;
+
+			public enum TypeOfGameStat
+			{
+				NONE,
+				TUNNEL,
+				SUICIDE,
+				FOODTRUCK,
+				RAPE,
+				INSANE,
+				SLAYER
+
+			}
+			public TypeOfGameStat e_TypeOfGameStat;
+
+			//equal to less then etc
+			bool	comp_EQUAL;
+			bool	comp_LESS;
+			bool	comp_GREATER;
+			public enum TypeOfAction
+			{
+				SPAWN,
+				REMOVE,
+				CHANGEROOM
+
+			};
+			public TypeOfAction e_TypeOfAction;
+			string str_ObjectAffected;
+			float TimeBetween;
+			bool ConditionMet;
+
+			public Action(int chara, int gameprog, string charname, TypeOfCharStat  charstat,TypeOfGameStat  gamestat)
+			{
+				ConditionMet = false;
+				CharStat= chara;
+				ProgStat = gameprog;
+				Character = charname;
+				e_TypeOfCharStat  = charstat;
+				e_TypeOfGameStat = gamestat;
+			}
+			public void  SetupAction (TypeOfAction action, bool equal, bool less, bool greater, float time,string affected)
+			{
+				ConditionMet = false;
+				e_TypeOfAction = action;
+				comp_EQUAL = equal;
+				comp_LESS = less;
+				comp_GREATER = greater;
+				TimeBetween = time;
+				str_ObjectAffected = affected;
+			}
+			public void Update (float deltaTime)
+			{
+				// check condition
+				for (int ai = 0; ai < PlayState.GetInstance().CurrentLevel.ai_Characters.Count; ai++) {
+					// check if its a character stat
+					if (PlayState.GetInstance ().CurrentLevel.ai_Characters[ai].Name == Character) {
+						if(e_TypeOfCharStat == TypeOfCharStat.PLAYERDIS){
+							// now check equal to etc
+							if(comp_GREATER)
+							{
+								if (PlayState.GetInstance ().CurrentLevel.ai_Characters[ai].PlayerDisposition > CharStat)
+								{ConditionMet = true;}
+							}
+							else if(comp_EQUAL)
+							{
+								if (PlayState.GetInstance ().CurrentLevel.ai_Characters[ai].PlayerDisposition == CharStat)
+								{ConditionMet = true;}
+							}
+							else if(comp_LESS)
+							{
+								if (PlayState.GetInstance ().CurrentLevel.ai_Characters[ai].PlayerDisposition < CharStat)
+								{ConditionMet = true;}
+							}
+
+						}
+
+					}
+					// check if its a game/ story progression stat
+					else if(PlayState.GetInstance().CurrentProgress.enum_EndingProgressThis.ToString()  == e_TypeOfGameStat.ToString()&&PlayState.GetInstance().CurrentProgress.enum_EndingProgressThis.ToString()!= "NONE")
+					{
+						int tempIndex = PlayState.GetInstance().CurrentProgress.enum_EndingProgressThis.GetHashCode();
+						if(PlayState.GetInstance().CurrentProgress.Stats[tempIndex] >= ProgStat)
+						{
+							ConditionMet = true;
+						}
+					}
+
+				}
+
+				//when the condition is met do it
+				if (ConditionMet) 
+				{
+					if(TimeBetween<=0)
+					{
+						if(e_TypeOfAction == TypeOfAction.SPAWN)
+						{
+							//load in and add a new character
+							PlayState.GetInstance().CurrentLevel.AddCharacter(PlayState.GetInstance().fileManager.LoadCharacter(str_ObjectAffected));
+						}
+						if(e_TypeOfAction == TypeOfAction.REMOVE)
+						{
+							for (int ai = 0; ai < PlayState.GetInstance().CurrentLevel.ai_Characters.Count; ai++)
+							{
+								if(PlayState.GetInstance().CurrentLevel.ai_Characters[ai].Name == str_ObjectAffected)
+									PlayState.GetInstance().CurrentLevel.ai_Characters.RemoveAt(ai);
+								break;
+							}
+						}
+						if(e_TypeOfAction == TypeOfAction.CHANGEROOM)
+						{
+							PlayState.GetInstance().CurrentLevel = PlayState.GetInstance().fileManager.LoadLevel(str_ObjectAffected);
+						}
+
+					}
+
+					TimeBetween -= deltaTime;
+				}
+			}
+		}
+
+		public List<Action> Actions;
 		// progression stats
 		//private int i_
+		
 		public Level ()
 		{
 			obj_InteractableObjects = new List<InteractableObject>{};
@@ -54,6 +196,7 @@ namespace OpenglTester
 			ai_Characters = new List<AI>{};
 			OnScreenWords = new List<TextToScreen>();
 			TheFont = Game1.contentManager.Load<SpriteFont>(FontUsed);
+			Actions = new List<Action>();
 		}
 		public Level ( List<String> Exits , List<InteractableObject> intObjects)
 		{
@@ -62,16 +205,21 @@ namespace OpenglTester
 			OnScreenWords = new List<TextToScreen>();
 			obj_InteractableObjects = intObjects;
 			TheFont = Game1.contentManager.Load<SpriteFont>(FontUsed);
+			Actions = new List<Action>();
+		
 		}
 		public void SetImage(string src)
 		{
 			obj_ThisObject = new Object(src);
 			//obj_ThisObject.GenerateAlpha();
 		}
+		public void AddAction (Action act)
+		{
+			Actions.Add(act);
+		}
 		public void AddObject(InteractableObject intObj)
 		{
 			obj_InteractableObjects.Add(intObj);
-
 		}
 		/// <summary>
 		/// Adds the exit.
@@ -111,10 +259,16 @@ namespace OpenglTester
 			}
 
 			//text
-			for (int t = 0; t < OnScreenWords.Count; t++) 
-			{
-				OnScreenWords[t].TimeOnScreen -= DeltaT;
+			for (int t = 0; t < OnScreenWords.Count; t++) {
+				OnScreenWords [t].TimeOnScreen -= DeltaT;
 			}
+
+			//
+			for (int a = 0; a < Actions.Count; a++) {
+				Actions[a].Update(DeltaT);
+			}
+			LevelEmitter.Update(DeltaT);
+
 		}
 		public void Draw ()
 		{
@@ -149,7 +303,7 @@ namespace OpenglTester
 				ai_Characters [ais].Draw ();
 			}
 
-
+			LevelEmitter.Draw();
 
 		}
 		public void DrawText (String words, Vector2 pos, Color col , float time = 2f)
