@@ -27,7 +27,7 @@ namespace OpenglTester
 			//TODO: load the backgrounds and buttons and stuff here
 			splashBG = new Object("newSplash");
 
-			CoinFall = new CoinEmitter(0,1920,1200,1000,10);
+			CoinFall = new CoinEmitter(-50,1920,1200,1000,10);
 			CoinFall.Initialise(0,0);
 		}
 		

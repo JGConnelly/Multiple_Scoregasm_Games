@@ -1,3 +1,7 @@
+//AI.cs
+//Tash
+//Controls the behaviour of NPCs
+
 
 using System;
 
@@ -13,7 +17,7 @@ namespace OpenglTester
 	{
 		enum Action
 		{
-			//stand,
+			stand,
 			idle,
 			walk,
 			run,
@@ -27,10 +31,9 @@ namespace OpenglTester
 			fall,
 			fallen,
 			talk
-			//talk,
-			//die
 		};
 
+		private string str_Name;
 		private int i_PlayerDisposition;
 		private bool b_IsGuard;
 		private int i_HitPoints;
@@ -46,8 +49,9 @@ namespace OpenglTester
 		bool b_CanDrawText;
 		string str_TextToDraw;
 		string str_ResponsesToDraw;
+		private bool PlayerResponded;
 
-
+		//animation parameters for the AIs
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
 						Run = new AnimationInfo(1,16,2), Punch = new AnimationInfo(23,6,1),
 							Sneak = new AnimationInfo(30,6,4),Crouch = new AnimationInfo(29,1,1),
@@ -63,7 +67,24 @@ namespace OpenglTester
 
 		private string str_NoDialogueLine;
 
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="OpenglTester.AI"/> class.
+		/// </summary>
+		/// <param name='imagePath'>
+		/// Image path.
+		/// </param>
+		/// <param name='numberOfFrames'>
+		/// Number of frames.
+		/// </param>
+		/// <param name='timeToComplete'>
+		/// Time to complete.
+		/// </param>
+		/// <param name='frameSize'>
+		/// Frame size.
+		/// </param>
+		/// <param name='a_isHooker'>
+		/// If set to <c>true</c> is hooker.
+		/// </param>
 		public AI(string imagePath , int numberOfFrames , int timeToComplete,float frameSize, bool a_isHooker = false):base ( imagePath , numberOfFrames ,  timeToComplete, frameSize)
 		{
 			b_IsHooker = a_isHooker;
@@ -80,6 +101,10 @@ namespace OpenglTester
 			//Scale = new Vector2 (4,4);
 		}
 
+		///
+		///The Dialogue class
+		/// A nested class inside the AI class
+		/// 
 		public class Dialogue
 		{
 			// the pre req for each dialogue options
@@ -97,6 +122,7 @@ namespace OpenglTester
 
 
 
+
 			public Dialogue()
 			{
 				EndProgressPreReq= new StoryProgress();
@@ -108,20 +134,22 @@ namespace OpenglTester
 
 		};
 		public List<Dialogue> Dialogues;
+
 		public AI(string imagePath ):base ( imagePath )
 		{
 			Dialogues = new List<Dialogue>();
 			str_NoDialogueLine = "Go away";
-
-
+			PlayerResponded = false;
 		}
 
 
 		//accessors and mutators
 
-	
-
-
+		public string Name
+		{
+			set {str_Name=value; }
+			get {return str_Name;}
+		}
 		public int PlayerDisposition
 		{
 			set {i_PlayerDisposition=value; }
@@ -170,7 +198,12 @@ namespace OpenglTester
 		}
 		//end of accesors and mutators
 
-
+		/// <summary>
+		/// Update the specified DeltaTime.
+		/// </summary>
+		/// <param name='DeltaTime'>
+		/// Delta time.
+		/// </param>
 		public override void Update(float DeltaTime)
 		{
 			DetermineAction(DeltaTime);
@@ -178,17 +211,126 @@ namespace OpenglTester
 			
 			base.Update(DeltaTime);
 		}
-
+		/// <summary>
+		/// Draw this instance.
+		/// </summary>
 		public override void Draw ()
 		{
 			base.Draw ();
 
 		}
 
+		/// <summary>
+		/// Sets the action to block.
+		/// </summary>
+		public void ActionBlock ()
+		{
+			CurrentAction = Action.block;
+		}
+		/// <summary>
+		/// Sets the action to crouch.
+		/// </summary>
+		public void ActionCrouch ()
+		{
+			CurrentAction = Action.crouch;
+		}
+		/// <summary>
+		/// Sets the action to idle.
+		/// </summary>
+		public void ActionIdle ()
+		{
+			CurrentAction = Action.idle;
+		}
+		/// <summary>
+		/// Sets the action to jump.
+		/// </summary>
+		public void ActionJump ()
+		{
+			CurrentAction = Action.jump;
+		}
+		/// <summary>
+		/// Sets the action to punch.
+		/// </summary>
+		public void ActionPunch()
+		{
+			CurrentAction = Action.punch;
+		}
+		/// <summary>
+		/// Sets the action to shiv.
+		/// </summary>
+		public void ActionShiv ()
+		{
+			CurrentAction = Action.shiv;
+		}
+		/// <summary>
+		/// Sets the action to fall.
+		/// </summary>
+		public void ActionFall()
+		{
+			CurrentAction = Action.fall;
+		}
+		/// <summary>
+		/// Sets the action to run.
+		/// </summary>
+		public void ActionRun ()
+		{
+			CurrentAction = Action.run;
+		}
+		/// <summary>
+		/// Sets the action to walk.
+		/// </summary>
+		public void ActionWalk ()
+		{
+			CurrentAction = Action.walk;
+		}
+		/// <summary>
+		/// Sets the action to Talk.
+		/// </summary>
+		public void ActionTalk()
+		{
+			CurrentAction = Action.talk;
+		}
+		/// <summary>
+		/// Sets the action to sneak.
+		/// </summary>
+		public void ActionSneak()
+		{
+			CurrentAction = Action.sneak;
+		}
+
+		public void WalkTo (float xPosition)
+		{
+			
+			//if destination is on the left of the AI
+			//turn left, walk to it, until it reaches or is on the left of the destination
+			//then change state to idle
+			if (xPosition < v2_Position.X) {
+				b_FlipImage = true;
+				CurrentAction = Action.walk;
+				if (v2_Position.X <= xPosition)
+				{
+					CurrentAction = Action.idle;
+				}
+			}
+			//if destination is on the right of the AI
+			//turn right, walk to it, until it reaches or is on the left of the destination
+			//then change state to idle
+			if (xPosition > v2_Position.X) {
+				b_FlipImage = false;
+				CurrentAction = Action.walk;
+				if (v2_Position.X >= xPosition)
+				{
+					CurrentAction = Action.idle;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Determines the animation appropriate for the currentAction. Uses a switch as a crude state manager.
+		/// </summary>
 		void DetermineAnimation()
 		{
 
-			
 			switch (CurrentAction)
 			{
 			case Action.idle:
@@ -203,9 +345,37 @@ namespace OpenglTester
 				break;
 			case Action.walk:
 				CurrentAnimation = Walk;
+				//keep moving until hit edge of screen
+				if ((v2_Position.X > 64) && (v2_Position.X < 1920 - 64))
+				{
+					if (b_FlipImage)
+					{
+						v2_Position.X--;
+					}
+					else
+					{
+						v2_Position.X++;
+					}
+				}
+				else //if hit edge of screen, turn around
+					b_FlipImage = (b_FlipImage) ? false : true;
 				break;
 			case Action.run:
 				CurrentAnimation = Run;
+				//keep moving until hit edge of screen
+				if ((v2_Position.X > 64) && (v2_Position.X < 1920 - 64))
+				{
+					if (b_FlipImage)
+					{
+						v2_Position.X -= 2;
+					}
+					else
+					{
+						v2_Position.X += 2;
+					}
+				}
+				else //if hit edge of screen, turn around
+					b_FlipImage = (b_FlipImage) ? false : true;
 				break;
 			case Action.crouch:
 				CurrentAnimation = Crouch;
@@ -215,12 +385,16 @@ namespace OpenglTester
 				break;
 			case Action.punch:
 				CurrentAnimation = Punch;
+				//when to stop punching? after 1 punch?
 				break;
 			case Action.shiv:
 				CurrentAnimation = Shiv;
+				//when to stop shivving? ater 1 shiv?
 				break;
 			case Action.jump:
 				CurrentAnimation = Jumping;
+				//has to actually jump up
+				//has to swap to jumpland after how long? when Y = floor level?
 				break;
 			case Action.jumpland:
 				CurrentAnimation = JumpLand;
@@ -234,7 +408,7 @@ namespace OpenglTester
 					CurrentAnimation = pTalk;
 				}
 				else
-					CurrentAnimation = JumpLand;
+					CurrentAnimation = Idle; //non-prostitute AI has no talk animation, so will just stand still
 				break;
 			case Action.fall:
 				if (b_IsHooker)
@@ -276,11 +450,17 @@ namespace OpenglTester
 			}
 		}
 
+		/// <summary>
+		/// Determines the action the AI should be doing based on the player's interaction, or based on previous states
+		/// </summary>
+		/// <param name='dT'>
+		/// delta time
+		/// </param>
 		void DetermineAction(float dT)
 		{
 			LastAction = CurrentAction;
 			//is the ai near the player?
-			if(CheckNearCollision(PlayState.player) && (CurrentAction != Action.fallen))
+			if(CheckNearCollision(PlayState.player) && (CurrentAction != Action.fallen)) //do nothing if AI is dead
 			{
 				CurrentAction = Action.talk;
 				if(PlayState.player.Position.X < Position.X )
@@ -288,7 +468,7 @@ namespace OpenglTester
 				else
 					b_FlipImage = false;
 
-				// do text and shiz
+				// do text
 				if(Dialogues.Count >0)
 				{
 					b_CanDrawText = true;
@@ -303,32 +483,49 @@ namespace OpenglTester
 					if(InputHandler.dlg1Pressed && Dialogues[0].TheResponses.Count>0)
 					{
 						str_TextToDraw = Dialogues[0].TheResponses[0];
+						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[0];
 						Dialogues.RemoveAt(0);
+						PlayerResponded = true;
 					}
 					else if(InputHandler.dlg2Pressed&& Dialogues[0].TheResponses.Count>1){
 						str_TextToDraw =  Dialogues[0].TheResponses[1];
+						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[1];
 						Dialogues.RemoveAt(0);
+						PlayerResponded = true;
 					}
 					else if(InputHandler.dlg3Pressed&& Dialogues[0].TheResponses.Count>2){
 						str_TextToDraw = Dialogues[0].TheResponses[2];
+						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[2];
 						Dialogues.RemoveAt(0);
+						PlayerResponded = true;
 					}
 					else if(InputHandler.dlg4Pressed&& Dialogues[0].TheResponses.Count>3){
 						str_TextToDraw = Dialogues[0].TheResponses[3];
+						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[3];
 						Dialogues.RemoveAt(0);
+						PlayerResponded = true;
 					}
 				}
 				//actually add text to the list
 				if (b_CanDrawText) {
-					PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White);
-					PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255));
-					b_CanDrawText = false;
+					if(PlayerResponded)
+					{
+						PlayerResponded = false;
+						PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White, 2.2f);
+						PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255),2.2f);
+					}
+					else
+					{
+						PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White, 0.2f);
+						PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255),0.2f);
+						b_CanDrawText = false;
+					}
 				}
-
 			}
 			else
 				CurrentAction = Action.idle;
 
+			//AI will always block if the player punches, except hooker will fall
 			if(CanPunch(PlayState.player) && ((PlayState.player.GetCurrentAction() == Player.Action.punch) || (PlayState.player.GetCurrentAction() == Player.Action.shiv)))
 			{
 				if(b_IsHooker)
@@ -337,6 +534,7 @@ namespace OpenglTester
 					CurrentAction = Action.block;
 			}
 
+			//if the player was just falling, and is far enough from the player, change to fallen state
 			if(LastAction == Action.fall && !CheckExactCollision(PlayState.player))
 			{
 				CurrentAction = Action.fallen;
