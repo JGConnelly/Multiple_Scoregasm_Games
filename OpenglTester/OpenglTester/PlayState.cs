@@ -46,7 +46,7 @@ namespace OpenglTester
 		}
 		public void ReturnToMenu()
 		{
-			ChangeState(Game1.gameManager, MenuState.GetInstance());
+			ChangeState(Game1.gameManager, WinState.GetInstance());
 		}
 		public Level GetCurrentLevel ()
 		{

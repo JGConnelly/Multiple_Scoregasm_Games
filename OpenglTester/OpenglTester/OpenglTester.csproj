@@ -63,6 +63,7 @@
     <Compile Include="Emitters\CoinEmitter.cs" />
     <Compile Include="CreditsState.cs" />
     <Compile Include="HowState.cs" />
+    <Compile Include="WinState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -294,6 +295,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\howImg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\win.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
