@@ -26,6 +26,12 @@ namespace OpenglTester
 			b_NeverDies = false;
 			//GenerateAlpha();
 		}
+		public Particle (string imagePath,int numframes,float completeTime,float frameSize):base( imagePath, numframes, completeTime, frameSize)
+		{
+			b_NeverDies = false;
+		
+			//GenerateAlpha();
+		}
 
 		// mutators and accesors 
 		public void setRotationVel (float Rot, float RotVel)

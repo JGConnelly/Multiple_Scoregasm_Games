@@ -44,12 +44,17 @@ namespace OpenglTester
 		private Action CurrentAction;
 		private Action LastAction;
 		private bool b_IsHooker;
+		private bool b_KnockingOut;
+		private bool b_KnockedOut;
 
 		// text stahhhff
 		bool b_CanDrawText;
 		string str_TextToDraw;
 		string str_ResponsesToDraw;
 		private bool PlayerResponded;
+		private bool CanRespond;
+
+
 
 		//animation parameters for the AIs
 		AnimationInfo Idle = new AnimationInfo(0,1,1), Walk = new AnimationInfo(17,6,4), 
@@ -97,6 +102,8 @@ namespace OpenglTester
 			SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
 			Dialogues = new List<Dialogue>();
 			str_NoDialogueLine = "Go away";
+			bool b_KnockingOut = false;
+			bool b_KnockedOut = false;
 			//GenerateAlpha();
 			//Scale = new Vector2 (4,4);
 		}
@@ -430,7 +437,15 @@ namespace OpenglTester
 				if (b_IsHooker)
 				{
 					CurrentAnimation = pFallen;
+					b_KnockingOut = true;
+					if(!b_KnockedOut)
+					{
+						PlayerDisposition = 0;
+						b_KnockedOut = true;
+					}
+
 				}
+
 				break;
 			default:
 				if (b_IsHooker)
@@ -480,37 +495,53 @@ namespace OpenglTester
 					}
 
 					// if the player selects an option
-					if(InputHandler.dlg1Pressed && Dialogues[0].TheResponses.Count>0)
+					if(InputHandler.dlg1Pressed && Dialogues[0].TheResponses.Count>0&&CanRespond)
 					{
 						str_TextToDraw = Dialogues[0].TheResponses[0];
 						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[0];
+						PlayState.GetInstance().CurrentProgress+= Dialogues[0].ResponseEndingProg[0];
 						Dialogues.RemoveAt(0);
 						PlayerResponded = true;
+						CanRespond = false;
 					}
-					else if(InputHandler.dlg2Pressed&& Dialogues[0].TheResponses.Count>1){
+					else if(InputHandler.dlg2Pressed&& Dialogues[0].TheResponses.Count>1&&CanRespond){
 						str_TextToDraw =  Dialogues[0].TheResponses[1];
 						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[1];
+						PlayState.GetInstance().CurrentProgress+= Dialogues[0].ResponseEndingProg[1];
 						Dialogues.RemoveAt(0);
 						PlayerResponded = true;
+						CanRespond = false;
 					}
-					else if(InputHandler.dlg3Pressed&& Dialogues[0].TheResponses.Count>2){
+					else if(InputHandler.dlg3Pressed&& Dialogues[0].TheResponses.Count>2&&CanRespond){
 						str_TextToDraw = Dialogues[0].TheResponses[2];
 						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[2];
+						PlayState.GetInstance().CurrentProgress+= Dialogues[0].ResponseEndingProg[2];
 						Dialogues.RemoveAt(0);
 						PlayerResponded = true;
+						CanRespond = false;
 					}
-					else if(InputHandler.dlg4Pressed&& Dialogues[0].TheResponses.Count>3){
+					else if(InputHandler.dlg4Pressed&& Dialogues[0].TheResponses.Count>3&&CanRespond){
 						str_TextToDraw = Dialogues[0].TheResponses[3];
 						i_PlayerDisposition += Dialogues[0].ResponseEndingPlayerStat[3];
+						PlayState.GetInstance().CurrentProgress+= Dialogues[0].ResponseEndingProg[3];
 						Dialogues.RemoveAt(0);
 						PlayerResponded = true;
+						CanRespond = false;
 					}
+					if(!InputHandler.dlg1Pressed&&!InputHandler.dlg2Pressed&&!InputHandler.dlg3Pressed&&!InputHandler.dlg4Pressed)
+					{
+						CanRespond = true;
+					}
+
+
 				}
 				//actually add text to the list
 				if (b_CanDrawText) {
 					if(PlayerResponded)
 					{
+
 						PlayerResponded = false;
+
 						PlayState.GetInstance ().GetCurrentLevel ().DrawText (str_TextToDraw, new Vector2 ( 40,1080 - (1080 / 5)),Color.White, 2.2f);
 						PlayState.GetInstance ().GetCurrentLevel ().DrawText ("\n"+str_ResponsesToDraw,new Vector2 ( 40,1080 - (1080 / 5)),new Color(0,0,255),2.2f);
 					}
@@ -547,6 +578,8 @@ namespace OpenglTester
 
 	
 		}
+
+
 	}
 }
 
