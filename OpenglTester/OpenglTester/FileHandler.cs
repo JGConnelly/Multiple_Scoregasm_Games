@@ -322,6 +322,10 @@ namespace OpenglTester
 						{
 							tempTypeOfAction = Level.Action.TypeOfAction.CHANGEOUTFIT;
 						}
+						if(strThirdLine[0] ==Level.Action.TypeOfAction.QUIT.ToString())
+						{
+							tempTypeOfAction = Level.Action.TypeOfAction.QUIT;
+						}
 						Affected =strThirdLine[1];
 
 						// the new given position

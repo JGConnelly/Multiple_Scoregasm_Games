@@ -43,8 +43,10 @@ namespace OpenglTester
 			CurrentLevel = fileManager.LoadLevel(thisLevel);
 			CurrentProgress = new StoryProgress();
 
-
-
+		}
+		public void ReturnToMenu()
+		{
+			ChangeState(Game1.gameManager, MenuState.GetInstance());
 		}
 		public Level GetCurrentLevel ()
 		{

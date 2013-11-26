@@ -7,5 +7,6 @@ true
 CellHallway
 300,630
 0
-1
+2
 PROGSTAT,TUNNEL,4,>;0.0;SPAWN,Tunnel;1300,700
+CHARSTAT,Tunnel,PLAYERDIS,65,>;0.0;QUIT,Player;0,0

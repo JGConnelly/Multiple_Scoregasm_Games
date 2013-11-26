@@ -89,7 +89,8 @@ namespace OpenglTester
 				SPAWN,
 				REMOVE,
 				CHANGEROOM,
-				CHANGEOUTFIT
+				CHANGEOUTFIT,
+				QUIT
 
 			};
 			public TypeOfAction e_TypeOfAction;
@@ -206,7 +207,9 @@ namespace OpenglTester
 							//load in and add a new character
 							PlayState.GetInstance().CurrentLevel.AddCharacter(PlayState.GetInstance().fileManager.LoadCharacter(str_ObjectAffected));
 							PlayState.GetInstance().CurrentLevel.ai_Characters[
-							PlayState.GetInstance().CurrentLevel.ai_Characters.Count-1].Position = v2_NewPosition;
+								PlayState.GetInstance().CurrentLevel.ai_Characters.Count-1].Position = v2_NewPosition;
+							PlayState.GetInstance().CurrentLevel.ai_Characters[
+							    PlayState.GetInstance().CurrentLevel.ai_Characters.Count-1].Name = str_ObjectAffected;
 						}
 						if(e_TypeOfAction == TypeOfAction.REMOVE)
 						{
@@ -232,6 +235,10 @@ namespace OpenglTester
 							{
 								PlayState.player.PrisonOutfit = true;
 							}
+						}
+						if(e_TypeOfAction == TypeOfAction.QUIT)
+						{
+							PlayState.GetInstance().ReturnToMenu();
 						}
 						b_Completed =true;
 
