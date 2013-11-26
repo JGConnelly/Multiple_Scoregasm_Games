@@ -10,6 +10,6 @@ false
 50
 Crap food huh?.
 1
-NONE;0;55;Hey man if you're hungry head to the cafeteria.;3
-Thanks man:TUNNEL:5,No thanks:TUNNEL:0,Please dont talk to me:TUNNEL:-20
+NONE;0;55;Hey man if you're hungry head to the Cafeteria.;3
+Thanks man:TUNNEL:5,No thanks:TUNNEL:0,Please don't talk to me:TUNNEL:-20
 

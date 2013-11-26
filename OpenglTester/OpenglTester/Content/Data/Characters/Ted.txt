@@ -8,8 +8,8 @@ false
 50
 50
 50
-I totally wouldnt eat this...
+I totally wouldn't eat this...
 1
-NONE;0;55;There is some wierd guy standing outside;1
-ok...:TUNNEL:0
+NONE;0;55;There is some weird guy standing outside;1
+Ok...:TUNNEL:0
 

@@ -38,3 +38,75 @@ C:\Users\natasha.cooper\Desktop\Multiple_Scoregasm_Games\OpenglTester\OpenglTest
 C:\Users\natasha.cooper\Desktop\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\obj\x86\Debug\OpenglTester.csprojResolveAssemblyReference.cache
 C:\Users\natasha.cooper\Desktop\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\obj\x86\Debug\OpenglTester.exe
 C:\Users\natasha.cooper\Desktop\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\obj\x86\Debug\OpenglTester.pdb
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\obj\x86\Debug\OpenglTester.exe
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\obj\x86\Debug\OpenglTester.pdb
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\game.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\menu.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\splash.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\runstrip.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Snow1.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Snow2.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Snow3.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\test.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Levels\Intro.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Player.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Intro.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Door.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Level1Background.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\loadGameButton.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\loadGameButtonSelected.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\newGameButton.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\newGameButtonSelected.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\quitButton.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\quitButtonSelected.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Characters\Hooker.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Guard.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Hooker.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Guard4.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Hooker4.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Token4.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\8bitoperator.ttf
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\FontyFony.spritefont
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\FontyFony.xnb
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Asian.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Bald Guy.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Blonde Guy.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Midtoned Skin colour Blonde Guy.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Ranga.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Levels\PrisonIntro.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\PrisonIntroBackground.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\YorkMay.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\YorkMay4.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\YorkMayCasual.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\YorkMayCasual4.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Characters\Token.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Fish-Eyed Bob4.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\newSplash.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Level1BackgroundUpdate.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Characters\Cop.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Characters\Guard1.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\coinstrip.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Levels\CellHallway.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Levels\PlayerCell.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Cafeteria.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\CellHallway.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\PlayersCell.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\TokensCell.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Levels\Cafeteria.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Levels\Yard.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Levels\TokenCell.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Yard.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Ted.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Data\Characters\Ted.txt
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Audio\bip.wav
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Audio\Hitman.mp3
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Audio\Hitman.wav
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Audio\knifeStab.wav
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Audio\punch.wav
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Audio\select.wav
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Audio\jump.wav
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Content\Token.png
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\OpenTK.dll
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Lidgren.Network.dll
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\bin\Debug\Tao.Sdl.dll
+C:\Users\owain.bolt\Desktop\New Git\Multiple_Scoregasm_Games\OpenglTester\OpenglTester\obj\x86\Debug\OpenglTester.csprojResolveAssemblyReference.cache
