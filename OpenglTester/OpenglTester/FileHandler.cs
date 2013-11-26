@@ -506,7 +506,7 @@ namespace OpenglTester
 					{
 						StoryProgress tempStorydiag = new StoryProgress();
 						tempStorydiag.enum_EndingProgressThis = StoryProgress.enum_EndingProgress.NONE;
-						
+						tempDialogue.ResponseEndingProg.Add(tempStorydiag);
 					}
 					if ( StoryProgress.enum_EndingProgress.FOODTRUCK.ToString() ==responses[1])
 					{
@@ -569,7 +569,7 @@ namespace OpenglTester
 
 		/// <summary>
 		/// News the game.
-		/// Holy fuck this deletes all the saves so be careful
+		///  this deletes all the saves so be careful
 		/// </summary>
 		public void NewGame()
 		{

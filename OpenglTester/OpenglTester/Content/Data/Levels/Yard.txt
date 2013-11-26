@@ -1,0 +1,8 @@
+Yard
+NULL
+1
+Door
+150,620
+true
+Cafeteria
+1550,630

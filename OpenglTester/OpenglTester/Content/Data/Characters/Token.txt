@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Token4
 60
 NULL
@@ -15,21 +14,3 @@ NONE;0;55;Sup Nigga?;4
 fag:TUNNEL:5,Kill Yourself:CRIPPLE:-10,*SMACK*:SUICIDE:-20,Derpaderp:NONE:0
 NONE;0;55;Sup Derps?;3
 fag:TUNNEL:5,Kill Yourself:CRIPPLE:-10,*SMACK*:SUICIDE:-20
-=======
-Token4
-60
-NULL
-false
-false
-100
-50
-50
-50
-50
-You made your choice baby.
-2
-NONE;0;55;Sup Nigga?;4
-fag:TUNNEL:5,Kill Yourself:RAPE:-10,*SMACK*:SUICIDE:-20,Derpaderp:NONE:0
-NONE;0;55;Sup Derps?;3
-fag:TUNNEL:5,Kill Yourself:RAPE:-10,*SMACK*:SUICIDE:-20
->>>>>>> master

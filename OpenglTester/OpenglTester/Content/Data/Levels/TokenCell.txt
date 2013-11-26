@@ -1,0 +1,8 @@
+TokensCell
+NULL
+1
+Door
+200,490
+true
+CellHallway
+600,630
