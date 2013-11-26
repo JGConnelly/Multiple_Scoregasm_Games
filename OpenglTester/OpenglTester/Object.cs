@@ -21,7 +21,7 @@ namespace OpenglTester
 		protected float f_ElapsedGameTime;
 		protected float f_TimePerFrame;
 
-		protected Vector2 v2_Position;
+		public Vector2 v2_Position;
 		protected Vector2 v2_Size;
 		protected Vector2 v2_Origin;
 		protected Vector2 v2_Scale;
