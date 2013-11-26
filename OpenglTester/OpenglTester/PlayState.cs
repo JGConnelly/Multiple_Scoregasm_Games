@@ -125,7 +125,7 @@ namespace OpenglTester
 
 			player.Draw();
 
-			SnowFall.Draw();
+
 		}
 		
 		public static PlayState GetInstance ()

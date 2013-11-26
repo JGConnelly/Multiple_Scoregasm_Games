@@ -99,15 +99,12 @@ namespace OpenglTester
 		{
 			if (b_PrisonOutfit) {
 				tex_Image = Prison;
-			} 
-			else 
-			{
+			} else {
 				tex_Image = Casual;
 			}
 			// CurrentAction - Work it out based on input
-			if (InputHandler.switchPressed && ShivFound &&!wasSwap)
-			{
-				if(ShivEquipped)
+			if (InputHandler.switchPressed && ShivFound && !wasSwap) {
+				if (ShivEquipped)
 					ShivEquipped = false;
 				else 
 					ShivEquipped = true;
@@ -116,143 +113,110 @@ namespace OpenglTester
 			}
 			wasSwap = InputHandler.switchPressed;
 			LastAction = CurrentAction;
-			if (InputHandler.upPressed && !isJumping) 
-			{
-				AudioManager.PlaySound("Audio\\jump.wav");
+			if (InputHandler.upPressed && !isJumping) {
+				AudioManager.PlaySound ("Audio\\jump.wav");
 				isJumping = true;
 				isPunching = false;
 				GroundWhileJumping = v2_Position.Y;
 				velocity.Y = -8;
-				v2_Position.Y -=5;
+				v2_Position.Y -= 5;
 
 				CurrentAction = Action.jumpland;
-			}
-			else if (isJumping)
-			{
-				float time = (float) Elapsed;
+			} else if (isJumping) {
+				float time = (float)Elapsed;
 				Vector2 Acceleration;
-				Acceleration = ((velocity)/Mass + gravity);
+				Acceleration = ((velocity) / Mass + gravity);
 				//velocity+= gravity*time;
 				velocity += Acceleration * Elapsed;
-				v2_Position.Y+=velocity.Y;//*time;
+				v2_Position.Y += velocity.Y;//*time;
 				CurrentAction = Action.jump;
-				if(InputHandler.rightPressed)
-				{
+				if (InputHandler.rightPressed) {
 					b_FlipImage = false;
-					if(InputHandler.sprintPressed)
-					{
-						v2_Position.X+=RunSpeed*Elapsed;
-					}
-					else
-					{
-						v2_Position.X+=WalkSpeed*Elapsed;
+					if (InputHandler.sprintPressed) {
+						v2_Position.X += RunSpeed * Elapsed;
+					} else {
+						v2_Position.X += WalkSpeed * Elapsed;
 					}
 
-				}
-				else if (InputHandler.leftPressed)
-				{
+				} else if (InputHandler.leftPressed) {
 					b_FlipImage = true;
 
-					if(InputHandler.sprintPressed)
-					{
-						v2_Position.X-=RunSpeed*Elapsed;
-					}
-					else
-					{
-						v2_Position.X-=WalkSpeed*Elapsed;
+					if (InputHandler.sprintPressed) {
+						v2_Position.X -= RunSpeed * Elapsed;
+					} else {
+						v2_Position.X -= WalkSpeed * Elapsed;
 					}
 
 				}
-				if(v2_Position.Y >= GroundWhileJumping-5)
-				{
+				if (v2_Position.Y >= GroundWhileJumping - 5) {
 					v2_Position.Y = GroundWhileJumping;
 					velocity = Vector2.Zero;
 					isJumping = false;
 					CurrentAction = Action.jumpland;
 				}
-			}
-			else if (isPunching)
-			{
-				PunchTiming-=Elapsed;
-				if(PunchTiming <=0)
-				{
+			} else if (isPunching) {
+				PunchTiming -= Elapsed;
+				if (PunchTiming <= 0) {
 					isPunching = false;
 				}
-			}
-			else if(InputHandler.punchPressed&&!isPunching)
-			{
-				AudioManager.PlaySound("Audio\\punch.wav");
+			} else if (InputHandler.punchPressed && !isPunching) {
+				AudioManager.PlaySound ("Audio\\punch.wav");
 				if (InputHandler.downPressed)
 					CurrentAction = Action.block;
-				else if(ShivEquipped)
-				{
-					CurrentAction = Action.shiv;CurrentAnimation = Shiv;
+				else if (ShivEquipped) {
+					CurrentAction = Action.shiv;
+					CurrentAnimation = Shiv;
 					isPunching = true;
-				}
-				else 
-				{
-					CurrentAction = Action.punch;CurrentAnimation = Punch;
+				} else {
+					CurrentAction = Action.punch;
+					CurrentAnimation = Punch;
 					isPunching = true;
 				}
 				PunchTiming = CurrentAnimation.TimeForCompletion;
-			}
-
-			else if (InputHandler.downPressed) 
-			{
+			} else if (InputHandler.downPressed) {
 				CurrentAction = Action.crouch;
-				if(InputHandler.punchPressed)
-				{
+				if (InputHandler.punchPressed) {
 					CurrentAction = Action.block;
-				}
-				else if(InputHandler.leftPressed || InputHandler.rightPressed)
-				{
+				} else if (InputHandler.leftPressed || InputHandler.rightPressed) {
 					CurrentAction = Action.sneak;
-					if(InputHandler.rightPressed)
-					{
+					if (InputHandler.rightPressed) {
 						b_FlipImage = false;
-						v2_Position.X+=5*Elapsed;
+						v2_Position.X += 5 * Elapsed;
 
-					}
-					else if (InputHandler.leftPressed)
-					{
+					} else if (InputHandler.leftPressed) {
 						b_FlipImage = true;
-						v2_Position.X-=5*Elapsed;
+						v2_Position.X -= 5 * Elapsed;
 
 					}
 				}
 			}
 			//determine facing, as well as whether running or not.
-			else if (InputHandler.leftPressed || InputHandler.rightPressed)
-			{
+			else if (InputHandler.leftPressed || InputHandler.rightPressed) {
 				CurrentAction = Action.walk;
-				if (InputHandler.sprintPressed)
-				{
+				if (InputHandler.sprintPressed) {
 					CurrentAction = Action.run;
 				}
-				if(InputHandler.rightPressed)
-				{
+				if (InputHandler.rightPressed) {
 					b_FlipImage = false;
 					
-					if(CurrentAction == Action.run)
+					if (CurrentAction == Action.run) 
 					{
-						v2_Position.X+=RunSpeed*Elapsed;
-					}
-					else
+						v2_Position.X += RunSpeed * Elapsed;
+					} 
+					else 
 					{
-						v2_Position.X+=WalkSpeed*Elapsed;
+						v2_Position.X += WalkSpeed * Elapsed;
 					}
-				}
-				else if (InputHandler.leftPressed)
-				{
+				} else if (InputHandler.leftPressed) {
 					b_FlipImage = true;
 					
-					if(CurrentAction == Action.run)
+					if (CurrentAction == Action.run) 
 					{
-						v2_Position.X-=RunSpeed*Elapsed;
-					}
-					else
+						v2_Position.X -= RunSpeed * Elapsed;
+					} 
+					else 
 					{
-						v2_Position.X-=WalkSpeed*Elapsed;
+						v2_Position.X -= WalkSpeed * Elapsed;
 					}
 				}
 			}
@@ -263,12 +227,10 @@ namespace OpenglTester
 			{
 				//if right key or left key is also down, move in that direction midair
 			}*/
-			else
-			{
+			else {
 				CurrentAction = Action.idle;
 			}
-			switch (CurrentAction)
-			{
+			switch (CurrentAction) {
 			case Action.idle:
 				CurrentAnimation = Idle;
 				break;
@@ -304,11 +266,17 @@ namespace OpenglTester
 				break;
 			}
 			//Update the current animation. if the animation is different from the last animation, change the animation
-			if(LastAction != CurrentAction)
-			{
-				SetAnimationStartPoint(CurrentAnimation.Start,CurrentAnimation.Frames,CurrentAnimation.TimeForCompletion);
+			if (LastAction != CurrentAction) {
+				SetAnimationStartPoint (CurrentAnimation.Start, CurrentAnimation.Frames, CurrentAnimation.TimeForCompletion);
 			}
-
+			if (v2_Position.X <= 0) 
+			{
+				v2_Position.X = 0;
+			}
+			if (v2_Position.X >= 1920 - 128) 
+			{
+				v2_Position.X = 1920-128;
+			}
 			base.Update(Elapsed);
 		}		
 
