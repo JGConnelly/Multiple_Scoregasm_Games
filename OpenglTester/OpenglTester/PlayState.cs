@@ -20,7 +20,6 @@ namespace OpenglTester
 	{
 		static readonly PlayState playInstance = new PlayState();
 		Object playBG;
-		
 
 		public static Player player;
 
@@ -80,7 +79,7 @@ namespace OpenglTester
 			{
 				//player.CheckCollision
 			}
-			if (Keyboard.GetState ().IsKeyDown (Keys.A)) 
+			if (Keyboard.GetState ().IsKeyDown (Keys.P)) 
 			{
 
 			}
@@ -111,6 +110,7 @@ namespace OpenglTester
 			CurrentLevel.Update(dT);
 
 			player.Update(dT);
+
 			playBG.Update(dT);
 
 		}
@@ -124,6 +124,7 @@ namespace OpenglTester
 			//CurrentLevel.Draw ();
 
 			player.Draw();
+
 
 		}
 		
