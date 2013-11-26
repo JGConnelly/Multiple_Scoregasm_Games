@@ -88,7 +88,8 @@ namespace OpenglTester
 			{
 				SPAWN,
 				REMOVE,
-				CHANGEROOM
+				CHANGEROOM,
+				CHANGEOUTFIT
 
 			};
 			public TypeOfAction e_TypeOfAction;
@@ -184,6 +185,17 @@ namespace OpenglTester
 						{
 							PlayState.GetInstance().CurrentLevel = PlayState.GetInstance().fileManager.LoadLevel(str_ObjectAffected);
 							PlayState.player.Position = v2_NewPosition;
+						}
+						if(e_TypeOfAction == TypeOfAction.CHANGEOUTFIT)
+						{
+							if(PlayState.player.PrisonOutfit)
+							{
+								PlayState.player.PrisonOutfit = false;
+							}
+							else
+							{
+								PlayState.player.PrisonOutfit = true;
+							}
 						}
 						b_Completed =true;
 

@@ -64,7 +64,7 @@ namespace OpenglTester
 		Action CurrentAction = Action.idle;//This will need to be accessed by other classes when in combat
 		Action LastAction = Action.idle;
 		Texture2D Casual, Prison;
-		bool PrisonOutfit = false;
+		bool b_PrisonOutfit = false;
 		#endregion
 
 		readonly Vector2 gravity = new Vector2(0,9.8f);
@@ -81,6 +81,10 @@ namespace OpenglTester
 			//Scale = new Vector2 (4,4);
 		}
 
+		public bool PrisonOutfit {
+			set {b_PrisonOutfit = value ;}
+			get{ return b_PrisonOutfit;}
+		}
 		/// <summary>
 		/// Update the player class.
 		/// </summary>
@@ -90,7 +94,7 @@ namespace OpenglTester
 		/// 
 		public override void Update (float Elapsed)
 		{
-			if (PrisonOutfit) {
+			if (b_PrisonOutfit) {
 				tex_Image = Prison;
 			} 
 			else 

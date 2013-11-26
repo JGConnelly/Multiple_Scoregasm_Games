@@ -1,5 +1,5 @@
 Guard4
-60
+40
 NULL
 true
 false

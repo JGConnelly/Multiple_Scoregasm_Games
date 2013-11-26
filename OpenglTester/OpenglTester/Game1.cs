@@ -30,6 +30,7 @@ namespace OpenglTester
 		int defaultHeight = 1080;
 		Matrix SpriteScale;
 
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="OpenglTester.Game1"/> class.
 		/// </summary>
@@ -187,7 +188,18 @@ namespace OpenglTester
 			enum_EndingProgressThis = new enum_EndingProgress();
 			Stats = new int[i_NumberOfEndings];
 		}
+		public static StoryProgress operator +(StoryProgress s1,StoryProgress s2)
+		{
+			StoryProgress sret = new StoryProgress();
+			sret.Cripple = s1.Cripple +s2.Cripple;
+			sret.Foodtruck = s1.Foodtruck +s2.Foodtruck;
+			sret.Insane = s1.Insane +s2.Insane;
+			sret.Slayer = s1.Slayer +s2.Slayer;
+			sret.Suicide = s1.Suicide +s2.Suicide;
+			sret.Tunnel = s1.Tunnel +s2.Tunnel;
 
+			return sret;
+		}
 		public int Tunnel
 		{
 			set {Stats[0]=value; }

@@ -228,7 +228,7 @@ namespace OpenglTester
 						bool tempGreater= false;
 						bool tempLess= false;
 						string Affected;
-						//CHARSTAT,Hooker,PLAYERDIS,65,>;3.0;CHANGEROOM,PrisonIntro
+
 						string[] strFullAction = line.Split(';'); 
 						string[] strFirstLine = strFullAction[0].Split(',');
 						string[] strThirdLine = strFullAction[2].Split(',');
@@ -280,6 +280,10 @@ namespace OpenglTester
 						if(strThirdLine[0] ==Level.Action.TypeOfAction.SPAWN.ToString())
 						{
 							tempTypeOfAction = Level.Action.TypeOfAction.SPAWN;
+						}
+						if(strThirdLine[0] ==Level.Action.TypeOfAction.CHANGEOUTFIT.ToString())
+						{
+							tempTypeOfAction = Level.Action.TypeOfAction.CHANGEOUTFIT;
 						}
 						Affected =strThirdLine[1];
 
