@@ -213,6 +213,7 @@ namespace OpenglTester
 						int tempGameProg= 0;
 						float tempTime = 0.0f;
 						string tempCharName = "";
+						string tempProgStatName = "";
 						Vector2 tempPosition=new Vector2(0,0);
 						Level.Action.TypeOfCharStat enumTypeCharStat = Level.Action.TypeOfCharStat.NONE;
 						Level.Action.TypeOfGameStat enumTypeGameStat = Level.Action.TypeOfGameStat.NONE;
@@ -245,21 +246,62 @@ namespace OpenglTester
 								enumTypeCharStat = Level.Action.TypeOfCharStat.PLAYERDIS;
 								tempCharStat = Convert.ToInt32(strFirstLine[3]);
 							}
+							if(strFirstLine[4] == "<")
+								tempLess = true;
+							else if (strFirstLine[4] == ">")
+								tempGreater=true;
+							else if (strFirstLine[4] == "=")
+								tempEqual = true;
 
 						}
 						else if(strFirstLine[0] == "PROGSTAT")
 						{
-							
+							// who's stat
+							tempProgStatName = strFirstLine[1];
+
+							// what type of stat
+							if(Level.Action.TypeOfGameStat.CRIPPLE.ToString() == tempProgStatName)
+							{
+								enumTypeGameStat = Level.Action.TypeOfGameStat.CRIPPLE;
+								tempGameProg = Convert.ToInt32(strFirstLine[2]);
+							}
+							if(Level.Action.TypeOfGameStat.FOODTRUCK.ToString() == tempProgStatName)
+							{
+								enumTypeGameStat = Level.Action.TypeOfGameStat.FOODTRUCK;
+								tempGameProg = Convert.ToInt32(strFirstLine[2]);
+							}
+							if(Level.Action.TypeOfGameStat.INSANE.ToString() == tempProgStatName)
+							{
+								enumTypeGameStat = Level.Action.TypeOfGameStat.INSANE;
+								tempGameProg = Convert.ToInt32(strFirstLine[2]);
+							}
+							if(Level.Action.TypeOfGameStat.TUNNEL.ToString() == tempProgStatName)
+							{
+								enumTypeGameStat = Level.Action.TypeOfGameStat.TUNNEL;
+								tempGameProg = Convert.ToInt32(strFirstLine[2]);
+							}
+							if(Level.Action.TypeOfGameStat.SLAYER.ToString() == tempProgStatName)
+							{
+								enumTypeGameStat = Level.Action.TypeOfGameStat.SLAYER;
+								tempGameProg = Convert.ToInt32(strFirstLine[2]);
+							}
+							if(Level.Action.TypeOfGameStat.SUICIDE.ToString() == tempProgStatName)
+							{
+								enumTypeGameStat = Level.Action.TypeOfGameStat.SUICIDE;
+								tempGameProg = Convert.ToInt32(strFirstLine[2]);
+							}
+
+							if(strFirstLine[3] == "<")
+								tempLess = true;
+							else if (strFirstLine[3] == ">")
+								tempGreater=true;
+							else if (strFirstLine[3] == "=")
+								tempEqual = true;
 						}
 						// the time
 						tempTime =(float)(Convert.ToDouble(strFullAction[1]));
 
-						if(strFirstLine[4] == "<")
-							tempLess = true;
-						else if (strFirstLine[4] == ">")
-							tempGreater=true;
-						else if (strFirstLine[4] == "=")
-							tempEqual = true;
+
 
 
 						// Action / reaction stuff

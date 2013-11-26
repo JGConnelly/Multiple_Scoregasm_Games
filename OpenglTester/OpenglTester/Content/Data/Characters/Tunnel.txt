@@ -1,0 +1,15 @@
+Tunnel
+60
+NULL
+false
+false
+100
+50
+50
+50
+50
+.
+1
+TUNNEL;3;55;Finish the game and exit by tunnel? ;2
+Yes:TUNNEL:0,No:TUNNEL:0
+
