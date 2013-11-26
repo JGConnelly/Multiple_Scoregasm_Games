@@ -21,7 +21,7 @@ namespace OpenglTester
 	{
 		static readonly MenuState menuInstance = new MenuState();
 		Object menuBG;
-		Button btnNewGame, btnLoadGame, btnQuit;
+		Button btnNewGame, btnHow, btnCredits, btnQuit;
 		List<Button> buttons;
 		static bool changed = false;
 		static int currentlySelectedButton = 0;
@@ -32,20 +32,22 @@ namespace OpenglTester
 			//TODO: load the backgrounds and buttons and stuff here
 			menuBG = new Object("menu");
 			
-			btnNewGame = new Button(760, 500, "newGameButton", "newGameButtonSelected");
-			//btnLoadGame = new Button(760, 650, "loadGameButton", "loadGameButtonSelected");
-			btnQuit = new Button(760, 700, "quitButton", "quitButtonSelected");
+			btnNewGame = new Button(760, 450, "newGameButton", "newGameButtonSelected");
+			btnHow = new Button(760, 600, "howButton", "howButtonSelected");
+			btnCredits = new Button(760, 750, "creditsButton", "creditsButtonSelected");
+			btnQuit = new Button(760, 900, "quitButton", "quitButtonSelected");
 			
 			buttons = new List<Button>();
 			buttons.Add(btnNewGame);
-			//buttons.Add(btnLoadGame);
+			buttons.Add(btnHow);
+			buttons.Add(btnCredits);
 			buttons.Add(btnQuit);
 			
 			buttons[currentlySelectedButton].Select();
-
+			
 			AudioManager.SetMusicVolume(0.3f);
 			AudioManager.PlayMusic("Audio\\Hitman.wav");
-
+			
 			AudioManager.LoadSound("Audio\\select.wav");
 			AudioManager.LoadSound("Audio\\bip.wav");
 		}
@@ -80,6 +82,14 @@ namespace OpenglTester
 				{
 					ChangeState(game, PlayState.GetInstance());
 				}
+				if(btnHow.isSelected)
+				{
+					ChangeState(game, HowState.GetInstance());
+				}
+				if (btnCredits.isSelected)
+				{
+					ChangeState(game, CreditsState.GetInstance());
+				}
 				if(btnQuit.isSelected)
 				{
 					Program.game.Quit();
@@ -89,7 +99,7 @@ namespace OpenglTester
 			{
 				StateManager.spaceIsDown = false;
 			}
-
+			
 			//change menu buttons
 			if(InputHandler.downPressed && !changed)
 			{

@@ -78,7 +78,11 @@ namespace OpenglTester
 		/// </param>
 		public static void LoadSound(string fileName)
 		{
-			sounds.Add(fileName, Game1.contentManager.Load<SoundEffect>(fileName));
+			if(!sounds.ContainsKey(fileName))
+			{
+
+				sounds.Add(fileName, Game1.contentManager.Load<SoundEffect>(fileName));
+			}
 		}
 
 		/// <summary>
