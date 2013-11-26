@@ -2,7 +2,10 @@ TokensCell
 NULL
 1
 Door
-200,490
+200,520
 true
 CellHallway
 600,630
+1
+Token
+1128,640

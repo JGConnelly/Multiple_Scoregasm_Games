@@ -8,9 +8,8 @@ false
 50
 50
 50
-You made your choice baby.
-2
-NONE;0;55;Sup Nigga?;4
-fag:TUNNEL:5,Kill Yourself:CRIPPLE:-10,*SMACK*:SUICIDE:-20,Derpaderp:NONE:0
-NONE;0;55;Sup Derps?;3
-fag:TUNNEL:5,Kill Yourself:CRIPPLE:-10,*SMACK*:SUICIDE:-20
+Crap food huh?.
+1
+NONE;0;55;Hey man if you're hungry head to the cafeteria.;3
+Thanks man:TUNNEL:5,No thanks:TUNNEL:0,Please dont talk to me:TUNNEL:-20
+

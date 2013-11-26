@@ -50,6 +50,7 @@ namespace OpenglTester
 					PlayState.GetInstance().CurrentLevel = null;
 					PlayState.GetInstance().CurrentLevel = PlayState.GetInstance().fileManager.LoadLevel(str_Exit);
 					PlayState.player.Position = v2_NewLevelPosition;
+
 				}
 			}
 

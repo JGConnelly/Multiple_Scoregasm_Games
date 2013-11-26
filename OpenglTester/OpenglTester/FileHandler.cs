@@ -140,11 +140,6 @@ namespace OpenglTester
 
 							ret.AddExit(tempObject,exitPosition,tempExit);
 
-
-
-
-
-
 						}
 						// if not load in th action associated
 						// use the enum from the interactable object class
