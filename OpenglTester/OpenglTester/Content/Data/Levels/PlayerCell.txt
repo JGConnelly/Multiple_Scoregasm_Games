@@ -6,3 +6,6 @@ Door
 true
 CellHallway
 300,630
+0
+1
+PROGSTAT,TUNNEL,4,>;0.0;SPAWN,Tunnel;1300,700

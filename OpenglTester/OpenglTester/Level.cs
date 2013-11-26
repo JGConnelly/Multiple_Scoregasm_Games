@@ -148,18 +148,54 @@ namespace OpenglTester
 						}
 
 					}
-					// check if its a game/ story progression stat
-					else if(PlayState.GetInstance().CurrentProgress.enum_EndingProgressThis.ToString()  == e_TypeOfGameStat.ToString()&&PlayState.GetInstance().CurrentProgress.enum_EndingProgressThis.ToString()!= "NONE")
-					{
-						int tempIndex = PlayState.GetInstance().CurrentProgress.enum_EndingProgressThis.GetHashCode();
-						if(PlayState.GetInstance().CurrentProgress.Stats[tempIndex] >= ProgStat)
-						{
-							b_ConditionMet = true;
-						}
-					}
+
+
+
 
 				}
-
+				// check if its a game/ story progression stat
+				if(  StoryProgress.enum_EndingProgress.CRIPPLE.ToString() == e_TypeOfGameStat.ToString())
+				{
+					if(PlayState.GetInstance().CurrentProgress.Cripple >= ProgStat)
+					{
+						b_ConditionMet = true;
+					}
+				}
+				else if(  StoryProgress.enum_EndingProgress.FOODTRUCK.ToString() == e_TypeOfGameStat.ToString())
+				{
+					if(PlayState.GetInstance().CurrentProgress.Foodtruck >= ProgStat)
+					{
+						b_ConditionMet = true;
+					}
+				}
+				else if(  StoryProgress.enum_EndingProgress.INSANE.ToString() == e_TypeOfGameStat.ToString())
+				{
+					if(PlayState.GetInstance().CurrentProgress.Insane >= ProgStat)
+					{
+						b_ConditionMet = true;
+					}
+				}
+				else if(  StoryProgress.enum_EndingProgress.SLAYER.ToString() == e_TypeOfGameStat.ToString())
+				{
+					if(PlayState.GetInstance().CurrentProgress.Slayer >= ProgStat)
+					{
+						b_ConditionMet = true;
+					}
+				}
+				else if(  StoryProgress.enum_EndingProgress.SUICIDE.ToString() == e_TypeOfGameStat.ToString())
+				{
+					if(PlayState.GetInstance().CurrentProgress.Suicide >= ProgStat)
+					{
+						b_ConditionMet = true;
+					}
+				}
+				else if(  StoryProgress.enum_EndingProgress.TUNNEL.ToString() == e_TypeOfGameStat.ToString())
+				{
+					if(PlayState.GetInstance().CurrentProgress.Tunnel >= ProgStat)
+					{
+						b_ConditionMet = true;
+					}
+				}
 				//when the condition is met do it
 				if (b_ConditionMet) 
 				{
@@ -170,7 +206,7 @@ namespace OpenglTester
 							//load in and add a new character
 							PlayState.GetInstance().CurrentLevel.AddCharacter(PlayState.GetInstance().fileManager.LoadCharacter(str_ObjectAffected));
 							PlayState.GetInstance().CurrentLevel.ai_Characters[
-								PlayState.GetInstance().CurrentLevel.ai_Characters.Count-1].Position = v2_NewPosition;
+							PlayState.GetInstance().CurrentLevel.ai_Characters.Count-1].Position = v2_NewPosition;
 						}
 						if(e_TypeOfAction == TypeOfAction.REMOVE)
 						{

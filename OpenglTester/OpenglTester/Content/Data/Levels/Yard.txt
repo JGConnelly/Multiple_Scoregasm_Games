@@ -6,3 +6,6 @@ Door
 true
 Cafeteria
 1550,630
+1
+Tashay
+600,750
