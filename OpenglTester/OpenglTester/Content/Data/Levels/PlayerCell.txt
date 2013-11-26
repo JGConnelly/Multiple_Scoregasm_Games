@@ -2,7 +2,7 @@ PlayersCell
 NULL
 1
 Door
-200,490
+200,520
 true
 CellHallway
-200,630
+300,630

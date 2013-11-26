@@ -5,12 +5,12 @@ Door
 171,525
 true
 PlayerCell
-1000,630
+400,630
 Door
 885,525
 true
 TokenCell
-1000,630
+400,630
 Door
 1531,524
 true

@@ -5,9 +5,12 @@ Door
 50,520
 true
 CellHallway
-650,630
+1300,630
 Door
 1700,520
 true
 Yard
-150,690
+250,730
+1
+Ted
+755,660
