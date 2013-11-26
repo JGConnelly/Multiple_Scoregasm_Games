@@ -33,12 +33,12 @@ namespace OpenglTester
 			menuBG = new Object("menu");
 			
 			btnNewGame = new Button(760, 500, "newGameButton", "newGameButtonSelected");
-			btnLoadGame = new Button(760, 650, "loadGameButton", "loadGameButtonSelected");
-			btnQuit = new Button(760, 800, "quitButton", "quitButtonSelected");
+			//btnLoadGame = new Button(760, 650, "loadGameButton", "loadGameButtonSelected");
+			btnQuit = new Button(760, 700, "quitButton", "quitButtonSelected");
 			
 			buttons = new List<Button>();
 			buttons.Add(btnNewGame);
-			buttons.Add(btnLoadGame);
+			//buttons.Add(btnLoadGame);
 			buttons.Add(btnQuit);
 			
 			buttons[currentlySelectedButton].Select();
