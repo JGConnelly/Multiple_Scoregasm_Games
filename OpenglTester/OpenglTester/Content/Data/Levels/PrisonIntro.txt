@@ -2,8 +2,13 @@ PrisonIntroBackground
 NULL
 1
 Door
-1800,650
+1740,570
 true
-Intro
-1000,600
-0
+PlayerCell
+250,600
+1
+Guard1
+1600,630
+2
+CHARSTAT,Guard1,PLAYERDIS,30,>;0.0;CHANGEOUTFIT,Player;0,0
+CHARSTAT,Guard1,PLAYERDIS,54,>;5.0;CHANGEROOM,PlayerCell;250,600

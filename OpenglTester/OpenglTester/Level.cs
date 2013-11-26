@@ -73,7 +73,7 @@ namespace OpenglTester
 				TUNNEL,
 				SUICIDE,
 				FOODTRUCK,
-				RAPE,
+				CRIPPLE,
 				INSANE,
 				SLAYER
 
@@ -88,32 +88,38 @@ namespace OpenglTester
 			{
 				SPAWN,
 				REMOVE,
-				CHANGEROOM
+				CHANGEROOM,
+				CHANGEOUTFIT
 
 			};
 			public TypeOfAction e_TypeOfAction;
 			string str_ObjectAffected;
 			float TimeBetween;
-			bool ConditionMet;
+			bool b_ConditionMet;
+			Vector2 v2_NewPosition;
+			bool b_Completed;
 
 			public Action(int chara, int gameprog, string charname, TypeOfCharStat  charstat,TypeOfGameStat  gamestat)
 			{
-				ConditionMet = false;
+				b_ConditionMet = false;
 				CharStat= chara;
 				ProgStat = gameprog;
 				Character = charname;
 				e_TypeOfCharStat  = charstat;
 				e_TypeOfGameStat = gamestat;
+				v2_NewPosition= new Vector2(0,0);
+				b_Completed = false;
 			}
-			public void  SetupAction (TypeOfAction action, bool equal, bool less, bool greater, float time,string affected)
+			public void  SetupAction (TypeOfAction action, bool equal, bool less, bool greater, float time,string affected,Vector2 pos)
 			{
-				ConditionMet = false;
+				b_ConditionMet = false;
 				e_TypeOfAction = action;
 				comp_EQUAL = equal;
 				comp_LESS = less;
 				comp_GREATER = greater;
 				TimeBetween = time;
 				str_ObjectAffected = affected;
+				v2_NewPosition = pos;
 			}
 			public void Update (float deltaTime)
 			{
@@ -126,17 +132,17 @@ namespace OpenglTester
 							if(comp_GREATER)
 							{
 								if (PlayState.GetInstance ().CurrentLevel.ai_Characters[ai].PlayerDisposition > CharStat)
-								{ConditionMet = true;}
+								{b_ConditionMet = true;}
 							}
 							else if(comp_EQUAL)
 							{
 								if (PlayState.GetInstance ().CurrentLevel.ai_Characters[ai].PlayerDisposition == CharStat)
-								{ConditionMet = true;}
+								{b_ConditionMet = true;}
 							}
 							else if(comp_LESS)
 							{
 								if (PlayState.GetInstance ().CurrentLevel.ai_Characters[ai].PlayerDisposition < CharStat)
-								{ConditionMet = true;}
+								{b_ConditionMet = true;}
 							}
 
 						}
@@ -148,14 +154,14 @@ namespace OpenglTester
 						int tempIndex = PlayState.GetInstance().CurrentProgress.enum_EndingProgressThis.GetHashCode();
 						if(PlayState.GetInstance().CurrentProgress.Stats[tempIndex] >= ProgStat)
 						{
-							ConditionMet = true;
+							b_ConditionMet = true;
 						}
 					}
 
 				}
 
 				//when the condition is met do it
-				if (ConditionMet) 
+				if (b_ConditionMet) 
 				{
 					if(TimeBetween<=0)
 					{
@@ -163,6 +169,8 @@ namespace OpenglTester
 						{
 							//load in and add a new character
 							PlayState.GetInstance().CurrentLevel.AddCharacter(PlayState.GetInstance().fileManager.LoadCharacter(str_ObjectAffected));
+							PlayState.GetInstance().CurrentLevel.ai_Characters[
+								PlayState.GetInstance().CurrentLevel.ai_Characters.Count-1].Position = v2_NewPosition;
 						}
 						if(e_TypeOfAction == TypeOfAction.REMOVE)
 						{
@@ -176,12 +184,30 @@ namespace OpenglTester
 						if(e_TypeOfAction == TypeOfAction.CHANGEROOM)
 						{
 							PlayState.GetInstance().CurrentLevel = PlayState.GetInstance().fileManager.LoadLevel(str_ObjectAffected);
+							PlayState.player.Position = v2_NewPosition;
 						}
+						if(e_TypeOfAction == TypeOfAction.CHANGEOUTFIT)
+						{
+							if(PlayState.player.PrisonOutfit)
+							{
+								PlayState.player.PrisonOutfit = false;
+							}
+							else
+							{
+								PlayState.player.PrisonOutfit = true;
+							}
+						}
+						b_Completed =true;
 
 					}
 
 					TimeBetween -= deltaTime;
 				}
+			}
+
+			public bool IsCompleted()
+			{
+				return b_Completed;
 			}
 		}
 
@@ -263,11 +289,17 @@ namespace OpenglTester
 				OnScreenWords [t].TimeOnScreen -= DeltaT;
 			}
 
-			//
+			//actions
 			for (int a = 0; a < Actions.Count; a++) {
 				Actions[a].Update(DeltaT);
+				if(Actions[a].IsCompleted())
+				{
+					Actions.RemoveAt(a);
+					break;
+				}
 			}
 			LevelEmitter.Update(DeltaT);
+
 
 		}
 		public void Draw ()
