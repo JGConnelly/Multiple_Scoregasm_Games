@@ -43,6 +43,8 @@ namespace OpenglTester
 			CurrentLevel = fileManager.LoadLevel(thisLevel);
 			CurrentProgress = new StoryProgress();
 
+
+
 		}
 		public Level GetCurrentLevel ()
 		{

@@ -1,0 +1,13 @@
+Cafeteria
+NULL
+2
+Door
+50,520
+true
+CellHallway
+650,630
+Door
+1700,520
+true
+Yard
+150,690

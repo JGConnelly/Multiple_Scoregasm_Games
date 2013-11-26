@@ -33,9 +33,9 @@ namespace OpenglTester
 		{
 			for (int i =0; i < i_ParticleNumber; i ++) 
 			{
-				int snowran = randnum.Next(0,3);
-				Particles.Add(new Particle("coin"+snowran));
-				
+
+				Particles.Add(new Particle("coinstrip",9,1.5f,95));
+				Particles[Particles.Count -1].SetAnimationStartPoint(0,9,1.5f);
 				int pos_x = randnum.Next(0,i_SkyWidth);
 				Particles[i].Position=new Vector2(pos_x,i_SkyHeight);
 				
@@ -69,7 +69,7 @@ namespace OpenglTester
 					int pos_x = randnum.Next(0,i_SkyWidth);
 					Particles[i].Position=new Vector2(pos_x,i_SkyHeight);
 					Particles[i].Alive= true;
-					float DownSpeed = randnum.Next(-60,-10);
+					float DownSpeed = randnum.Next(-250,-100);
 					Particles [i].SetVelocity(new Vector2(0,DownSpeed));
 				}
 			}
