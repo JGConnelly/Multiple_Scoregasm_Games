@@ -104,6 +104,7 @@ namespace OpenglTester
 			str_NoDialogueLine = "Go away";
 			bool b_KnockingOut = false;
 			bool b_KnockedOut = false;
+			v2_Scale = new Vector2(4, 4);
 			//GenerateAlpha();
 			//Scale = new Vector2 (4,4);
 		}

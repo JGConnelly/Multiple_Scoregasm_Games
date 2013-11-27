@@ -66,7 +66,7 @@ namespace OpenglTester
 			graphics.PreferredBackBufferWidth = defaultWidth;
 			graphics.PreferredBackBufferHeight = defaultHeight;
 			graphics.ApplyChanges();
-			graphics.GraphicsDevice.DeviceReset += new EventHandler<EventArgs>(GraphicsDevice_DeviceReset);
+			//graphics.GraphicsDevice.DeviceReset += new EventHandler<EventArgs>(GraphicsDevice_DeviceReset);
 
 			// TODO: Add your initialization logic here
 			base.Initialize();

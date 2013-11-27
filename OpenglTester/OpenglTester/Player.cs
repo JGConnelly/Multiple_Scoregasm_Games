@@ -77,8 +77,10 @@ namespace OpenglTester
 			Casual = Game1.contentManager.Load<Texture2D>(image2Path);
 			Prison = tex_Image;
 
-			AudioManager.LoadSound("Audio\\punch.wav");
-			AudioManager.LoadSound("Audio\\jump.wav");
+			v2_Scale = new Vector2(4, 4);
+
+			//AudioManager.LoadSound("Audio\\punch.wav");
+			//AudioManager.LoadSound("Audio\\jump.wav");
 
 			//GenerateAlpha();
 			//Scale = new Vector2 (4,4);

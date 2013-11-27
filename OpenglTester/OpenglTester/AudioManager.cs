@@ -43,7 +43,7 @@ namespace OpenglTester
 			SoundEffect effect;
 			if(sounds.TryGetValue(name, out effect))
 			{
-				effect.Play(soundVolume, 0.0f, 0.0f);
+				//effect.Play(soundVolume, 0.0f, 0.0f);
 			}
 		}
 
@@ -59,14 +59,14 @@ namespace OpenglTester
 
 			try
 			{
-				currentSong = Game1.contentManager.Load<Song>(name);
+				//currentSong = Game1.contentManager.Load<Song>(name);
 			}
 			catch(Exception e)
 			{//song not found
 				if (currentSong == null)
 					throw e;
 			}
-			MediaPlayer.Play(currentSong);
+			//MediaPlayer.Play(currentSong);
 		}
 
 		/// <summary>
@@ -81,7 +81,7 @@ namespace OpenglTester
 			if(!sounds.ContainsKey(fileName))
 			{
 
-				sounds.Add(fileName, Game1.contentManager.Load<SoundEffect>(fileName));
+				//sounds.Add(fileName, Game1.contentManager.Load<SoundEffect>(fileName));
 			}
 		}
 

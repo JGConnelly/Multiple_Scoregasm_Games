@@ -36,7 +36,7 @@ namespace OpenglTester
 
 
 			// seting up the new player
-			player = new Player("YorkMay4","YorkMayCasual4",65,20,32f * 4);
+			player = new Player("YorkMay","YorkMayCasual",65,20,32f);
 			player.Position = new Vector2(64,630);
 
 			string thisLevel = fileManager.LoadPlayer();

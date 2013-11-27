@@ -1,4 +1,4 @@
-Guard4
+Guard
 60
 NULL
 true

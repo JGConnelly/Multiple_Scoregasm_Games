@@ -430,11 +430,11 @@ namespace OpenglTester
 			line = file.ReadLine ();
 			tempIsHooker = Convert.ToBoolean (line);
 			if (tempIsHooker) {
-				ReturnedCharacter = new AI (tempFileName, 11, 2, 128f, true);
+				ReturnedCharacter = new AI (tempFileName, 11, 2, 32f, true);
 				ReturnedCharacter.PlayerDisposition = tempDisposision;
 				ReturnedCharacter.IsGuard = tempIsGuard;
 			} else {
-				ReturnedCharacter = new AI (tempFileName, 65, 2, 128f, false);
+				ReturnedCharacter = new AI (tempFileName, 65, 2, 32f, false);
 				ReturnedCharacter.PlayerDisposition = tempDisposision;
 				ReturnedCharacter.IsGuard = tempIsGuard;
 			}
